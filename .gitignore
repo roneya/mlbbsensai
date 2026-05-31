@@ -12,6 +12,8 @@ firebase-debug.*.log*
 
 # Firebase config
 .firebaserc
+firebase.json
+404.html
 
 # Runtime data
 pids
@@ -85,3 +87,6 @@ ENV/
 # Project specific
 *.bak
 *.tmp
+
+# Superpowers docs
+docs/superpowers/
