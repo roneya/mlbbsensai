@@ -1,0 +1,5283 @@
+{
+    "hero_info": {
+        "Marcel": {
+            "heroName": "Marcel",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_2_1_42/100_df7603c292198bf4aa7b551d401ea5c1.png",
+            "appearanceRate": 0.159,
+            "banRate": 26.8957,
+            "winRate": 53.5417,
+            "heroType": "Roam",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Yve": 53.9582,
+                    "Atlas": 53.8095,
+                    "Barats": 51.7806,
+                    "Phoveus": 51.3559,
+                    "Joy": 50.0017
+                },
+                "sub_hero_last": {
+                    "Angela": 48.379,
+                    "Khufra": 53.8095,
+                    "Kadita": 51.7806,
+                    "Aamon": 50.7581,
+                    "Thamuz": 50.0017
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Yve": 53.9582,
+                    "Xavier": 50.0017,
+                    "Brody": 51.5953,
+                    "Zetian": 51.5702
+                },
+                "sub_hero_last": {
+                    "Chip": 50.4897,
+                    "Xavier": 53.3471,
+                    "Thamuz": 52.2507,
+                    "Ruby": 53.5623,
+                    "Zetian": 52.6892
+                }
+            }
+        },
+        "Sora": {
+            "heroName": "Sora",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_2_1_40/100_8143d7bbd4318d7c699908e808de885e.png",
+            "appearanceRate": 0.5847,
+            "banRate": 50.1714,
+            "winRate": 48.9541,
+            "heroType": "Exp Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Chip": 48.2213,
+                    "Floryn": 54.2135,
+                    "Valentina": 53.381,
+                    "Estes": 52.0766,
+                    "Barats": 49.7216
+                },
+                "sub_hero_last": {
+                    "Phoveus": 50.1538,
+                    "Floryn": 53.3471,
+                    "Carmilla": 53.381,
+                    "Kagura": 51.6873,
+                    "Odette": 49.7216
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Faramis": 54.0159,
+                    "Natan": 54.7811,
+                    "Floryn": 53.3471,
+                    "Zhuxin": 52.2718,
+                    "Wanwan": 53.4985
+                },
+                "sub_hero_last": {
+                    "Aldous": 54.0159,
+                    "Cici": 54.7811,
+                    "Esmeralda": 52.9491,
+                    "Masha": 54.2135,
+                    "Terizla": 53.4985
+                }
+            }
+        },
+        "Obsidia": {
+            "heroName": "Obsidia",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_2_1_18/100_9c3daef5625bfade5c4cb8a219845dd3.png",
+            "appearanceRate": 0.6425,
+            "banRate": 3.1186,
+            "winRate": 50.3834,
+            "heroType": "Gold Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Hanzo": 51.1908,
+                    "Ling": 47.1615,
+                    "Beatrix": 50.0423,
+                    "Helcurt": 50.0697,
+                    "Mathilda": 44.9361
+                },
+                "sub_hero_last": {
+                    "Belerick": 53.822,
+                    "Baxia": 51.3559,
+                    "Bruno": 47.8535,
+                    "Miya": 50.6794,
+                    "Diggie": 52.2507
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Popol and Kupa": 53.6631,
+                    "Joy": 46.5971,
+                    "Hanzo": 51.1908,
+                    "Lapu-Lapu": 50.1177,
+                    "Harith": 48.4702
+                },
+                "sub_hero_last": {
+                    "Melissa": 51.2984,
+                    "Beatrix": 50.0423,
+                    "Moskov": 48.3638,
+                    "Ixia": 49.7044,
+                    "Hanabi": 54.7811
+                }
+            }
+        },
+        "Zetian": {
+            "heroName": "Zetian",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_90/100_8d965f05f84621a51f799aeb8fb5f4c4.png",
+            "appearanceRate": 1.4727,
+            "banRate": 30.0923,
+            "winRate": 51.5338,
+            "heroType": "Mid Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Lolita": 56.4071,
+                    "Tigreal": 47.5348,
+                    "Natalia": 51.6901,
+                    "Helcurt": 50.0697,
+                    "Pharsa": 47.6605
+                },
+                "sub_hero_last": {
+                    "Valentina": 43.5742,
+                    "Faramis": 50.7711,
+                    "Gloo": 57.2039,
+                    "Estes": 52.0766,
+                    "Irithel": 51.7791
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Harley": 49.7147,
+                    "Natalia": 51.6901,
+                    "Alice": 50.3016,
+                    "Lukas": 48.5258,
+                    "Kaja": 53.1757
+                },
+                "sub_hero_last": {
+                    "Luo Yi": 48.3742,
+                    "Xavier": 47.2659,
+                    "Vale": 50.7646,
+                    "Gord": 55.3153,
+                    "Vexana": 50.6805
+                }
+            }
+        },
+        "Kalea": {
+            "heroName": "Kalea",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_64/100_4f3d4649e301c76daf20bd8811f3095c.png",
+            "appearanceRate": 0.3005,
+            "banRate": 1.8892,
+            "winRate": 46.1826,
+            "heroType": "Roam",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Joy": 46.5971,
+                    "Zilong": 47.4174,
+                    "Minotaur": 53.5623,
+                    "Alucard": 49.91,
+                    "Harith": 48.4702
+                },
+                "sub_hero_last": {
+                    "Masha": 54.2135,
+                    "Bane": 51.5702,
+                    "Minsitthar": 52.2718,
+                    "Faramis": 50.7711,
+                    "Sun": 54.0159
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Masha": 54.2135,
+                    "Minsitthar": 52.2718,
+                    "Kagura": 51.6873,
+                    "Saber": 49.0831,
+                    "Luo Yi": 48.3742
+                },
+                "sub_hero_last": {
+                    "Marcel": 53.6689,
+                    "Chip": 48.2213,
+                    "Mathilda": 44.9361,
+                    "Khufra": 53.8095,
+                    "Diggie": 52.2507
+                }
+            }
+        },
+        "Lukas": {
+            "heroName": "Lukas",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_20/100_63040edd0cf15b815fcbbb8b2d08d7f7.png",
+            "appearanceRate": 0.2552,
+            "banRate": 0.873,
+            "winRate": 48.5708,
+            "heroType": "Exp Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Masha": 54.2135,
+                    "Mathilda": 44.9361,
+                    "Natalia": 51.6901,
+                    "Joy": 46.5971,
+                    "Saber": 49.0831
+                },
+                "sub_hero_last": {
+                    "Phoveus": 50.1538,
+                    "Barats": 49.6877,
+                    "Floryn": 53.3471,
+                    "Hylos": 49.802,
+                    "Bruno": 47.8535
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Phoveus": 50.1538,
+                    "Joy": 46.5971,
+                    "Natan": 51.3067,
+                    "Ling": 47.1615,
+                    "Estes": 52.0766
+                },
+                "sub_hero_last": {
+                    "Masha": 54.2135,
+                    "Alucard": 49.91,
+                    "Roger": 51.5304,
+                    "Lancelot": 44.9204,
+                    "Barats": 49.6877
+                }
+            }
+        },
+        "Suyou": {
+            "heroName": "Suyou",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_20/100_5e4ca70172332dde18bb1dc158ccc5c8.png",
+            "appearanceRate": 1.4875,
+            "banRate": 27.1092,
+            "winRate": 51.6452,
+            "heroType": "Jungle",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Benedetta": 54.087,
+                    "Lolita": 56.4071,
+                    "Lapu-Lapu": 50.1177,
+                    "Masha": 54.2135,
+                    "X.Borg": 49.9086
+                },
+                "sub_hero_last": {
+                    "Gusion": 48.8987,
+                    "Silvanna": 53.3,
+                    "Joy": 46.5971,
+                    "Chip": 48.2213,
+                    "Bruno": 47.8535
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Yve": 53.9582,
+                    "Masha": 54.2135,
+                    "Mathilda": 44.9361,
+                    "Bruno": 47.8535,
+                    "Sora": 48.9267
+                },
+                "sub_hero_last": {
+                    "Ling": 47.1615,
+                    "Hayabusa": 48.1689,
+                    "Roger": 51.5304,
+                    "Yi Sun-shin": 51.4469,
+                    "Lancelot": 44.9204
+                }
+            }
+        },
+        "Zhuxin": {
+            "heroName": "Zhuxin",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_92/100_595f85bc90df3889c711c6b1f02dc02d.png",
+            "appearanceRate": 0.224,
+            "banRate": 8.8702,
+            "winRate": 51.1247,
+            "heroType": "Mid Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Lolita": 56.4071,
+                    "Khaleed": 55.0418,
+                    "Harith": 48.4702,
+                    "Natalia": 51.6901,
+                    "Khufra": 53.8095
+                },
+                "sub_hero_last": {
+                    "Diggie": 52.2507,
+                    "Marcel": 53.6689,
+                    "Masha": 54.2135,
+                    "Zhask": 52.1168,
+                    "Phoveus": 50.1538
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Valentina": 43.5742,
+                    "Diggie": 52.2507,
+                    "Mathilda": 44.9361,
+                    "Bruno": 47.8535,
+                    "Floryn": 53.3471
+                },
+                "sub_hero_last": {
+                    "Cecilion": 49.567,
+                    "Vexana": 50.6805,
+                    "Kagura": 51.6873,
+                    "Luo Yi": 48.3742,
+                    "Pharsa": 47.6605
+                }
+            }
+        },
+        "Chip": {
+            "heroName": "Chip",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_79224d297f14377ad2eda8543432330d.png",
+            "appearanceRate": 0.044,
+            "banRate": 0.6934,
+            "winRate": 48.0486,
+            "heroType": "Roam",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Wanwan": 49.7358,
+                    "Joy": 46.5971,
+                    "Yve": 53.9582,
+                    "Harith": 48.4702,
+                    "Lolita": 56.4071
+                },
+                "sub_hero_last": {
+                    "Mathilda": 44.9361,
+                    "Faramis": 50.7711,
+                    "Alice": 50.3016,
+                    "Thamuz": 50.0017,
+                    "Lylia": 50.225
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Khufra": 53.8095,
+                    "Masha": 54.2135,
+                    "Lunox": 49.8398,
+                    "Ruby": 51.5953,
+                    "Faramis": 50.7711
+                },
+                "sub_hero_last": {
+                    "Lolita": 56.4071,
+                    "Marcel": 53.6689,
+                    "Diggie": 52.2507,
+                    "Kaja": 53.1757,
+                    "Mathilda": 44.9361
+                }
+            }
+        },
+        "Cici": {
+            "heroName": "Cici",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_60e3e11da30f404c77fff9e22d3bdc72.png",
+            "appearanceRate": 0.3588,
+            "banRate": 2.8789,
+            "winRate": 48.706,
+            "heroType": "Exp Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Mathilda": 44.9361,
+                    "Barats": 49.6877,
+                    "Thamuz": 50.0017,
+                    "Balmond": 43.3789,
+                    "Marcel": 53.6689
+                },
+                "sub_hero_last": {
+                    "Sun": 54.0159,
+                    "Estes": 52.0766,
+                    "Lunox": 49.8398,
+                    "X.Borg": 49.9086,
+                    "Arlott": 47.1243
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Chip": 48.2213,
+                    "X.Borg": 49.9086,
+                    "Sun": 54.0159,
+                    "Natan": 51.3067,
+                    "Bane": 51.5702
+                },
+                "sub_hero_last": {
+                    "Argus": 52.9491,
+                    "Terizla": 53.2479,
+                    "Masha": 54.2135,
+                    "Aldous": 50.1649,
+                    "Sora": 48.9267
+                }
+            }
+        },
+        "Nolan": {
+            "heroName": "Nolan",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_9012ee9f73fbb4db4e1953e5fb5172e1.png",
+            "appearanceRate": 0.2269,
+            "banRate": 0.7343,
+            "winRate": 47.0399,
+            "heroType": "Jungle",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Yve": 53.9582,
+                    "Estes": 52.0766,
+                    "Lolita": 56.4071,
+                    "Luo Yi": 48.3742,
+                    "Rafaela": 51.8482
+                },
+                "sub_hero_last": {
+                    "Lunox": 49.8398,
+                    "Hilda": 53.4985,
+                    "Irithel": 51.7791,
+                    "Marcel": 53.6689,
+                    "Hayabusa": 48.1689
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Faramis": 50.7711,
+                    "Valentina": 43.5742,
+                    "Masha": 54.2135,
+                    "Bruno": 47.8535,
+                    "Chip": 48.2213
+                },
+                "sub_hero_last": {
+                    "Ling": 47.1615,
+                    "Hanzo": 51.1908,
+                    "Leomord": 53.1544,
+                    "Hayabusa": 48.1689,
+                    "Karina": 46.1349
+                }
+            }
+        },
+        "Ixia": {
+            "heroName": "Ixia",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_f070d82521ecd2e14d4ef3f25880830a.png",
+            "appearanceRate": 0.9307,
+            "banRate": 2.7954,
+            "winRate": 49.7063,
+            "heroType": "Gold Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Estes": 52.0766,
+                    "Floryn": 53.3471,
+                    "Hanabi": 54.7811,
+                    "Rafaela": 51.8482,
+                    "Ruby": 51.5953
+                },
+                "sub_hero_last": {
+                    "Wanwan": 49.7358,
+                    "Ling": 47.1615,
+                    "Claude": 50.4349,
+                    "Kadita": 51.7806,
+                    "Natalia": 51.6901
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Diggie": 52.2507,
+                    "Harith": 48.4702,
+                    "Popol and Kupa": 53.6631,
+                    "Rafaela": 51.8482,
+                    "Thamuz": 50.0017
+                },
+                "sub_hero_last": {
+                    "Bruno": 47.8535,
+                    "Irithel": 51.7791,
+                    "Melissa": 51.2984,
+                    "Beatrix": 50.0423,
+                    "Hanabi": 54.7811
+                }
+            }
+        },
+        "Arlott": {
+            "heroName": "Arlott",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_f666faa5ec6be5353f10dcd1d8997a42.png",
+            "appearanceRate": 0.3205,
+            "banRate": 0.8142,
+            "winRate": 47.1756,
+            "heroType": "Exp Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Cici": 48.6686,
+                    "Edith": 51.7619,
+                    "X.Borg": 49.9086,
+                    "Irithel": 51.7791,
+                    "Zhuxin": 50.9813
+                },
+                "sub_hero_last": {
+                    "Masha": 54.2135,
+                    "Phoveus": 50.1538,
+                    "Bruno": 47.8535,
+                    "Yve": 53.9582,
+                    "Baxia": 51.3559
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Aulus": 51.7089,
+                    "Yve": 53.9582,
+                    "Bane": 51.5702,
+                    "Floryn": 53.3471,
+                    "Popol and Kupa": 53.6631
+                },
+                "sub_hero_last": {
+                    "Aldous": 50.1649,
+                    "Yu Zhong": 47.5684,
+                    "Zilong": 47.4174,
+                    "Lapu-Lapu": 50.1177,
+                    "Phoveus": 50.1538
+                }
+            }
+        },
+        "Novaria": {
+            "heroName": "Novaria",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_57eeea6d5bd8d21229de8df79751db9f.png",
+            "appearanceRate": 0.6162,
+            "banRate": 1.4918,
+            "winRate": 48.8829,
+            "heroType": "Mid Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Carmilla": 53.381,
+                    "Luo Yi": 48.3742,
+                    "Kagura": 51.6873,
+                    "Hanabi": 54.7811,
+                    "Baxia": 51.3559
+                },
+                "sub_hero_last": {
+                    "Aldous": 50.1649,
+                    "Lolita": 56.4071,
+                    "Natalia": 51.6901,
+                    "Hilda": 53.4985,
+                    "Joy": 46.5971
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Yve": 53.9582,
+                    "Lunox": 49.8398,
+                    "Baxia": 51.3559,
+                    "Chip": 48.2213,
+                    "Gloo": 57.2039
+                },
+                "sub_hero_last": {
+                    "Mathilda": 44.9361,
+                    "Xavier": 47.2659,
+                    "Kimmy": 48.137,
+                    "Vale": 50.7646,
+                    "Estes": 52.0766
+                }
+            }
+        },
+        "Joy": {
+            "heroName": "Joy",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_d3a3a55c22000ae78732fed8cba2efef.png",
+            "appearanceRate": 0.126,
+            "banRate": 0.6845,
+            "winRate": 47.1795,
+            "heroType": "Jungle",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Yve": 53.9582,
+                    "Minotaur": 53.5623,
+                    "Sun": 54.0159,
+                    "Uranus": 52.2151,
+                    "Gloo": 57.2039
+                },
+                "sub_hero_last": {
+                    "Chip": 48.2213,
+                    "Valentina": 43.5742,
+                    "Hayabusa": 48.1689,
+                    "Marcel": 53.6689,
+                    "Cyclops": 51.8107
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Bruno": 47.8535,
+                    "Masha": 54.2135,
+                    "Khufra": 53.8095,
+                    "Lukas": 48.5258,
+                    "Brody": 51.536
+                },
+                "sub_hero_last": {
+                    "Roger": 51.5304,
+                    "Baxia": 51.3559,
+                    "Hayabusa": 48.1689,
+                    "Irithel": 51.7791,
+                    "Fredrinn": 50.0714
+                }
+            }
+        },
+        "Fredrinn": {
+            "heroName": "Fredrinn",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_dea170bfd5f26c41fb04e5edf72afedb.png",
+            "appearanceRate": 0.491,
+            "banRate": 5.8603,
+            "winRate": 50.1765,
+            "heroType": "Jungle",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Eudora": 48.8248,
+                    "Alucard": 49.91,
+                    "Argus": 52.9491,
+                    "Saber": 49.0831,
+                    "Joy": 46.5971
+                },
+                "sub_hero_last": {
+                    "Valir": 52.9866,
+                    "X.Borg": 49.9086,
+                    "Karrie": 49.4244,
+                    "Luo Yi": 48.3742,
+                    "Hanzo": 51.1908
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Angela": 48.379,
+                    "Helcurt": 50.0697,
+                    "Estes": 52.0766,
+                    "Floryn": 53.3471,
+                    "Mathilda": 44.9361
+                },
+                "sub_hero_last": {
+                    "Roger": 51.5304,
+                    "Barats": 49.6877,
+                    "Fanny": 43.2789,
+                    "Baxia": 51.3559,
+                    "Hayabusa": 48.1689
+                }
+            }
+        },
+        "Julian": {
+            "heroName": "Julian",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_5511ddc0ad2789b525f32ef572b017eb.png",
+            "appearanceRate": 1.4291,
+            "banRate": 6.2751,
+            "winRate": 50.3351,
+            "heroType": "Jungle",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Faramis": 50.7711,
+                    "Diggie": 52.2507,
+                    "Esmeralda": 44.9891,
+                    "Sun": 54.0159,
+                    "Alice": 50.3016
+                },
+                "sub_hero_last": {
+                    "Nolan": 46.7786,
+                    "Granger": 41.8447,
+                    "Zhuxin": 50.9813,
+                    "Minsitthar": 52.2718,
+                    "Edith": 51.7619
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Valentina": 43.5742,
+                    "Chip": 48.2213,
+                    "Granger": 41.8447,
+                    "Tigreal": 47.5348,
+                    "Atlas": 52.6892
+                },
+                "sub_hero_last": {
+                    "Aamon": 50.7581,
+                    "Roger": 51.5304,
+                    "Natan": 51.3067,
+                    "Edith": 51.7619,
+                    "Fanny": 43.2789
+                }
+            }
+        },
+        "Xavier": {
+            "heroName": "Xavier",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_df0a8dfc494f85ed9bbc4512cc1e5d3c.png",
+            "appearanceRate": 0.462,
+            "banRate": 0.2359,
+            "winRate": 47.239,
+            "heroType": "Mid Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Carmilla": 53.381,
+                    "Khufra": 53.8095,
+                    "Marcel": 53.6689,
+                    "Lapu-Lapu": 50.1177,
+                    "Chip": 48.2213
+                },
+                "sub_hero_last": {
+                    "Natalia": 51.6901,
+                    "Aldous": 50.1649,
+                    "Angela": 48.379,
+                    "Zilong": 47.4174,
+                    "Helcurt": 50.0697
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Masha": 54.2135,
+                    "Marcel": 53.6689,
+                    "Kaja": 53.1757,
+                    "Alice": 50.3016,
+                    "Bruno": 47.8535
+                },
+                "sub_hero_last": {
+                    "Yve": 53.9582,
+                    "Luo Yi": 48.3742,
+                    "Pharsa": 47.6605,
+                    "Gord": 55.3153,
+                    "Lylia": 50.225
+                }
+            }
+        },
+        "Melissa": {
+            "heroName": "Melissa",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_1fa7436301fea3f13fbcd4772051d22d.png",
+            "appearanceRate": 0.773,
+            "banRate": 1.6669,
+            "winRate": 51.3807,
+            "heroType": "Gold Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Mathilda": 44.9361,
+                    "Lolita": 56.4071,
+                    "Natalia": 51.6901,
+                    "Karina": 46.1349,
+                    "Leomord": 53.1544
+                },
+                "sub_hero_last": {
+                    "Baxia": 51.3559,
+                    "Belerick": 53.822,
+                    "Barats": 49.6877,
+                    "Rafaela": 51.8482,
+                    "Vale": 50.7646
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Harith": 48.4702,
+                    "Nolan": 46.7786,
+                    "Uranus": 52.2151,
+                    "Faramis": 50.7711,
+                    "Yu Zhong": 47.5684
+                },
+                "sub_hero_last": {
+                    "Irithel": 51.7791,
+                    "Ixia": 49.7044,
+                    "Hanabi": 54.7811,
+                    "Moskov": 48.3638,
+                    "Clint": 51.0435
+                }
+            }
+        },
+        "Yin": {
+            "heroName": "Yin",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_92/100_ee1c12c84f49514a30e405fb5c617796.png",
+            "appearanceRate": 0.8637,
+            "banRate": 4.0721,
+            "winRate": 47.8423,
+            "heroType": "Jungle",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Estes": 52.0766,
+                    "Faramis": 50.7711,
+                    "Diggie": 52.2507,
+                    "Floryn": 53.3471,
+                    "Yve": 53.9582
+                },
+                "sub_hero_last": {
+                    "Esmeralda": 44.9891,
+                    "Khaleed": 55.0418,
+                    "Wanwan": 49.7358,
+                    "Mathilda": 44.9361,
+                    "Eudora": 48.8248
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Chip": 48.2213,
+                    "Kaja": 53.1757,
+                    "Faramis": 50.7711,
+                    "Marcel": 53.6689,
+                    "Miya": 50.6794
+                },
+                "sub_hero_last": {
+                    "Roger": 51.5304,
+                    "Yi Sun-shin": 51.4469,
+                    "Fanny": 43.2789,
+                    "Hayabusa": 48.1689,
+                    "Harley": 49.7147
+                }
+            }
+        },
+        "Floryn": {
+            "heroName": "Floryn",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_5a57b91e4914cf071a3849e352e530a5.png",
+            "appearanceRate": 0.7399,
+            "banRate": 13.7797,
+            "winRate": 53.2998,
+            "heroType": "Roam",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Diggie": 52.2507,
+                    "Alice": 50.3016,
+                    "Marcel": 53.6689,
+                    "X.Borg": 49.9086,
+                    "Aulus": 51.7089
+                },
+                "sub_hero_last": {
+                    "Lolita": 56.4071,
+                    "Ixia": 49.7044,
+                    "Yin": 47.9619,
+                    "Silvanna": 53.3,
+                    "Eudora": 48.8248
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Valentina": 43.5742,
+                    "Barats": 49.6877,
+                    "Yve": 53.9582,
+                    "Akai": 50.5949,
+                    "Zhuxin": 50.9813
+                },
+                "sub_hero_last": {
+                    "Marcel": 53.6689,
+                    "Rafaela": 51.8482,
+                    "Estes": 52.0766,
+                    "Minotaur": 53.5623,
+                    "Atlas": 52.6892
+                }
+            }
+        },
+        "Edith": {
+            "heroName": "Edith",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_daab57918de01a6d5bb2ed6f45808a7e.png",
+            "appearanceRate": 0.2355,
+            "banRate": 0.1389,
+            "winRate": 51.8515,
+            "heroType": "Exp Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Yve": 53.9582,
+                    "Lunox": 49.8398,
+                    "Faramis": 50.7711,
+                    "Kaja": 53.1757,
+                    "Alice": 50.3016
+                },
+                "sub_hero_last": {
+                    "Lolita": 56.4071,
+                    "Luo Yi": 48.3742,
+                    "Bruno": 47.8535,
+                    "Layla": 47.8485,
+                    "Joy": 46.5971
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Baxia": 51.3559,
+                    "Rafaela": 51.8482,
+                    "Mathilda": 44.9361,
+                    "Diggie": 52.2507,
+                    "Yve": 53.9582
+                },
+                "sub_hero_last": {
+                    "Chip": 48.2213,
+                    "Lapu-Lapu": 50.1177,
+                    "Uranus": 52.2151,
+                    "Arlott": 47.1243,
+                    "Lolita": 56.4071
+                }
+            }
+        },
+        "Valentina": {
+            "heroName": "Valentina",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_24837021ec9d7aaf41b13fa55b6d13c9.png",
+            "appearanceRate": 0.0898,
+            "banRate": 0.2361,
+            "winRate": 43.4146,
+            "heroType": "Mid Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Benedetta": 54.087,
+                    "Joy": 46.5971,
+                    "X.Borg": 49.9086,
+                    "Atlas": 52.6892,
+                    "Lapu-Lapu": 50.1177
+                },
+                "sub_hero_last": {
+                    "Luo Yi": 48.3742,
+                    "Natan": 51.3067,
+                    "Khufra": 53.8095,
+                    "Cyclops": 51.8107,
+                    "Silvanna": 53.3
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Lunox": 49.8398,
+                    "Zhuxin": 50.9813,
+                    "Kaja": 53.1757,
+                    "Floryn": 53.3471,
+                    "Bruno": 47.8535
+                },
+                "sub_hero_last": {
+                    "Masha": 54.2135,
+                    "Faramis": 50.7711,
+                    "Wanwan": 49.7358,
+                    "Nana": 47.7571,
+                    "Baxia": 51.3559
+                }
+            }
+        },
+        "Aamon": {
+            "heroName": "Aamon",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_b3a7602fe7ffd1e54bf8ea79ceadfa72.png",
+            "appearanceRate": 0.9367,
+            "banRate": 12.8958,
+            "winRate": 50.9039,
+            "heroType": "Jungle",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Masha": 54.2135,
+                    "Marcel": 53.6689,
+                    "Ling": 47.1615,
+                    "Cici": 48.6686,
+                    "Claude": 50.4349
+                },
+                "sub_hero_last": {
+                    "Gloo": 57.2039,
+                    "Lolita": 56.4071,
+                    "Saber": 49.0831,
+                    "Odette": 49.7216,
+                    "Gusion": 48.8987
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Khufra": 53.8095,
+                    "Masha": 54.2135,
+                    "Marcel": 53.6689,
+                    "Kalea": 45.9501,
+                    "Akai": 50.5949
+                },
+                "sub_hero_last": {
+                    "Fanny": 43.2789,
+                    "Hanzo": 51.1908,
+                    "Roger": 51.5304,
+                    "Ling": 47.1615,
+                    "Karina": 46.1349
+                }
+            }
+        },
+        "Aulus": {
+            "heroName": "Aulus",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_2_1_60_2/100_1366d775809e52ee6526b5b58d93cdff.png",
+            "appearanceRate": 0.3211,
+            "banRate": 3.9976,
+            "winRate": 51.9049,
+            "heroType": "Jungle",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Masha": 54.2135,
+                    "Gloo": 57.2039,
+                    "Natalia": 51.6901,
+                    "Wanwan": 49.7358,
+                    "Atlas": 52.6892
+                },
+                "sub_hero_last": {
+                    "Chip": 48.2213,
+                    "Cici": 48.6686,
+                    "Floryn": 53.3471,
+                    "Estes": 52.0766,
+                    "Zhuxin": 50.9813
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Masha": 54.2135,
+                    "Arlott": 47.1243,
+                    "Faramis": 50.7711,
+                    "Mathilda": 44.9361,
+                    "Benedetta": 54.087
+                },
+                "sub_hero_last": {
+                    "Ling": 47.1615,
+                    "Alucard": 49.91,
+                    "Karina": 46.1349,
+                    "Popol and Kupa": 53.6631,
+                    "Natan": 51.3067
+                }
+            }
+        },
+        "Natan": {
+            "heroName": "Natan",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_da02742f59013365923b216420bc4082.png",
+            "appearanceRate": 0.3036,
+            "banRate": 0.3335,
+            "winRate": 51.3713,
+            "heroType": "Gold Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Valentina": 43.5742,
+                    "Zhask": 52.1168,
+                    "Gloo": 57.2039,
+                    "Faramis": 50.7711,
+                    "Sun": 54.0159
+                },
+                "sub_hero_last": {
+                    "Lolita": 56.4071,
+                    "Rafaela": 51.8482,
+                    "Saber": 49.0831,
+                    "Masha": 54.2135,
+                    "Marcel": 53.6689
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Mathilda": 44.9361,
+                    "Baxia": 51.3559,
+                    "Lukas": 48.5258,
+                    "Hylos": 49.802,
+                    "Khaleed": 55.0418
+                },
+                "sub_hero_last": {
+                    "Irithel": 51.7791,
+                    "Moskov": 48.3638,
+                    "Karrie": 49.4244,
+                    "Wanwan": 49.7358,
+                    "Hanabi": 54.7811
+                }
+            }
+        },
+        "Phoveus": {
+            "heroName": "Phoveus",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_06/100_af21c0dd8b5308c27974bff900803a9a.png",
+            "appearanceRate": 0.4924,
+            "banRate": 2.9194,
+            "winRate": 50.1339,
+            "heroType": "Exp Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Wanwan": 49.7358,
+                    "Freya": 50.4897,
+                    "Benedetta": 54.087,
+                    "Harith": 48.4702,
+                    "Arlott": 47.1243
+                },
+                "sub_hero_last": {
+                    "Minsitthar": 52.2718,
+                    "X.Borg": 49.9086,
+                    "Alice": 50.3016,
+                    "Karrie": 49.4244,
+                    "Bane": 51.5702
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Lukas": 48.5258,
+                    "Angela": 48.379,
+                    "Floryn": 53.3471,
+                    "Guinevere": 51.2026,
+                    "Mathilda": 44.9361
+                },
+                "sub_hero_last": {
+                    "Lapu-Lapu": 50.1177,
+                    "Aldous": 50.1649,
+                    "Esmeralda": 44.9891,
+                    "Yu Zhong": 47.5684,
+                    "Argus": 52.9491
+                }
+            }
+        },
+        "Beatrix": {
+            "heroName": "Beatrix",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_4687eca874feec9017b448a0b9110d65.png",
+            "appearanceRate": 0.4742,
+            "banRate": 0.6743,
+            "winRate": 50.0793,
+            "heroType": "Gold Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Estes": 52.0766,
+                    "Baxia": 51.3559,
+                    "Hanabi": 54.7811,
+                    "Yve": 53.9582,
+                    "Minotaur": 53.5623
+                },
+                "sub_hero_last": {
+                    "Obsidia": 49.977,
+                    "Khufra": 53.8095,
+                    "Granger": 41.8447,
+                    "Irithel": 51.7791,
+                    "Moskov": 48.3638
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Yve": 53.9582,
+                    "Popol and Kupa": 53.6631,
+                    "Harith": 48.4702,
+                    "Aulus": 51.7089,
+                    "Roger": 51.5304
+                },
+                "sub_hero_last": {
+                    "Melissa": 51.2984,
+                    "Hanabi": 54.7811,
+                    "Claude": 50.4349,
+                    "Ixia": 49.7044,
+                    "Wanwan": 49.7358
+                }
+            }
+        },
+        "Gloo": {
+            "heroName": "Gloo",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_642/100_c472fe0233e5ef84a3ac9ba4a229d09f.png",
+            "appearanceRate": 0.5099,
+            "banRate": 82.8521,
+            "winRate": 57.2793,
+            "heroType": "Roam",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Aamon": 50.7581,
+                    "Odette": 49.7216,
+                    "Johnson": 51.0548,
+                    "Lesley": 45.7685,
+                    "Jawhead": 48.2395
+                },
+                "sub_hero_last": {
+                    "Faramis": 50.7711,
+                    "Alice": 50.3016,
+                    "Fanny": 43.2789,
+                    "Natan": 51.3067,
+                    "Ruby": 51.5953
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Aldous": 50.1649,
+                    "Argus": 52.9491,
+                    "Zilong": 47.4174,
+                    "Floryn": 53.3471,
+                    "Sun": 54.0159
+                },
+                "sub_hero_last": {
+                    "Chip": 48.2213,
+                    "Minotaur": 53.5623,
+                    "Khufra": 53.8095,
+                    "Tigreal": 47.5348,
+                    "Kalea": 45.9501
+                }
+            }
+        },
+        "Paquito": {
+            "heroName": "Paquito",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_e2b6d9c6d82b4a27f0bb2710c8ead3e8.png",
+            "appearanceRate": 0.8001,
+            "banRate": 3.4302,
+            "winRate": 51.4221,
+            "heroType": "Exp Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Natalia": 51.6901,
+                    "X.Borg": 49.9086,
+                    "Yve": 53.9582,
+                    "Karina": 46.1349,
+                    "Joy": 46.5971
+                },
+                "sub_hero_last": {
+                    "Esmeralda": 44.9891,
+                    "Phoveus": 50.1538,
+                    "Fredrinn": 50.0714,
+                    "Melissa": 51.2984,
+                    "Odette": 49.7216
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Khufra": 53.8095,
+                    "Zhuxin": 50.9813,
+                    "Marcel": 53.6689,
+                    "Aulus": 51.7089,
+                    "Lukas": 48.5258
+                },
+                "sub_hero_last": {
+                    "Sora": 48.9267,
+                    "Arlott": 47.1243,
+                    "Benedetta": 54.087,
+                    "Chou": 46.8968,
+                    "Jawhead": 48.2395
+                }
+            }
+        },
+        "Mathilda": {
+            "heroName": "Mathilda",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_24d08ed788a9f5984bcf3b732ddcaf04.png",
+            "appearanceRate": 0.0525,
+            "banRate": 0.1694,
+            "winRate": 44.8264,
+            "heroType": "Roam",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Chip": 48.2213,
+                    "Barats": 49.6877,
+                    "X.Borg": 49.9086,
+                    "Natalia": 51.6901,
+                    "Diggie": 52.2507
+                },
+                "sub_hero_last": {
+                    "Cici": 48.6686,
+                    "Baxia": 51.3559,
+                    "Esmeralda": 44.9891,
+                    "Melissa": 51.2984,
+                    "Hayabusa": 48.1689
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Faramis": 50.7711,
+                    "Akai": 50.5949,
+                    "Masha": 54.2135,
+                    "Zhuxin": 50.9813,
+                    "Bruno": 47.8535
+                },
+                "sub_hero_last": {
+                    "Khufra": 53.8095,
+                    "Lolita": 56.4071,
+                    "Carmilla": 53.381,
+                    "Chip": 48.2213,
+                    "Minotaur": 53.5623
+                }
+            }
+        },
+        "Yve": {
+            "heroName": "Yve",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_92/100_d9b0a1d92b1c4b3643d6332fd66aa8e6.png",
+            "appearanceRate": 0.044,
+            "banRate": 0.0844,
+            "winRate": 53.9855,
+            "heroType": "Mid Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Faramis": 50.7711,
+                    "Luo Yi": 48.3742,
+                    "Lolita": 56.4071,
+                    "Kaja": 53.1757,
+                    "Natalia": 51.6901
+                },
+                "sub_hero_last": {
+                    "Joy": 46.5971,
+                    "Chip": 48.2213,
+                    "Edith": 51.7619,
+                    "Ling": 47.1615,
+                    "Marcel": 53.6689
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Zhask": 52.1168,
+                    "Lunox": 49.8398,
+                    "Cecilion": 49.567,
+                    "Diggie": 52.2507,
+                    "Bruno": 47.8535
+                },
+                "sub_hero_last": {
+                    "Luo Yi": 48.3742,
+                    "Aurora": 47.721,
+                    "Xavier": 47.2659,
+                    "Vexana": 50.6805,
+                    "Odette": 49.7216
+                }
+            }
+        },
+        "Brody": {
+            "heroName": "Brody",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_f18e45a9a4cb45897e1f614593ff4497.png",
+            "appearanceRate": 0.3336,
+            "banRate": 0.8681,
+            "winRate": 51.5865,
+            "heroType": "Gold Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Irithel": 51.7791,
+                    "Karina": 46.1349,
+                    "Khaleed": 55.0418,
+                    "Lolita": 56.4071,
+                    "Helcurt": 50.0697
+                },
+                "sub_hero_last": {
+                    "Barats": 49.6877,
+                    "Yve": 53.9582,
+                    "Khufra": 53.8095,
+                    "Sun": 54.0159,
+                    "Minsitthar": 52.2718
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Yve": 53.9582,
+                    "Wanwan": 49.7358,
+                    "Harith": 48.4702,
+                    "Bruno": 47.8535,
+                    "Marcel": 53.6689
+                },
+                "sub_hero_last": {
+                    "Moskov": 48.3638,
+                    "Karrie": 49.4244,
+                    "Claude": 50.4349,
+                    "Irithel": 51.7791,
+                    "Miya": 50.6794
+                }
+            }
+        },
+        "Barats": {
+            "heroName": "Barats",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_6495be044c2d28106e200f6918391d54.png",
+            "appearanceRate": 0.1386,
+            "banRate": 0.1438,
+            "winRate": 49.7672,
+            "heroType": "Jungle",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Ling": 47.1615,
+                    "Eudora": 48.8248,
+                    "Brody": 51.536,
+                    "Odette": 49.7216,
+                    "Bruno": 47.8535
+                },
+                "sub_hero_last": {
+                    "Mathilda": 44.9361,
+                    "X.Borg": 49.9086,
+                    "Gord": 55.3153,
+                    "Cici": 48.6686,
+                    "Hanzo": 51.1908
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Floryn": 53.3471,
+                    "Estes": 52.0766,
+                    "Helcurt": 50.0697,
+                    "Kagura": 51.6873,
+                    "Angela": 48.379
+                },
+                "sub_hero_last": {
+                    "Fredrinn": 50.0714,
+                    "Faramis": 50.7711,
+                    "Yi Sun-shin": 51.4469,
+                    "Leomord": 53.1544,
+                    "Nolan": 46.7786
+                }
+            }
+        },
+        "Khaleed": {
+            "heroName": "Khaleed",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_540a6a9d343842674ce002082366ec9d.png",
+            "appearanceRate": 0.2159,
+            "banRate": 0.7538,
+            "winRate": 54.916,
+            "heroType": "Roam",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Diggie": 52.2507,
+                    "Yve": 53.9582,
+                    "Yin": 47.9619,
+                    "Barats": 49.6877,
+                    "Vale": 50.7646
+                },
+                "sub_hero_last": {
+                    "Brody": 51.536,
+                    "Khufra": 53.8095,
+                    "Chip": 48.2213,
+                    "Zhuxin": 50.9813,
+                    "Phoveus": 50.1538
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Masha": 54.2135,
+                    "Bane": 51.5702,
+                    "Natan": 51.3067,
+                    "Joy": 46.5971,
+                    "Hayabusa": 48.1689
+                },
+                "sub_hero_last": {
+                    "Lolita": 56.4071,
+                    "Chip": 48.2213,
+                    "Atlas": 52.6892,
+                    "Diggie": 52.2507,
+                    "Rafaela": 51.8482
+                }
+            }
+        },
+        "Benedetta": {
+            "heroName": "Benedetta",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_b4a5e537894bdc00787e80e4d3ada5dd.png",
+            "appearanceRate": 0.3483,
+            "banRate": 1.0893,
+            "winRate": 54.1484,
+            "heroType": "Exp Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Alpha": 47.259,
+                    "Atlas": 52.6892,
+                    "Minotaur": 53.5623,
+                    "Khufra": 53.8095,
+                    "X.Borg": 49.9086
+                },
+                "sub_hero_last": {
+                    "Valentina": 43.5742,
+                    "Phoveus": 50.1538,
+                    "Faramis": 50.7711,
+                    "Bruno": 47.8535,
+                    "Cyclops": 51.8107
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Diggie": 52.2507,
+                    "Aulus": 51.7089,
+                    "Mathilda": 44.9361,
+                    "Karina": 46.1349,
+                    "Natan": 51.3067
+                },
+                "sub_hero_last": {
+                    "Terizla": 53.2479,
+                    "Masha": 54.2135,
+                    "Sora": 48.9267,
+                    "Cici": 48.6686,
+                    "Lapu-Lapu": 50.1177
+                }
+            }
+        },
+        "Luo Yi": {
+            "heroName": "Luo Yi",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_103541726507f5ce102689f04fe215e8.png",
+            "appearanceRate": 0.1868,
+            "banRate": 0.1258,
+            "winRate": 48.3832,
+            "heroType": "Mid Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Valentina": 43.5742,
+                    "Chip": 48.2213,
+                    "Edith": 51.7619,
+                    "Fredrinn": 50.0714,
+                    "Estes": 52.0766
+                },
+                "sub_hero_last": {
+                    "Yve": 53.9582,
+                    "Nolan": 46.7786,
+                    "Lolita": 56.4071,
+                    "Helcurt": 50.0697,
+                    "Ling": 47.1615
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Masha": 54.2135,
+                    "Marcel": 53.6689,
+                    "Baxia": 51.3559,
+                    "Brody": 51.536,
+                    "Uranus": 52.2151
+                },
+                "sub_hero_last": {
+                    "Yve": 53.9582,
+                    "Pharsa": 47.6605,
+                    "Xavier": 47.2659,
+                    "Aurora": 47.721,
+                    "Zetian": 51.5702
+                }
+            }
+        },
+        "Yu Zhong": {
+            "heroName": "Yu Zhong",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_92/100_9823ce4fe5eb89c0082b24f6d5ea67f6.png",
+            "appearanceRate": 1.1165,
+            "banRate": 4.436,
+            "winRate": 47.2272,
+            "heroType": "Exp Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Gloo": 57.2039,
+                    "Thamuz": 50.0017,
+                    "Minsitthar": 52.2718,
+                    "Atlas": 52.6892,
+                    "Lapu-Lapu": 50.1177
+                },
+                "sub_hero_last": {
+                    "Masha": 54.2135,
+                    "Cici": 48.6686,
+                    "Karrie": 49.4244,
+                    "Wanwan": 49.7358,
+                    "Lunox": 49.8398
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Mathilda": 44.9361,
+                    "Lunox": 49.8398,
+                    "Angela": 48.379,
+                    "Sun": 54.0159,
+                    "Bane": 51.5702
+                },
+                "sub_hero_last": {
+                    "Terizla": 53.2479,
+                    "Lapu-Lapu": 50.1177,
+                    "Aldous": 50.1649,
+                    "Argus": 52.9491,
+                    "Arlott": 47.1243
+                }
+            }
+        },
+        "Popol and Kupa": {
+            "heroName": "Popol and Kupa",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_1acbb23b9a50f412104047a60eb18808.png",
+            "appearanceRate": 0.3377,
+            "banRate": 0.3534,
+            "winRate": 53.5597,
+            "heroType": "Jungle",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Claude": 50.4349,
+                    "Masha": 54.2135,
+                    "Roger": 51.5304,
+                    "Rafaela": 51.8482,
+                    "Harley": 49.7147
+                },
+                "sub_hero_last": {
+                    "Faramis": 50.7711,
+                    "Atlas": 52.6892,
+                    "Sun": 54.0159,
+                    "Hanabi": 54.7811,
+                    "Lapu-Lapu": 50.1177
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Granger": 41.8447,
+                    "Beatrix": 50.0423,
+                    "Clint": 51.0435,
+                    "Lesley": 45.7685,
+                    "Ixia": 49.7044
+                },
+                "sub_hero_last": {
+                    "Karina": 46.1349,
+                    "Alucard": 49.91,
+                    "Hayabusa": 48.1689,
+                    "Yi Sun-shin": 51.4469,
+                    "Ling": 47.1615
+                }
+            }
+        },
+        "Atlas": {
+            "heroName": "Atlas",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_d974ac796678180ff8724b88e192898b.png",
+            "appearanceRate": 0.4502,
+            "banRate": 3.0352,
+            "winRate": 53.0256,
+            "heroType": "Roam",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Popol and Kupa": 53.6631,
+                    "Estes": 52.0766,
+                    "Eudora": 48.8248,
+                    "Layla": 47.8485,
+                    "Bane": 51.5702
+                },
+                "sub_hero_last": {
+                    "Diggie": 52.2507,
+                    "Marcel": 53.6689,
+                    "Valentina": 43.5742,
+                    "Benedetta": 54.087,
+                    "Fanny": 43.2789
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Aulus": 51.7089,
+                    "Beatrix": 50.0423,
+                    "Julian": 50.2295,
+                    "Bane": 51.5702,
+                    "Minsitthar": 52.2718
+                },
+                "sub_hero_last": {
+                    "Lolita": 56.4071,
+                    "Khufra": 53.8095,
+                    "Diggie": 52.2507,
+                    "Marcel": 53.6689,
+                    "Floryn": 53.3471
+                }
+            }
+        },
+        "Carmilla": {
+            "heroName": "Carmilla",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_6fb8f120dafdcbc1b5da2a2667016ad5.png",
+            "appearanceRate": 0.3999,
+            "banRate": 0.8694,
+            "winRate": 53.3495,
+            "heroType": "Roam",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Chip": 48.2213,
+                    "Barats": 49.6877,
+                    "Faramis": 50.7711,
+                    "Masha": 54.2135,
+                    "Popol and Kupa": 53.6631
+                },
+                "sub_hero_last": {
+                    "Xavier": 47.2659,
+                    "Hanzo": 51.1908,
+                    "X.Borg": 49.9086,
+                    "Fanny": 43.2789,
+                    "Diggie": 52.2507
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Diggie": 52.2507,
+                    "Yve": 53.9582,
+                    "Faramis": 50.7711,
+                    "Harith": 48.4702,
+                    "Minsitthar": 52.2718
+                },
+                "sub_hero_last": {
+                    "Mathilda": 44.9361,
+                    "Rafaela": 51.8482,
+                    "Minotaur": 53.5623,
+                    "Estes": 52.0766,
+                    "Atlas": 52.6892
+                }
+            }
+        },
+        "Cecilion": {
+            "heroName": "Cecilion",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_045399c265021d47da6512e6de20b64f.png",
+            "appearanceRate": 0.6439,
+            "banRate": 0.2799,
+            "winRate": 49.6516,
+            "heroType": "Mid Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Lolita": 56.4071,
+                    "Mathilda": 44.9361,
+                    "Esmeralda": 44.9891,
+                    "Valentina": 43.5742,
+                    "Diggie": 52.2507
+                },
+                "sub_hero_last": {
+                    "Arlott": 47.1243,
+                    "Yin": 47.9619,
+                    "Ixia": 49.7044,
+                    "Hanzo": 51.1908,
+                    "Irithel": 51.7791
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Yve": 53.9582,
+                    "Lunox": 49.8398,
+                    "Faramis": 50.7711,
+                    "Wanwan": 49.7358,
+                    "Zhask": 52.1168
+                },
+                "sub_hero_last": {
+                    "Luo Yi": 48.3742,
+                    "Gord": 55.3153,
+                    "Zhuxin": 50.9813,
+                    "Xavier": 47.2659,
+                    "Vexana": 50.6805
+                }
+            }
+        },
+        "Silvanna": {
+            "heroName": "Silvanna",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_5e7b297af7c6e32a420b897aa4998071.png",
+            "appearanceRate": 1.7149,
+            "banRate": 5.0758,
+            "winRate": 53.197,
+            "heroType": "Exp Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Valentina": 43.5742,
+                    "Angela": 48.379,
+                    "Sun": 54.0159,
+                    "Floryn": 53.3471,
+                    "Aamon": 50.7581
+                },
+                "sub_hero_last": {
+                    "Barats": 49.6877,
+                    "Edith": 51.7619,
+                    "Diggie": 52.2507,
+                    "Masha": 54.2135,
+                    "Benedetta": 54.087
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Khufra": 53.8095,
+                    "Lolita": 56.4071,
+                    "Chip": 48.2213,
+                    "Estes": 52.0766,
+                    "Hilda": 53.4985
+                },
+                "sub_hero_last": {
+                    "Joy": 46.5971,
+                    "Guinevere": 51.2026,
+                    "Nolan": 46.7786,
+                    "Julian": 50.2295,
+                    "Alice": 50.3016
+                }
+            }
+        },
+        "Wanwan": {
+            "heroName": "Wanwan",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_47/100_44bfa1dc44deb8d7620605faaa9ffae7.png",
+            "appearanceRate": 0.1432,
+            "banRate": 0.4228,
+            "winRate": 49.8158,
+            "heroType": "Gold Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Ixia": 49.7044,
+                    "Gloo": 57.2039,
+                    "Hanzo": 51.1908,
+                    "Yin": 47.9619,
+                    "Gord": 55.3153
+                },
+                "sub_hero_last": {
+                    "Chip": 48.2213,
+                    "Faramis": 50.7711,
+                    "Bruno": 47.8535,
+                    "Masha": 54.2135,
+                    "Phoveus": 50.1538
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Brody": 51.536,
+                    "Ling": 47.1615,
+                    "Angela": 48.379,
+                    "Cecilion": 49.567,
+                    "Popol and Kupa": 53.6631
+                },
+                "sub_hero_last": {
+                    "Irithel": 51.7791,
+                    "Layla": 47.8485,
+                    "Hanabi": 54.7811,
+                    "Beatrix": 50.0423,
+                    "Moskov": 48.3638
+                }
+            }
+        },
+        "Masha": {
+            "heroName": "Masha",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_c97a314dc260dfad1311512ddc03f936.png",
+            "appearanceRate": 0.0534,
+            "banRate": 0.2706,
+            "winRate": 54.1743,
+            "heroType": "Exp Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Ling": 47.1615,
+                    "Diggie": 52.2507,
+                    "Wanwan": 49.7358,
+                    "Lancelot": 44.9204,
+                    "Bruno": 47.8535
+                },
+                "sub_hero_last": {
+                    "Faramis": 50.7711,
+                    "Ruby": 51.5953,
+                    "Sun": 54.0159,
+                    "Uranus": 52.2151,
+                    "Aamon": 50.7581
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Mathilda": 44.9361,
+                    "Chip": 48.2213,
+                    "Faramis": 50.7711,
+                    "Khufra": 53.8095,
+                    "Aulus": 51.7089
+                },
+                "sub_hero_last": {
+                    "Valentina": 43.5742,
+                    "Cici": 48.6686,
+                    "Zilong": 47.4174,
+                    "Sora": 48.9267,
+                    "Esmeralda": 44.9891
+                }
+            }
+        },
+        "Baxia": {
+            "heroName": "Baxia",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_80e408203869ca99302af195ac4f756c.png",
+            "appearanceRate": 0.1148,
+            "banRate": 0.2839,
+            "winRate": 51.0949,
+            "heroType": "Jungle",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Mathilda": 44.9361,
+                    "Alice": 50.3016,
+                    "Zhask": 52.1168,
+                    "Eudora": 48.8248,
+                    "Obsidia": 49.977
+                },
+                "sub_hero_last": {
+                    "Faramis": 50.7711,
+                    "X.Borg": 49.9086,
+                    "Karrie": 49.4244,
+                    "Bruno": 47.8535,
+                    "Marcel": 53.6689
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Angela": 48.379,
+                    "Diggie": 52.2507,
+                    "Hanzo": 51.1908,
+                    "Edith": 51.7619,
+                    "Helcurt": 50.0697
+                },
+                "sub_hero_last": {
+                    "Lolita": 56.4071,
+                    "Fredrinn": 50.0714,
+                    "Nolan": 46.7786,
+                    "Lancelot": 44.9204,
+                    "Valentina": 43.5742
+                }
+            }
+        },
+        "Lylia": {
+            "heroName": "Lylia",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_706573f138055c3df3df94948b4f26bd.png",
+            "appearanceRate": 0.5995,
+            "banRate": 1.4949,
+            "winRate": 50.283,
+            "heroType": "Mid Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Chip": 48.2213,
+                    "Barats": 49.6877,
+                    "Alpha": 47.259,
+                    "Johnson": 51.0548,
+                    "Belerick": 53.822
+                },
+                "sub_hero_last": {
+                    "Rafaela": 51.8482,
+                    "Guinevere": 51.2026,
+                    "Chou": 46.8968,
+                    "Cici": 48.6686,
+                    "Novaria": 48.8608
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Harley": 49.7147,
+                    "Selena": 49.2597,
+                    "Lesley": 45.7685,
+                    "Fanny": 43.2789,
+                    "Gusion": 48.8987
+                },
+                "sub_hero_last": {
+                    "Xavier": 47.2659,
+                    "Pharsa": 47.6605,
+                    "Luo Yi": 48.3742,
+                    "Vexana": 50.6805,
+                    "Nana": 47.7571
+                }
+            }
+        },
+        "Dyrroth": {
+            "heroName": "Dyrroth",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_2_1_18/100_8ec13b59871b2862d773beac2d69fa3e.png",
+            "appearanceRate": 1.546,
+            "banRate": 1.2219,
+            "winRate": 47.986,
+            "heroType": "Exp Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Esmeralda": 44.9891,
+                    "Uranus": 52.2151,
+                    "Alucard": 49.91,
+                    "Natalia": 51.6901,
+                    "Aldous": 50.1649
+                },
+                "sub_hero_last": {
+                    "Benedetta": 54.087,
+                    "Argus": 52.9491,
+                    "Atlas": 52.6892,
+                    "Hanzo": 51.1908,
+                    "Thamuz": 50.0017
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Lolita": 56.4071,
+                    "Sun": 54.0159,
+                    "Minotaur": 53.5623,
+                    "Estes": 52.0766,
+                    "Vale": 50.7646
+                },
+                "sub_hero_last": {
+                    "Zilong": 47.4174,
+                    "Arlott": 47.1243,
+                    "Esmeralda": 44.9891,
+                    "Freya": 50.4897,
+                    "Ruby": 51.5953
+                }
+            }
+        },
+        "Ling": {
+            "heroName": "Ling",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_92/100_017bade52b9fc94bbc12615de6d75c08.png",
+            "appearanceRate": 0.1755,
+            "banRate": 0.1923,
+            "winRate": 47.1864,
+            "heroType": "Jungle",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Yve": 53.9582,
+                    "Hanzo": 51.1908,
+                    "X.Borg": 49.9086,
+                    "Gord": 55.3153,
+                    "Marcel": 53.6689
+                },
+                "sub_hero_last": {
+                    "Masha": 54.2135,
+                    "Barats": 49.6877,
+                    "Natalia": 51.6901,
+                    "Saber": 49.0831,
+                    "Faramis": 50.7711
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Wanwan": 49.7358,
+                    "Khufra": 53.8095,
+                    "Kaja": 53.1757,
+                    "Faramis": 50.7711,
+                    "Hylos": 49.802
+                },
+                "sub_hero_last": {
+                    "Fanny": 43.2789,
+                    "Nolan": 46.7786,
+                    "Hayabusa": 48.1689,
+                    "Lancelot": 44.9204,
+                    "Karina": 46.1349
+                }
+            }
+        },
+        "X.Borg": {
+            "heroName": "X.Borg",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_efe9c7ed8d8f84f1bb0f88a3e08de5fc.png",
+            "appearanceRate": 0.6976,
+            "banRate": 7.9576,
+            "winRate": 49.926,
+            "heroType": "Exp Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Barats": 49.6877,
+                    "Terizla": 53.2479,
+                    "Baxia": 51.3559,
+                    "Ruby": 51.5953,
+                    "Fredrinn": 50.0714
+                },
+                "sub_hero_last": {
+                    "Mathilda": 44.9361,
+                    "Valentina": 43.5742,
+                    "Helcurt": 50.0697,
+                    "Ling": 47.1615,
+                    "Natalia": 51.6901
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Cici": 48.6686,
+                    "Lolita": 56.4071,
+                    "Khaleed": 55.0418,
+                    "Natalia": 51.6901,
+                    "Sun": 54.0159
+                },
+                "sub_hero_last": {
+                    "Mathilda": 44.9361,
+                    "Masha": 54.2135,
+                    "Chip": 48.2213,
+                    "Benedetta": 54.087,
+                    "Estes": 52.0766
+                }
+            }
+        },
+        "Terizla": {
+            "heroName": "Terizla",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_c4bb270c28c7be663f57e993b0d6d3d8.png",
+            "appearanceRate": 0.5836,
+            "banRate": 1.2483,
+            "winRate": 53.3659,
+            "heroType": "Exp Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Chip": 48.2213,
+                    "Argus": 52.9491,
+                    "Khufra": 53.8095,
+                    "Odette": 49.7216,
+                    "Sun": 54.0159
+                },
+                "sub_hero_last": {
+                    "X.Borg": 49.9086,
+                    "Valir": 52.9866,
+                    "Karrie": 49.4244,
+                    "Gord": 55.3153,
+                    "Alpha": 47.259
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Angela": 48.379,
+                    "Floryn": 53.3471,
+                    "Diggie": 52.2507,
+                    "Rafaela": 51.8482,
+                    "Estes": 52.0766
+                },
+                "sub_hero_last": {
+                    "Yu Zhong": 47.5684,
+                    "Cici": 48.6686,
+                    "Lapu-Lapu": 50.1177,
+                    "Benedetta": 54.087,
+                    "Aldous": 50.1649
+                }
+            }
+        },
+        "Esmeralda": {
+            "heroName": "Esmeralda",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_4661a64a2c6b724e7b67032fcbface27.png",
+            "appearanceRate": 0.3785,
+            "banRate": 0.9869,
+            "winRate": 44.7866,
+            "heroType": "Exp Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Lolita": 56.4071,
+                    "Mathilda": 44.9361,
+                    "Diggie": 52.2507,
+                    "Argus": 52.9491,
+                    "Yin": 47.9619
+                },
+                "sub_hero_last": {
+                    "Karrie": 49.4244,
+                    "Yve": 53.9582,
+                    "Dyrroth": 47.8168,
+                    "Thamuz": 50.0017,
+                    "Estes": 52.0766
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Chip": 48.2213,
+                    "Joy": 46.5971,
+                    "Diggie": 52.2507,
+                    "Beatrix": 50.0423,
+                    "Moskov": 48.3638
+                },
+                "sub_hero_last": {
+                    "Phoveus": 50.1538,
+                    "Masha": 54.2135,
+                    "Lapu-Lapu": 50.1177,
+                    "Uranus": 52.2151,
+                    "Cici": 48.6686
+                }
+            }
+        },
+        "Guinevere": {
+            "heroName": "Guinevere",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_901bdd5d4432a2c0290dfc71df615a5a.png",
+            "appearanceRate": 1.0081,
+            "banRate": 34.7946,
+            "winRate": 51.2312,
+            "heroType": "Exp Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Karrie": 49.4244,
+                    "Lylia": 50.225,
+                    "Thamuz": 50.0017,
+                    "Lunox": 49.8398,
+                    "X.Borg": 49.9086
+                },
+                "sub_hero_last": {
+                    "Masha": 54.2135,
+                    "Diggie": 52.2507,
+                    "Wanwan": 49.7358,
+                    "Fanny": 43.2789,
+                    "Joy": 46.5971
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Yve": 53.9582,
+                    "Lolita": 56.4071,
+                    "Phoveus": 50.1538,
+                    "Aulus": 51.7089,
+                    "Lukas": 48.5258
+                },
+                "sub_hero_last": {
+                    "Faramis": 50.7711,
+                    "Silvanna": 53.3,
+                    "Gusion": 48.8987,
+                    "Baxia": 51.3559,
+                    "Karina": 46.1349
+                }
+            }
+        },
+        "Granger": {
+            "heroName": "Granger",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_22/100_a7729262d5b4abdc34ae5181e964c235.png",
+            "appearanceRate": 1.4821,
+            "banRate": 4.6655,
+            "winRate": 41.8548,
+            "heroType": "Gold Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Karina": 46.1349,
+                    "Beatrix": 50.0423,
+                    "Hanabi": 54.7811,
+                    "Belerick": 53.822,
+                    "Ixia": 49.7044
+                },
+                "sub_hero_last": {
+                    "Fanny": 43.2789,
+                    "Hilda": 53.4985,
+                    "Ling": 47.1615,
+                    "Akai": 50.5949,
+                    "Faramis": 50.7711
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Popol and Kupa": 53.6631,
+                    "Yve": 53.9582,
+                    "Roger": 51.5304,
+                    "Masha": 54.2135,
+                    "Floryn": 53.3471
+                },
+                "sub_hero_last": {
+                    "Bruno": 47.8535,
+                    "Hanabi": 54.7811,
+                    "Brody": 51.536,
+                    "Clint": 51.0435,
+                    "Layla": 47.8485
+                }
+            }
+        },
+        "Khufra": {
+            "heroName": "Khufra",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_2fe99f4001211d18b3d2b95d0d3dc395.png",
+            "appearanceRate": 0.1234,
+            "banRate": 0.5227,
+            "winRate": 53.8822,
+            "heroType": "Roam",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Valentina": 43.5742,
+                    "Khaleed": 55.0418,
+                    "Bruno": 47.8535,
+                    "Ling": 47.1615,
+                    "Mathilda": 44.9361
+                },
+                "sub_hero_last": {
+                    "Faramis": 50.7711,
+                    "Xavier": 47.2659,
+                    "Benedetta": 54.087,
+                    "Balmond": 43.3789,
+                    "Lunox": 49.8398
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Lolita": 56.4071,
+                    "Chip": 48.2213,
+                    "Masha": 54.2135,
+                    "Ling": 47.1615,
+                    "Harith": 48.4702
+                },
+                "sub_hero_last": {
+                    "Mathilda": 44.9361,
+                    "Atlas": 52.6892,
+                    "Franco": 44.3377,
+                    "Tigreal": 47.5348,
+                    "Floryn": 53.3471
+                }
+            }
+        },
+        "Badang": {
+            "heroName": "Badang",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_9fb1784545a48aef42241fc7a719c575.png",
+            "appearanceRate": 0.856,
+            "banRate": 1.0958,
+            "winRate": 50.1871,
+            "heroType": "Roam",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Fanny": 43.2789,
+                    "Faramis": 50.7711,
+                    "Masha": 54.2135,
+                    "Sun": 54.0159,
+                    "Popol and Kupa": 53.6631
+                },
+                "sub_hero_last": {
+                    "Esmeralda": 44.9891,
+                    "Barats": 49.6877,
+                    "Yve": 53.9582,
+                    "Mathilda": 44.9361,
+                    "Lolita": 56.4071
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Masha": 54.2135,
+                    "Mathilda": 44.9361,
+                    "Faramis": 50.7711,
+                    "Arlott": 47.1243,
+                    "X.Borg": 49.9086
+                },
+                "sub_hero_last": {
+                    "Barats": 49.6877,
+                    "Valentina": 43.5742,
+                    "Yve": 53.9582,
+                    "Lolita": 56.4071,
+                    "Edith": 51.7619
+                }
+            }
+        },
+        "Faramis": {
+            "heroName": "Faramis",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_04e575d648d7f7ac1174f4369595c3a2.png",
+            "appearanceRate": 0.0512,
+            "banRate": 0.5072,
+            "winRate": 50.4496,
+            "heroType": "Mid Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Masha": 54.2135,
+                    "Gloo": 57.2039,
+                    "Popol and Kupa": 53.6631,
+                    "Wanwan": 49.7358,
+                    "Baxia": 51.3559
+                },
+                "sub_hero_last": {
+                    "Yve": 53.9582,
+                    "Natan": 51.3067,
+                    "Edith": 51.7619,
+                    "Clint": 51.0435,
+                    "Freya": 50.4897
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Mathilda": 44.9361,
+                    "Masha": 54.2135,
+                    "Chip": 48.2213,
+                    "Nolan": 46.7786,
+                    "Fanny": 43.2789
+                },
+                "sub_hero_last": {
+                    "Valentina": 43.5742,
+                    "Minotaur": 53.5623,
+                    "Kimmy": 48.137,
+                    "Barats": 49.6877,
+                    "Aamon": 50.7581
+                }
+            }
+        },
+        "Kadita": {
+            "heroName": "Kadita",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_42b40ae7741d2eb81148c8f1e1ff614c.png",
+            "appearanceRate": 0.7615,
+            "banRate": 8.9175,
+            "winRate": 52.0124,
+            "heroType": "Mid Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Lolita": 56.4071,
+                    "Ixia": 49.7044,
+                    "Masha": 54.2135,
+                    "Baxia": 51.3559,
+                    "Minotaur": 53.5623
+                },
+                "sub_hero_last": {
+                    "Cyclops": 51.8107,
+                    "Kaja": 53.1757,
+                    "Alice": 50.3016,
+                    "Edith": 51.7619,
+                    "Zhuxin": 50.9813
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Floryn": 53.3471,
+                    "Hanzo": 51.1908,
+                    "Angela": 48.379,
+                    "Johnson": 51.0548,
+                    "Ling": 47.1615
+                },
+                "sub_hero_last": {
+                    "Valentina": 43.5742,
+                    "Cecilion": 49.567,
+                    "Vexana": 50.6805,
+                    "Kagura": 51.6873,
+                    "Yve": 53.9582
+                }
+            }
+        },
+        "Minsitthar": {
+            "heroName": "Minsitthar",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_c5d24a1dad6cef21de2698a4ed1d80ce.png",
+            "appearanceRate": 0.887,
+            "banRate": 29.1099,
+            "winRate": 52.2798,
+            "heroType": "Exp Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Freya": 50.4897,
+                    "Phoveus": 50.1538,
+                    "Harith": 48.4702,
+                    "Martis": 46.1749,
+                    "Benedetta": 54.087
+                },
+                "sub_hero_last": {
+                    "Natalia": 51.6901,
+                    "Argus": 52.9491,
+                    "X.Borg": 49.9086,
+                    "Belerick": 53.822,
+                    "Diggie": 52.2507
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Marcel": 53.6689,
+                    "Rafaela": 51.8482,
+                    "Kalea": 45.9501,
+                    "Natalia": 51.6901,
+                    "Khaleed": 55.0418
+                },
+                "sub_hero_last": {
+                    "Lapu-Lapu": 50.1177,
+                    "Ruby": 51.5953,
+                    "Yu Zhong": 47.5684,
+                    "Cici": 48.6686,
+                    "Arlott": 47.1243
+                }
+            }
+        },
+        "Harith": {
+            "heroName": "Harith",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_d228a823b477fdf6c458c829c2e62bcf.png",
+            "appearanceRate": 0.3385,
+            "banRate": 1.8086,
+            "winRate": 48.5321,
+            "heroType": "Gold Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Rafaela": 51.8482,
+                    "Valentina": 43.5742,
+                    "Lolita": 56.4071,
+                    "X.Borg": 49.9086,
+                    "Ling": 47.1615
+                },
+                "sub_hero_last": {
+                    "Chip": 48.2213,
+                    "Phoveus": 50.1538,
+                    "Minsitthar": 52.2718,
+                    "Karrie": 49.4244,
+                    "Barats": 49.6877
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Brody": 51.536,
+                    "Ixia": 49.7044,
+                    "Masha": 54.2135,
+                    "Melissa": 51.2984,
+                    "Khufra": 53.8095
+                },
+                "sub_hero_last": {
+                    "Baxia": 51.3559,
+                    "Chip": 48.2213,
+                    "Aamon": 50.7581,
+                    "Alice": 50.3016,
+                    "Joy": 46.5971
+                }
+            }
+        },
+        "Thamuz": {
+            "heroName": "Thamuz",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_2_1_18/100_b5ad55e408b68acf6a86e7ff76f5f569.png",
+            "appearanceRate": 1.371,
+            "banRate": 5.6564,
+            "winRate": 50.0639,
+            "heroType": "Exp Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Chip": 48.2213,
+                    "Esmeralda": 44.9891,
+                    "Alucard": 49.91,
+                    "Alice": 50.3016,
+                    "Odette": 49.7216
+                },
+                "sub_hero_last": {
+                    "Cici": 48.6686,
+                    "Valir": 52.9866,
+                    "X.Borg": 49.9086,
+                    "Baxia": 51.3559,
+                    "Karrie": 49.4244
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Diggie": 52.2507,
+                    "Ixia": 49.7044,
+                    "Atlas": 52.6892,
+                    "Ling": 47.1615,
+                    "Gloo": 57.2039
+                },
+                "sub_hero_last": {
+                    "Terizla": 53.2479,
+                    "Masha": 54.2135,
+                    "Aldous": 50.1649,
+                    "Ruby": 51.5953,
+                    "Cici": 48.6686
+                }
+            }
+        },
+        "Kimmy": {
+            "heroName": "Kimmy",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_642/100_61295dfefd369004e5e4a7f4fc86647b.png",
+            "appearanceRate": 0.6614,
+            "banRate": 0.9429,
+            "winRate": 48.2164,
+            "heroType": "Mid Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Atlas": 52.6892,
+                    "Sun": 54.0159,
+                    "Hilda": 53.4985,
+                    "Alice": 50.3016,
+                    "Chip": 48.2213
+                },
+                "sub_hero_last": {
+                    "Lolita": 56.4071,
+                    "Karina": 46.1349,
+                    "Mathilda": 44.9361,
+                    "Fanny": 43.2789,
+                    "Yve": 53.9582
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Estes": 52.0766,
+                    "Harith": 48.4702,
+                    "Brody": 51.536,
+                    "Clint": 51.0435,
+                    "Marcel": 53.6689
+                },
+                "sub_hero_last": {
+                    "Faramis": 50.7711,
+                    "Valentina": 43.5742,
+                    "Valir": 52.9866,
+                    "Vexana": 50.6805,
+                    "Vale": 50.7646
+                }
+            }
+        },
+        "Belerick": {
+            "heroName": "Belerick",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_5f2a9eca0bafd4ed8dc39a93c771b3af.png",
+            "appearanceRate": 1.5114,
+            "banRate": 14.2204,
+            "winRate": 53.8415,
+            "heroType": "Roam",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Miya": 50.6794,
+                    "Obsidia": 49.977,
+                    "Melissa": 51.2984,
+                    "Zhask": 52.1168,
+                    "Minsitthar": 52.2718
+                },
+                "sub_hero_last": {
+                    "Yve": 53.9582,
+                    "Marcel": 53.6689,
+                    "Estes": 52.0766,
+                    "Lesley": 45.7685,
+                    "X.Borg": 49.9086
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Saber": 49.0831,
+                    "Faramis": 50.7711,
+                    "Chou": 46.8968,
+                    "Silvanna": 53.3,
+                    "Jawhead": 48.2395
+                },
+                "sub_hero_last": {
+                    "Khufra": 53.8095,
+                    "Lolita": 56.4071,
+                    "Tigreal": 47.5348,
+                    "Johnson": 51.0548,
+                    "Atlas": 52.6892
+                }
+            }
+        },
+        "Hanzo": {
+            "heroName": "Hanzo",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_47/100_d2d28d2fcb060726fa27553920ca1a33.png",
+            "appearanceRate": 0.315,
+            "banRate": 4.212,
+            "winRate": 51.385,
+            "heroType": "Jungle",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Lolita": 56.4071,
+                    "Barats": 49.6877,
+                    "Diggie": 52.2507,
+                    "Carmilla": 53.381,
+                    "Fredrinn": 50.0714
+                },
+                "sub_hero_last": {
+                    "Natalia": 51.6901,
+                    "Fanny": 43.2789,
+                    "Ling": 47.1615,
+                    "Wanwan": 49.7358,
+                    "Obsidia": 49.977
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Baxia": 51.3559,
+                    "Masha": 54.2135,
+                    "Kaja": 53.1757,
+                    "Lunox": 49.8398,
+                    "Hilda": 53.4985
+                },
+                "sub_hero_last": {
+                    "Fanny": 43.2789,
+                    "Nolan": 46.7786,
+                    "Lancelot": 44.9204,
+                    "Hayabusa": 48.1689,
+                    "Yi Sun-shin": 51.4469
+                }
+            }
+        },
+        "Lunox": {
+            "heroName": "Lunox",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_e162688afdcaf3f6498af30badfe31c5.png",
+            "appearanceRate": 0.1806,
+            "banRate": 0.3689,
+            "winRate": 50.347,
+            "heroType": "Mid Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Nolan": 46.7786,
+                    "Cici": 48.6686,
+                    "Alice": 50.3016,
+                    "Ling": 47.1615,
+                    "Gloo": 57.2039
+                },
+                "sub_hero_last": {
+                    "Faramis": 50.7711,
+                    "Masha": 54.2135,
+                    "Edith": 51.7619,
+                    "Estes": 52.0766,
+                    "Barats": 49.6877
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Valentina": 43.5742,
+                    "Yve": 53.9582,
+                    "Chip": 48.2213,
+                    "Diggie": 52.2507,
+                    "Masha": 54.2135
+                },
+                "sub_hero_last": {
+                    "Vale": 50.7646,
+                    "Aurora": 47.721,
+                    "Zhuxin": 50.9813,
+                    "Luo Yi": 48.3742,
+                    "Marcel": 53.6689
+                }
+            }
+        },
+        "Leomord": {
+            "heroName": "Leomord",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_554cdf13a7587fe08c5deed60132c61c.png",
+            "appearanceRate": 0.654,
+            "banRate": 12.0652,
+            "winRate": 53.2178,
+            "heroType": "Jungle",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Eudora": 48.8248,
+                    "Belerick": 53.822,
+                    "Popol and Kupa": 53.6631,
+                    "Zhask": 52.1168,
+                    "Vale": 50.7646
+                },
+                "sub_hero_last": {
+                    "Karrie": 49.4244,
+                    "Valir": 52.9866,
+                    "Angela": 48.379,
+                    "Melissa": 51.2984,
+                    "Hanzo": 51.1908
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Angela": 48.379,
+                    "Floryn": 53.3471,
+                    "Faramis": 50.7711,
+                    "Rafaela": 51.8482,
+                    "Chou": 46.8968
+                },
+                "sub_hero_last": {
+                    "Nolan": 46.7786,
+                    "Roger": 51.5304,
+                    "Hayabusa": 48.1689,
+                    "Hanzo": 51.1908,
+                    "Fanny": 43.2789
+                }
+            }
+        },
+        "Vale": {
+            "heroName": "Vale",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_2a7a8d1531a1c4f8524880413535348d.png",
+            "appearanceRate": 0.8783,
+            "banRate": 0.4509,
+            "winRate": 50.769,
+            "heroType": "Mid Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Rafaela": 51.8482,
+                    "Melissa": 51.2984,
+                    "Luo Yi": 48.3742,
+                    "Estes": 52.0766,
+                    "Odette": 49.7216
+                },
+                "sub_hero_last": {
+                    "Valentina": 43.5742,
+                    "Khaleed": 55.0418,
+                    "Gloo": 57.2039,
+                    "Kaja": 53.1757,
+                    "Leomord": 53.1544
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Balmond": 43.3789,
+                    "Alice": 50.3016,
+                    "Mathilda": 44.9361,
+                    "Barats": 49.6877,
+                    "Harley": 49.7147
+                },
+                "sub_hero_last": {
+                    "Odette": 49.7216,
+                    "Lunox": 49.8398,
+                    "Xavier": 47.2659,
+                    "Luo Yi": 48.3742,
+                    "Zetian": 51.5702
+                }
+            }
+        },
+        "Claude": {
+            "heroName": "Claude",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_e1097b9d3e1d5e9f14600d32e8b18acd.png",
+            "appearanceRate": 0.7547,
+            "banRate": 0.8566,
+            "winRate": 50.531,
+            "heroType": "Gold Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Lolita": 56.4071,
+                    "Benedetta": 54.087,
+                    "Ixia": 49.7044,
+                    "Chang'e": 49.335,
+                    "Lapu-Lapu": 50.1177
+                },
+                "sub_hero_last": {
+                    "Lesley": 45.7685,
+                    "Popol and Kupa": 53.6631,
+                    "Karrie": 49.4244,
+                    "Baxia": 51.3559,
+                    "Masha": 54.2135
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Mathilda": 44.9361,
+                    "Angela": 48.379,
+                    "Roger": 51.5304,
+                    "Fanny": 43.2789,
+                    "Zhuxin": 50.9813
+                },
+                "sub_hero_last": {
+                    "Beatrix": 50.0423,
+                    "Moskov": 48.3638,
+                    "Brody": 51.536,
+                    "Irithel": 51.7791,
+                    "Hanabi": 54.7811
+                }
+            }
+        },
+        "Aldous": {
+            "heroName": "Aldous",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_0eb32187d08f14779585a8be53b83f01.png",
+            "appearanceRate": 0.5163,
+            "banRate": 0.6639,
+            "winRate": 50.0324,
+            "heroType": "Exp Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Sun": 54.0159,
+                    "Novaria": 48.8608,
+                    "Hanzo": 51.1908,
+                    "Xavier": 47.2659,
+                    "Helcurt": 50.0697
+                },
+                "sub_hero_last": {
+                    "Mathilda": 44.9361,
+                    "Kaja": 53.1757,
+                    "Esmeralda": 44.9891,
+                    "Faramis": 50.7711,
+                    "Karina": 46.1349
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Gloo": 57.2039,
+                    "Baxia": 51.3559,
+                    "Balmond": 43.3789,
+                    "Yve": 53.9582,
+                    "Nolan": 46.7786
+                },
+                "sub_hero_last": {
+                    "Lapu-Lapu": 50.1177,
+                    "Ruby": 51.5953,
+                    "Yu Zhong": 47.5684,
+                    "Phoveus": 50.1538,
+                    "Sora": 48.9267
+                }
+            }
+        },
+        "Selena": {
+            "heroName": "Selena",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_c3f967121519ae40509c5b2fdf52b19d.png",
+            "appearanceRate": 1.0412,
+            "banRate": 4.8157,
+            "winRate": 49.2712,
+            "heroType": "Mid Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "X.Borg": 49.9086,
+                    "Ixia": 49.7044,
+                    "Carmilla": 53.381,
+                    "Kaja": 53.1757,
+                    "Yin": 47.9619
+                },
+                "sub_hero_last": {
+                    "Zhask": 52.1168,
+                    "Chip": 48.2213,
+                    "Lolita": 56.4071,
+                    "Alucard": 49.91,
+                    "Gloo": 57.2039
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Lylia": 50.225,
+                    "Baxia": 51.3559,
+                    "Joy": 46.5971,
+                    "Nolan": 46.7786,
+                    "Zhuxin": 50.9813
+                },
+                "sub_hero_last": {
+                    "Chip": 48.2213,
+                    "Atlas": 52.6892,
+                    "Mathilda": 44.9361,
+                    "Yve": 53.9582,
+                    "Franco": 44.3377
+                }
+            }
+        },
+        "Kaja": {
+            "heroName": "Kaja",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_a23983833ad5bee7c83422c8ff727115.png",
+            "appearanceRate": 0.1102,
+            "banRate": 1.8564,
+            "winRate": 53.0464,
+            "heroType": "Roam",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Diggie": 52.2507,
+                    "Barats": 49.6877,
+                    "Aldous": 50.1649,
+                    "Kagura": 51.6873,
+                    "Lapu-Lapu": 50.1177
+                },
+                "sub_hero_last": {
+                    "Yve": 53.9582,
+                    "Edith": 51.7619,
+                    "Zhask": 52.1168,
+                    "Aurora": 47.721,
+                    "Uranus": 52.2151
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Valentina": 43.5742,
+                    "Hanzo": 51.1908,
+                    "Xavier": 47.2659,
+                    "Ling": 47.1615,
+                    "Masha": 54.2135
+                },
+                "sub_hero_last": {
+                    "Chip": 48.2213,
+                    "Lolita": 56.4071,
+                    "Floryn": 53.3471,
+                    "Minotaur": 53.5623,
+                    "Atlas": 52.6892
+                }
+            }
+        },
+        "Chang'e": {
+            "heroName": "Chang'e",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_46cfe9c30e8a14f85b4d022496aca274.png",
+            "appearanceRate": 1.0471,
+            "banRate": 0.8812,
+            "winRate": 49.3806,
+            "heroType": "Mid Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Diggie": 52.2507,
+                    "X.Borg": 49.9086,
+                    "Argus": 52.9491,
+                    "Marcel": 53.6689,
+                    "Lukas": 48.5258
+                },
+                "sub_hero_last": {
+                    "Lolita": 56.4071,
+                    "Khaleed": 55.0418,
+                    "Claude": 50.4349,
+                    "Chip": 48.2213,
+                    "Atlas": 52.6892
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Lunox": 49.8398,
+                    "Harley": 49.7147,
+                    "Chip": 48.2213,
+                    "Yve": 53.9582,
+                    "Gloo": 57.2039
+                },
+                "sub_hero_last": {
+                    "Lylia": 50.225,
+                    "Vexana": 50.6805,
+                    "Kagura": 51.6873,
+                    "Xavier": 47.2659,
+                    "Gord": 55.3153
+                }
+            }
+        },
+        "Hanabi": {
+            "heroName": "Hanabi",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_8a9c1966feb34e85d7bdcc1ed01ffb5d.png",
+            "appearanceRate": 4.0986,
+            "banRate": 16.2993,
+            "winRate": 54.6187,
+            "heroType": "Gold Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Popol and Kupa": 53.6631,
+                    "Barats": 49.6877,
+                    "Khufra": 53.8095,
+                    "Akai": 50.5949,
+                    "Chip": 48.2213
+                },
+                "sub_hero_last": {
+                    "Beatrix": 50.0423,
+                    "Ixia": 49.7044,
+                    "Lolita": 56.4071,
+                    "Granger": 41.8447,
+                    "Layla": 47.8485
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Harith": 48.4702,
+                    "Popol and Kupa": 53.6631,
+                    "Marcel": 53.6689,
+                    "Lolita": 56.4071,
+                    "Roger": 51.5304
+                },
+                "sub_hero_last": {
+                    "Melissa": 51.2984,
+                    "Beatrix": 50.0423,
+                    "Irithel": 51.7791,
+                    "Wanwan": 49.7358,
+                    "Moskov": 48.3638
+                }
+            }
+        },
+        "Uranus": {
+            "heroName": "Uranus",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_2e15a0a506aaecd9b3de40a8cc9f7ec7.png",
+            "appearanceRate": 0.4786,
+            "banRate": 1.3271,
+            "winRate": 52.166,
+            "heroType": "Exp Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Masha": 54.2135,
+                    "Lolita": 56.4071,
+                    "Argus": 52.9491,
+                    "Barats": 49.6877,
+                    "Irithel": 51.7791
+                },
+                "sub_hero_last": {
+                    "Karrie": 49.4244,
+                    "Joy": 46.5971,
+                    "Dyrroth": 47.8168,
+                    "Angela": 48.379,
+                    "Estes": 52.0766
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Angela": 48.379,
+                    "Natalia": 51.6901,
+                    "Luo Yi": 48.3742,
+                    "Melissa": 51.2984,
+                    "Bane": 51.5702
+                },
+                "sub_hero_last": {
+                    "Phoveus": 50.1538,
+                    "Cici": 48.6686,
+                    "Chip": 48.2213,
+                    "Esmeralda": 44.9891,
+                    "Masha": 54.2135
+                }
+            }
+        },
+        "Martis": {
+            "heroName": "Martis",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_cc8124b0eb6ca22d950b000744d69fbf.png",
+            "appearanceRate": 0.652,
+            "banRate": 1.0954,
+            "winRate": 46.1763,
+            "heroType": "Jungle",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Joy": 46.5971,
+                    "Eudora": 48.8248,
+                    "Chip": 48.2213,
+                    "Yin": 47.9619,
+                    "Hayabusa": 48.1689
+                },
+                "sub_hero_last": {
+                    "X.Borg": 49.9086,
+                    "Minsitthar": 52.2718,
+                    "Ling": 47.1615,
+                    "Balmond": 43.3789,
+                    "Lesley": 45.7685
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Yve": 53.9582,
+                    "Angela": 48.379,
+                    "Kaja": 53.1757,
+                    "Fanny": 43.2789,
+                    "Floryn": 53.3471
+                },
+                "sub_hero_last": {
+                    "Balmond": 43.3789,
+                    "Barats": 49.6877,
+                    "Alice": 50.3016,
+                    "Yin": 47.9619,
+                    "Roger": 51.5304
+                }
+            }
+        },
+        "Valir": {
+            "heroName": "Valir",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_bf16690876761b80822df90eb3320d69.png",
+            "appearanceRate": 1.16,
+            "banRate": 3.8435,
+            "winRate": 52.8748,
+            "heroType": "Mid Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Fredrinn": 50.0714,
+                    "Barats": 49.6877,
+                    "Balmond": 43.3789,
+                    "Terizla": 53.2479,
+                    "Valentina": 43.5742
+                },
+                "sub_hero_last": {
+                    "Helcurt": 50.0697,
+                    "Diggie": 52.2507,
+                    "Lolita": 56.4071,
+                    "Rafaela": 51.8482,
+                    "Natalia": 51.6901
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Valentina": 43.5742,
+                    "Harley": 49.7147,
+                    "Lukas": 48.5258,
+                    "Faramis": 50.7711,
+                    "Helcurt": 50.0697
+                },
+                "sub_hero_last": {
+                    "Kimmy": 48.137,
+                    "Zhask": 52.1168,
+                    "Lunox": 49.8398,
+                    "Lylia": 50.225,
+                    "Vexana": 50.6805
+                }
+            }
+        },
+        "Gusion": {
+            "heroName": "Gusion",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_c6cd232de60da5372a7101a203e56554.png",
+            "appearanceRate": 1.723,
+            "banRate": 15.6143,
+            "winRate": 49.0263,
+            "heroType": "Jungle",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Yve": 53.9582,
+                    "Suyou": 51.5631,
+                    "Aamon": 50.7581,
+                    "X.Borg": 49.9086,
+                    "Gord": 55.3153
+                },
+                "sub_hero_last": {
+                    "Eudora": 48.8248,
+                    "Marcel": 53.6689,
+                    "Valentina": 43.5742,
+                    "Popol and Kupa": 53.6631,
+                    "Lolita": 56.4071
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Lunox": 49.8398,
+                    "Faramis": 50.7711,
+                    "Zhuxin": 50.9813,
+                    "Chip": 48.2213,
+                    "Lolita": 56.4071
+                },
+                "sub_hero_last": {
+                    "Fanny": 43.2789,
+                    "Roger": 51.5304,
+                    "Karina": 46.1349,
+                    "Ling": 47.1615,
+                    "Aamon": 50.7581
+                }
+            }
+        },
+        "Angela": {
+            "heroName": "Angela",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_c7e0183956b2c2fd6d3fa0b18fe46917.png",
+            "appearanceRate": 1.4664,
+            "banRate": 10.3553,
+            "winRate": 48.281,
+            "heroType": "Roam",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Marcel": 53.6689,
+                    "Alice": 50.3016,
+                    "Diggie": 52.2507,
+                    "Uranus": 52.2151,
+                    "Balmond": 43.3789
+                },
+                "sub_hero_last": {
+                    "Lolita": 56.4071,
+                    "Silvanna": 53.3,
+                    "Franco": 44.3377,
+                    "Zilong": 47.4174,
+                    "Yin": 47.9619
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Baxia": 51.3559,
+                    "Akai": 50.5949,
+                    "Uranus": 52.2151,
+                    "Fredrinn": 50.0714,
+                    "Leomord": 53.1544
+                },
+                "sub_hero_last": {
+                    "Diggie": 52.2507,
+                    "Rafaela": 51.8482,
+                    "Floryn": 53.3471,
+                    "Estes": 52.0766,
+                    "Chip": 48.2213
+                }
+            }
+        },
+        "Jawhead": {
+            "heroName": "Jawhead",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_bd87c30b6c7de6ae3b5aa56162c48c8b.png",
+            "appearanceRate": 0.5434,
+            "banRate": 0.6039,
+            "winRate": 48.4982,
+            "heroType": "Roam",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Yve": 53.9582,
+                    "Bruno": 47.8535,
+                    "Mathilda": 44.9361,
+                    "Zilong": 47.4174,
+                    "Arlott": 47.1243
+                },
+                "sub_hero_last": {
+                    "Sun": 54.0159,
+                    "Esmeralda": 44.9891,
+                    "Gloo": 57.2039,
+                    "Fredrinn": 50.0714,
+                    "Lolita": 56.4071
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Rafaela": 51.8482,
+                    "Marcel": 53.6689,
+                    "Khufra": 53.8095,
+                    "Irithel": 51.7791,
+                    "Estes": 52.0766
+                },
+                "sub_hero_last": {
+                    "Yve": 53.9582,
+                    "Arlott": 47.1243,
+                    "Paquito": 51.5246,
+                    "Aurora": 47.721,
+                    "Fanny": 43.2789
+                }
+            }
+        },
+        "Lesley": {
+            "heroName": "Lesley",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_08770893183018333f54a98e63c41ee3.png",
+            "appearanceRate": 1.8578,
+            "banRate": 11.3257,
+            "winRate": 45.8555,
+            "heroType": "Gold Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Claude": 50.4349,
+                    "Belerick": 53.822,
+                    "Baxia": 51.3559,
+                    "Gatotkaca": 47.1882,
+                    "Bruno": 47.8535
+                },
+                "sub_hero_last": {
+                    "Estes": 52.0766,
+                    "Sun": 54.0159,
+                    "Gloo": 57.2039,
+                    "Rafaela": 51.8482,
+                    "Minotaur": 53.5623
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Popol and Kupa": 53.6631,
+                    "Yve": 53.9582,
+                    "Roger": 51.5304,
+                    "Aulus": 51.7089,
+                    "Harith": 48.4702
+                },
+                "sub_hero_last": {
+                    "Irithel": 51.7791,
+                    "Wanwan": 49.7358,
+                    "Melissa": 51.2984,
+                    "Clint": 51.0435,
+                    "Ixia": 49.7044
+                }
+            }
+        },
+        "Pharsa": {
+            "heroName": "Pharsa",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_10151d43910e62f7aa9ce08df481a20f.png",
+            "appearanceRate": 0.7299,
+            "banRate": 0.5717,
+            "winRate": 47.6129,
+            "heroType": "Mid Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Wanwan": 49.7358,
+                    "Valir": 52.9866,
+                    "Luo Yi": 48.3742,
+                    "Hanabi": 54.7811,
+                    "Alucard": 49.91
+                },
+                "sub_hero_last": {
+                    "Mathilda": 44.9361,
+                    "Natalia": 51.6901,
+                    "Chip": 48.2213,
+                    "Lukas": 48.5258,
+                    "Faramis": 50.7711
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Lunox": 49.8398,
+                    "Alice": 50.3016,
+                    "Khufra": 53.8095,
+                    "Diggie": 52.2507,
+                    "Barats": 49.6877
+                },
+                "sub_hero_last": {
+                    "Luo Yi": 48.3742,
+                    "Xavier": 47.2659,
+                    "Aurora": 47.721,
+                    "Gord": 55.3153,
+                    "Lylia": 50.225
+                }
+            }
+        },
+        "Helcurt": {
+            "heroName": "Helcurt",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_6abf0c552b59b8ca4cbc1af3662ef176.png",
+            "appearanceRate": 0.952,
+            "banRate": 36.1132,
+            "winRate": 50.2295,
+            "heroType": "Jungle",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "X.Borg": 49.9086,
+                    "Valir": 52.9866,
+                    "Hanzo": 51.1908,
+                    "Luo Yi": 48.3742,
+                    "Gord": 55.3153
+                },
+                "sub_hero_last": {
+                    "Brody": 51.536,
+                    "Masha": 54.2135,
+                    "Karina": 46.1349,
+                    "Eudora": 48.8248,
+                    "Obsidia": 49.977
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Baxia": 51.3559,
+                    "Barats": 49.6877,
+                    "Fredrinn": 50.0714,
+                    "Yve": 53.9582,
+                    "Ruby": 51.5953
+                },
+                "sub_hero_last": {
+                    "Mathilda": 44.9361,
+                    "Estes": 52.0766,
+                    "Chip": 48.2213,
+                    "Faramis": 50.7711,
+                    "Harley": 49.7147
+                }
+            }
+        },
+        "Zhask": {
+            "heroName": "Zhask",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_d8f170087cb2d5b71bb22a0a4664a927.png",
+            "appearanceRate": 0.3853,
+            "banRate": 0.5231,
+            "winRate": 52.0067,
+            "heroType": "Mid Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Yve": 53.9582,
+                    "Lolita": 56.4071,
+                    "Kaja": 53.1757,
+                    "Zhuxin": 50.9813,
+                    "Selena": 49.2597
+                },
+                "sub_hero_last": {
+                    "Natan": 51.3067,
+                    "Baxia": 51.3559,
+                    "Natalia": 51.6901,
+                    "Alice": 50.3016,
+                    "Estes": 52.0766
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Yve": 53.9582,
+                    "Cecilion": 49.567,
+                    "Benedetta": 54.087,
+                    "Eudora": 48.8248,
+                    "Barats": 49.6877
+                },
+                "sub_hero_last": {
+                    "Mathilda": 44.9361,
+                    "Valir": 52.9866,
+                    "Arlott": 47.1243,
+                    "Kagura": 51.6873,
+                    "Xavier": 47.2659
+                }
+            }
+        },
+        "Hylos": {
+            "heroName": "Hylos",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_195ad9af866afaab415ae23a6be13b45.png",
+            "appearanceRate": 0.3511,
+            "banRate": 1.0327,
+            "winRate": 49.866,
+            "heroType": "Roam",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Johnson": 51.0548,
+                    "Khufra": 53.8095,
+                    "Lukas": 48.5258,
+                    "Eudora": 48.8248,
+                    "Esmeralda": 44.9891
+                },
+                "sub_hero_last": {
+                    "Yve": 53.9582,
+                    "X.Borg": 49.9086,
+                    "Karrie": 49.4244,
+                    "Rafaela": 51.8482,
+                    "Faramis": 50.7711
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Natan": 51.3067,
+                    "Floryn": 53.3471,
+                    "Ling": 47.1615,
+                    "Baxia": 51.3559,
+                    "Masha": 54.2135
+                },
+                "sub_hero_last": {
+                    "Minotaur": 53.5623,
+                    "Grock": 47.7789,
+                    "Diggie": 52.2507,
+                    "Johnson": 51.0548,
+                    "Franco": 44.3377
+                }
+            }
+        },
+        "Diggie": {
+            "heroName": "Diggie",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_b1bdf46136cb8a7903dae6d58e8349cb.png",
+            "appearanceRate": 0.1349,
+            "banRate": 4.553,
+            "winRate": 52.2596,
+            "heroType": "Roam",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Atlas": 52.6892,
+                    "Tigreal": 47.5348,
+                    "Zhuxin": 50.9813,
+                    "Akai": 50.5949,
+                    "Karrie": 49.4244
+                },
+                "sub_hero_last": {
+                    "Masha": 54.2135,
+                    "Estes": 52.0766,
+                    "Khaleed": 55.0418,
+                    "Lolita": 56.4071,
+                    "Rafaela": 51.8482
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Carmilla": 53.381,
+                    "Yve": 53.9582,
+                    "Ixia": 49.7044,
+                    "Baxia": 51.3559,
+                    "Zhuxin": 50.9813
+                },
+                "sub_hero_last": {
+                    "Lolita": 56.4071,
+                    "Chip": 48.2213,
+                    "Marcel": 53.6689,
+                    "Atlas": 52.6892,
+                    "Rafaela": 51.8482
+                }
+            }
+        },
+        "Lancelot": {
+            "heroName": "Lancelot",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_dc4b821e49b904715172136017798da3.png",
+            "appearanceRate": 0.6526,
+            "banRate": 1.4748,
+            "winRate": 44.8216,
+            "heroType": "Jungle",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Atlas": 52.6892,
+                    "Lapu-Lapu": 50.1177,
+                    "Carmilla": 53.381,
+                    "Lunox": 49.8398,
+                    "Chip": 48.2213
+                },
+                "sub_hero_last": {
+                    "Masha": 54.2135,
+                    "Cyclops": 51.8107,
+                    "Natalia": 51.6901,
+                    "Yve": 53.9582,
+                    "Zilong": 47.4174
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Angela": 48.379,
+                    "Valentina": 43.5742,
+                    "Edith": 51.7619,
+                    "Rafaela": 51.8482,
+                    "Esmeralda": 44.9891
+                },
+                "sub_hero_last": {
+                    "Ling": 47.1615,
+                    "Hanzo": 51.1908,
+                    "Fanny": 43.2789,
+                    "Hayabusa": 48.1689,
+                    "Roger": 51.5304
+                }
+            }
+        },
+        "Odette": {
+            "heroName": "Odette",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_47/100_d9251718a8894546ba04cfa9ca68dedc.png",
+            "appearanceRate": 0.7747,
+            "banRate": 0.569,
+            "winRate": 49.7561,
+            "heroType": "Mid Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Chip": 48.2213,
+                    "Natalia": 51.6901,
+                    "Joy": 46.5971,
+                    "Kaja": 53.1757,
+                    "Aamon": 50.7581
+                },
+                "sub_hero_last": {
+                    "Barats": 49.6877,
+                    "Minotaur": 53.5623,
+                    "Gloo": 57.2039,
+                    "Lolita": 56.4071,
+                    "Edith": 51.7619
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Chip": 48.2213,
+                    "Mathilda": 44.9361,
+                    "Harley": 49.7147,
+                    "Roger": 51.5304,
+                    "Lancelot": 44.9204
+                },
+                "sub_hero_last": {
+                    "Yve": 53.9582,
+                    "Vale": 50.7646,
+                    "Luo Yi": 48.3742,
+                    "Aurora": 47.721,
+                    "Gord": 55.3153
+                }
+            }
+        },
+        "Argus": {
+            "heroName": "Argus",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_0bd96658e5b8ec578226ea1622bd7231.png",
+            "appearanceRate": 0.5457,
+            "banRate": 1.5211,
+            "winRate": 52.9008,
+            "heroType": "Exp Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Masha": 54.2135,
+                    "Saber": 49.0831,
+                    "Faramis": 50.7711,
+                    "Lunox": 49.8398,
+                    "Karrie": 49.4244
+                },
+                "sub_hero_last": {
+                    "Chip": 48.2213,
+                    "Lolita": 56.4071,
+                    "Esmeralda": 44.9891,
+                    "Fredrinn": 50.0714,
+                    "Valentina": 43.5742
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Gloo": 57.2039,
+                    "Baxia": 51.3559,
+                    "Hilda": 53.4985,
+                    "Khufra": 53.8095,
+                    "Wanwan": 49.7358
+                },
+                "sub_hero_last": {
+                    "Cici": 48.6686,
+                    "Yu Zhong": 47.5684,
+                    "Sora": 48.9267,
+                    "Aldous": 50.1649,
+                    "Terizla": 53.2479
+                }
+            }
+        },
+        "Grock": {
+            "heroName": "Grock",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_902/100_f8b8c8964d3202b7b762947ac96f1ed3.png",
+            "appearanceRate": 0.564,
+            "banRate": 3.2625,
+            "winRate": 47.6029,
+            "heroType": "Roam",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Wanwan": 49.7358,
+                    "Lolita": 56.4071,
+                    "Valentina": 43.5742,
+                    "Brody": 51.536,
+                    "Akai": 50.5949
+                },
+                "sub_hero_last": {
+                    "Yve": 53.9582,
+                    "Faramis": 50.7711,
+                    "Alice": 50.3016,
+                    "Masha": 54.2135,
+                    "Angela": 48.379
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Natan": 51.3067,
+                    "Moskov": 48.3638,
+                    "Saber": 49.0831,
+                    "Harith": 48.4702,
+                    "Cyclops": 51.8107
+                },
+                "sub_hero_last": {
+                    "Lolita": 56.4071,
+                    "Atlas": 52.6892,
+                    "Johnson": 51.0548,
+                    "Khufra": 53.8095,
+                    "Marcel": 53.6689
+                }
+            }
+        },
+        "Irithel": {
+            "heroName": "Irithel",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_a7c51b517dbce49dac4e537bd4ab4f87.png",
+            "appearanceRate": 0.4363,
+            "banRate": 0.4479,
+            "winRate": 51.8365,
+            "heroType": "Gold Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Wanwan": 49.7358,
+                    "Marcel": 53.6689,
+                    "Diggie": 52.2507,
+                    "Benedetta": 54.087,
+                    "Hanzo": 51.1908
+                },
+                "sub_hero_last": {
+                    "Brody": 51.536,
+                    "Uranus": 52.2151,
+                    "Saber": 49.0831,
+                    "Faramis": 50.7711,
+                    "Bruno": 47.8535
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Zhuxin": 50.9813,
+                    "Faramis": 50.7711,
+                    "Harith": 48.4702,
+                    "Nolan": 46.7786,
+                    "Jawhead": 48.2395
+                },
+                "sub_hero_last": {
+                    "Wanwan": 49.7358,
+                    "Karrie": 49.4244,
+                    "Melissa": 51.2984,
+                    "Ixia": 49.7044,
+                    "Hanabi": 54.7811
+                }
+            }
+        },
+        "Harley": {
+            "heroName": "Harley",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_3aa6964c07a70f9b125da447f320e1ac.png",
+            "appearanceRate": 1.3017,
+            "banRate": 80.7784,
+            "winRate": 49.5397,
+            "heroType": "Jungle",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Hanzo": 51.1908,
+                    "Gord": 55.3153,
+                    "Valir": 52.9866,
+                    "Alice": 50.3016,
+                    "Luo Yi": 48.3742
+                },
+                "sub_hero_last": {
+                    "Sun": 54.0159,
+                    "Lolita": 56.4071,
+                    "Popol and Kupa": 53.6631,
+                    "Roger": 51.5304,
+                    "Zhask": 52.1168
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Lylia": 50.225,
+                    "Lunox": 49.8398,
+                    "Zhuxin": 50.9813,
+                    "Cyclops": 51.8107,
+                    "Chang'e": 49.335
+                },
+                "sub_hero_last": {
+                    "Ling": 47.1615,
+                    "Roger": 51.5304,
+                    "Nolan": 46.7786,
+                    "Hayabusa": 48.1689,
+                    "Yi Sun-shin": 51.4469
+                }
+            }
+        },
+        "Gatotkaca": {
+            "heroName": "Gatotkaca",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_96f9dbbc096e0f0a28f9b9e587d06a9c.png",
+            "appearanceRate": 0.9437,
+            "banRate": 0.6821,
+            "winRate": 47.055,
+            "heroType": "Roam",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Barats": 49.6877,
+                    "Zilong": 47.4174,
+                    "Atlas": 52.6892,
+                    "Odette": 49.7216,
+                    "Miya": 50.6794
+                },
+                "sub_hero_last": {
+                    "Lesley": 45.7685,
+                    "X.Borg": 49.9086,
+                    "Karrie": 49.4244,
+                    "Mathilda": 44.9361,
+                    "Uranus": 52.2151
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Mathilda": 44.9361,
+                    "Angela": 48.379,
+                    "Moskov": 48.3638,
+                    "Saber": 49.0831,
+                    "Minsitthar": 52.2718
+                },
+                "sub_hero_last": {
+                    "Lolita": 56.4071,
+                    "Chip": 48.2213,
+                    "Marcel": 53.6689,
+                    "Kaja": 53.1757,
+                    "Khufra": 53.8095
+                }
+            }
+        },
+        "Karrie": {
+            "heroName": "Karrie",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_294576f2bd0dcbcc9041031969d0eb09.png",
+            "appearanceRate": 0.6915,
+            "banRate": 3.3557,
+            "winRate": 49.4967,
+            "heroType": "Gold Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Uranus": 52.2151,
+                    "Alice": 50.3016,
+                    "Baxia": 51.3559,
+                    "Fredrinn": 50.0714,
+                    "Esmeralda": 44.9891
+                },
+                "sub_hero_last": {
+                    "Sun": 54.0159,
+                    "Diggie": 52.2507,
+                    "Guinevere": 51.2026,
+                    "Argus": 52.9491,
+                    "Mathilda": 44.9361
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Faramis": 50.7711,
+                    "Harith": 48.4702,
+                    "Masha": 54.2135,
+                    "Baxia": 51.3559,
+                    "Popol and Kupa": 53.6631
+                },
+                "sub_hero_last": {
+                    "Irithel": 51.7791,
+                    "Melissa": 51.2984,
+                    "Layla": 47.8485,
+                    "Brody": 51.536,
+                    "Beatrix": 50.0423
+                }
+            }
+        },
+        "Roger": {
+            "heroName": "Roger",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_b40e578f13465b3ae99d0a9baac7ecc9.png",
+            "appearanceRate": 0.3337,
+            "banRate": 0.1363,
+            "winRate": 51.3712,
+            "heroType": "Jungle",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Harley": 49.7147,
+                    "Alice": 50.3016,
+                    "Ling": 47.1615,
+                    "Argus": 52.9491,
+                    "Marcel": 53.6689
+                },
+                "sub_hero_last": {
+                    "Popol and Kupa": 53.6631,
+                    "Masha": 54.2135,
+                    "Leomord": 53.1544,
+                    "Bane": 51.5702,
+                    "Xavier": 47.2659
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Natan": 51.3067,
+                    "Granger": 41.8447,
+                    "Kagura": 51.6873,
+                    "Clint": 51.0435,
+                    "Lesley": 45.7685
+                },
+                "sub_hero_last": {
+                    "Lancelot": 44.9204,
+                    "Leomord": 53.1544,
+                    "Fanny": 43.2789,
+                    "Joy": 46.5971,
+                    "Hanzo": 51.1908
+                }
+            }
+        },
+        "Vexana": {
+            "heroName": "Vexana",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_743edd1702084c4ed247908d698bca77.png",
+            "appearanceRate": 2.3752,
+            "banRate": 2.3615,
+            "winRate": 50.6009,
+            "heroType": "Mid Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Gloo": 57.2039,
+                    "Lolita": 56.4071,
+                    "Zhask": 52.1168,
+                    "Barats": 49.6877,
+                    "Sun": 54.0159
+                },
+                "sub_hero_last": {
+                    "Alice": 50.3016,
+                    "Marcel": 53.6689,
+                    "Natalia": 51.6901,
+                    "Kaja": 53.1757,
+                    "X.Borg": 49.9086
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Harley": 49.7147,
+                    "Atlas": 52.6892,
+                    "Faramis": 50.7711,
+                    "Alucard": 49.91,
+                    "Khaleed": 55.0418
+                },
+                "sub_hero_last": {
+                    "Yve": 53.9582,
+                    "Zhuxin": 50.9813,
+                    "Xavier": 47.2659,
+                    "Cecilion": 49.567,
+                    "Kagura": 51.6873
+                }
+            }
+        },
+        "Lapu-Lapu": {
+            "heroName": "Lapu-Lapu",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_28036c4584c914c5aad4d2feeafb2452.png",
+            "appearanceRate": 0.3745,
+            "banRate": 1.8609,
+            "winRate": 50.2461,
+            "heroType": "Exp Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Popol and Kupa": 53.6631,
+                    "Fredrinn": 50.0714,
+                    "Argus": 52.9491,
+                    "Silvanna": 53.3,
+                    "Tigreal": 47.5348
+                },
+                "sub_hero_last": {
+                    "Faramis": 50.7711,
+                    "Valentina": 43.5742,
+                    "Xavier": 47.2659,
+                    "Cici": 48.6686,
+                    "Kaja": 53.1757
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Chip": 48.2213,
+                    "Mathilda": 44.9361,
+                    "Floryn": 53.3471,
+                    "Masha": 54.2135,
+                    "Yve": 53.9582
+                },
+                "sub_hero_last": {
+                    "Phoveus": 50.1538,
+                    "Aldous": 50.1649,
+                    "Terizla": 53.2479,
+                    "Yu Zhong": 47.5684,
+                    "Arlott": 47.1243
+                }
+            }
+        },
+        "Aurora": {
+            "heroName": "Aurora",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_f9b2be0150361018bb98f941b9667c42.png",
+            "appearanceRate": 0.4573,
+            "banRate": 0.251,
+            "winRate": 47.6266,
+            "heroType": "Mid Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Lolita": 56.4071,
+                    "Masha": 54.2135,
+                    "Kaja": 53.1757,
+                    "Eudora": 48.8248,
+                    "Lunox": 49.8398
+                },
+                "sub_hero_last": {
+                    "Hanzo": 51.1908,
+                    "Chip": 48.2213,
+                    "Yve": 53.9582,
+                    "Beatrix": 50.0423,
+                    "Diggie": 52.2507
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Valentina": 43.5742,
+                    "Beatrix": 50.0423,
+                    "Harley": 49.7147,
+                    "Mathilda": 44.9361,
+                    "Karina": 46.1349
+                },
+                "sub_hero_last": {
+                    "Yve": 53.9582,
+                    "Luo Yi": 48.3742,
+                    "Pharsa": 47.6605,
+                    "Gord": 55.3153,
+                    "Xavier": 47.2659
+                }
+            }
+        },
+        "Hilda": {
+            "heroName": "Hilda",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_acd700708dc515f5c63a08f8835a9941.png",
+            "appearanceRate": 1.1017,
+            "banRate": 23.614,
+            "winRate": 53.4872,
+            "heroType": "Roam",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Nolan": 46.7786,
+                    "Diggie": 52.2507,
+                    "Granger": 41.8447,
+                    "Novaria": 48.8608,
+                    "Ling": 47.1615
+                },
+                "sub_hero_last": {
+                    "Chip": 48.2213,
+                    "Karrie": 49.4244,
+                    "Phoveus": 50.1538,
+                    "Kimmy": 48.137,
+                    "Khufra": 53.8095
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Hanzo": 51.1908,
+                    "Argus": 52.9491,
+                    "Silvanna": 53.3,
+                    "Edith": 51.7619,
+                    "X.Borg": 49.9086
+                },
+                "sub_hero_last": {
+                    "Khufra": 53.8095,
+                    "Mathilda": 44.9361,
+                    "Diggie": 52.2507,
+                    "Atlas": 52.6892,
+                    "Johnson": 51.0548
+                }
+            }
+        },
+        "Estes": {
+            "heroName": "Estes",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_ff4de3b0aabd1d2f6e184db1c831f6a9.png",
+            "appearanceRate": 0.6587,
+            "banRate": 42.3453,
+            "winRate": 52.0181,
+            "heroType": "Roam",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Diggie": 52.2507,
+                    "Cyclops": 51.8107,
+                    "Cici": 48.6686,
+                    "Balmond": 43.3789,
+                    "Masha": 54.2135
+                },
+                "sub_hero_last": {
+                    "Ixia": 49.7044,
+                    "Yin": 47.9619,
+                    "Beatrix": 50.0423,
+                    "Nolan": 46.7786,
+                    "Atlas": 52.6892
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Barats": 49.6877,
+                    "Valentina": 43.5742,
+                    "Edith": 51.7619,
+                    "Fredrinn": 50.0714,
+                    "Baxia": 51.3559
+                },
+                "sub_hero_last": {
+                    "Lolita": 56.4071,
+                    "Floryn": 53.3471,
+                    "Minotaur": 53.5623,
+                    "Diggie": 52.2507,
+                    "Angela": 48.379
+                }
+            }
+        },
+        "Cyclops": {
+            "heroName": "Cyclops",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_68da456f9c01b2f88d29ee320db181ed.png",
+            "appearanceRate": 0.8643,
+            "banRate": 0.4881,
+            "winRate": 51.7244,
+            "heroType": "Mid Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Wanwan": 49.7358,
+                    "Marcel": 53.6689,
+                    "Natalia": 51.6901,
+                    "Ling": 47.1615,
+                    "Joy": 46.5971
+                },
+                "sub_hero_last": {
+                    "Lolita": 56.4071,
+                    "Estes": 52.0766,
+                    "Barats": 49.6877,
+                    "Atlas": 52.6892,
+                    "Yve": 53.9582
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Harley": 49.7147,
+                    "Chip": 48.2213,
+                    "Marcel": 53.6689,
+                    "Masha": 54.2135,
+                    "Nolan": 46.7786
+                },
+                "sub_hero_last": {
+                    "Valentina": 43.5742,
+                    "Balmond": 43.3789,
+                    "Luo Yi": 48.3742,
+                    "Zhuxin": 50.9813,
+                    "Claude": 50.4349
+                }
+            }
+        },
+        "Johnson": {
+            "heroName": "Johnson",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_85ff988c6660b4d04f8dd3d40df988bb.png",
+            "appearanceRate": 1.1154,
+            "banRate": 3.7487,
+            "winRate": 50.9152,
+            "heroType": "Roam",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Valentina": 43.5742,
+                    "Layla": 47.8485,
+                    "Arlott": 47.1243,
+                    "Zilong": 47.4174,
+                    "Eudora": 48.8248
+                },
+                "sub_hero_last": {
+                    "Natan": 51.3067,
+                    "Alice": 50.3016,
+                    "Gloo": 57.2039,
+                    "Mathilda": 44.9361,
+                    "Alpha": 47.259
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Masha": 54.2135,
+                    "Mathilda": 44.9361,
+                    "Kadita": 51.7806,
+                    "Arlott": 47.1243,
+                    "Julian": 50.2295
+                },
+                "sub_hero_last": {
+                    "Minotaur": 53.5623,
+                    "Khufra": 53.8095,
+                    "Franco": 44.3377,
+                    "Atlas": 52.6892,
+                    "Grock": 47.7789
+                }
+            }
+        },
+        "Moskov": {
+            "heroName": "Moskov",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_a60a866ab6752a7f66766e720da987ea.png",
+            "appearanceRate": 0.7963,
+            "banRate": 0.3827,
+            "winRate": 48.5572,
+            "heroType": "Gold Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Gloo": 57.2039,
+                    "Fanny": 43.2789,
+                    "Hanzo": 51.1908,
+                    "Beatrix": 50.0423,
+                    "Granger": 41.8447
+                },
+                "sub_hero_last": {
+                    "Masha": 54.2135,
+                    "Cyclops": 51.8107,
+                    "Karina": 46.1349,
+                    "Floryn": 53.3471,
+                    "Baxia": 51.3559
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Harith": 48.4702,
+                    "Khaleed": 55.0418,
+                    "Phoveus": 50.1538,
+                    "Esmeralda": 44.9891,
+                    "Kaja": 53.1757
+                },
+                "sub_hero_last": {
+                    "Melissa": 51.2984,
+                    "Bruno": 47.8535,
+                    "Wanwan": 49.7358,
+                    "Brody": 51.536,
+                    "Layla": 47.8485
+                }
+            }
+        },
+        "Yi Sun-shin": {
+            "heroName": "Yi Sun-shin",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_961378be3f498d42c25b3defd1635ad1.png",
+            "appearanceRate": 1.0587,
+            "banRate": 15.5404,
+            "winRate": 51.3523,
+            "heroType": "Jungle",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Benedetta": 54.087,
+                    "Thamuz": 50.0017,
+                    "Atlas": 52.6892,
+                    "Wanwan": 49.7358,
+                    "Chip": 48.2213
+                },
+                "sub_hero_last": {
+                    "Uranus": 52.2151,
+                    "Mathilda": 44.9361,
+                    "Lolita": 56.4071,
+                    "Valentina": 43.5742,
+                    "Faramis": 50.7711
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Floryn": 53.3471,
+                    "Wanwan": 49.7358,
+                    "Natan": 51.3067,
+                    "Moskov": 48.3638,
+                    "Joy": 46.5971
+                },
+                "sub_hero_last": {
+                    "Hanzo": 51.1908,
+                    "Ling": 47.1615,
+                    "Fanny": 43.2789,
+                    "Karina": 46.1349,
+                    "Roger": 51.5304
+                }
+            }
+        },
+        "Ruby": {
+            "heroName": "Ruby",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_4b96c75b136290576d849309722d4d20.png",
+            "appearanceRate": 0.3722,
+            "banRate": 0.9304,
+            "winRate": 51.6093,
+            "heroType": "Exp Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Masha": 54.2135,
+                    "Gloo": 57.2039,
+                    "Sun": 54.0159,
+                    "Kaja": 53.1757,
+                    "Argus": 52.9491
+                },
+                "sub_hero_last": {
+                    "X.Borg": 49.9086,
+                    "Lolita": 56.4071,
+                    "Ixia": 49.7044,
+                    "Gord": 55.3153,
+                    "Phoveus": 50.1538
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Chip": 48.2213,
+                    "Rafaela": 51.8482,
+                    "Yve": 53.9582,
+                    "Ling": 47.1615,
+                    "Helcurt": 50.0697
+                },
+                "sub_hero_last": {
+                    "Aldous": 50.1649,
+                    "Cici": 48.6686,
+                    "Yu Zhong": 47.5684,
+                    "Lapu-Lapu": 50.1177,
+                    "Arlott": 47.1243
+                }
+            }
+        },
+        "Alpha": {
+            "heroName": "Alpha",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_86c9f91f530727db6498f920d19180d1.png",
+            "appearanceRate": 1.6156,
+            "banRate": 0.7477,
+            "winRate": 47.0417,
+            "heroType": "Jungle",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Barats": 49.6877,
+                    "Terizla": 53.2479,
+                    "Phoveus": 50.1538,
+                    "Johnson": 51.0548,
+                    "Alucard": 49.91
+                },
+                "sub_hero_last": {
+                    "Benedetta": 54.087,
+                    "X.Borg": 49.9086,
+                    "Wanwan": 49.7358,
+                    "Diggie": 52.2507,
+                    "Hanzo": 51.1908
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Chip": 48.2213,
+                    "Mathilda": 44.9361,
+                    "Khaleed": 55.0418,
+                    "Atlas": 52.6892,
+                    "Luo Yi": 48.3742
+                },
+                "sub_hero_last": {
+                    "Roger": 51.5304,
+                    "Yve": 53.9582,
+                    "Aulus": 51.7089,
+                    "Suyou": 51.5631,
+                    "Yi Sun-shin": 51.4469
+                }
+            }
+        },
+        "Sun": {
+            "heroName": "Sun",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_117b5cdcc13232157075ce7b7f6177e9.png",
+            "appearanceRate": 1.9279,
+            "banRate": 39.4397,
+            "winRate": 54.0072,
+            "heroType": "Exp Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Masha": 54.2135,
+                    "Cici": 48.6686,
+                    "Diggie": 52.2507,
+                    "Jawhead": 48.2395,
+                    "Karrie": 49.4244
+                },
+                "sub_hero_last": {
+                    "Ruby": 51.5953,
+                    "Alucard": 49.91,
+                    "Joy": 46.5971,
+                    "Aldous": 50.1649,
+                    "Natan": 51.3067
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Lapu-Lapu": 50.1177,
+                    "Cici": 48.6686,
+                    "Sora": 48.9267,
+                    "Yu Zhong": 47.5684,
+                    "Gloo": 57.2039
+                },
+                "sub_hero_last": {
+                    "Estes": 52.0766,
+                    "Floryn": 53.3471,
+                    "Valentina": 43.5742,
+                    "Angela": 48.379,
+                    "Roger": 51.5304
+                }
+            }
+        },
+        "Chou": {
+            "heroName": "Chou",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_158209b180032c4564b8f3bde8c48888.png",
+            "appearanceRate": 1.308,
+            "banRate": 4.7421,
+            "winRate": 47.0227,
+            "heroType": "Exp Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Fanny": 43.2789,
+                    "Hanzo": 51.1908,
+                    "X.Borg": 49.9086,
+                    "Yve": 53.9582,
+                    "Natalia": 51.6901
+                },
+                "sub_hero_last": {
+                    "Cyclops": 51.8107,
+                    "Esmeralda": 44.9891,
+                    "Eudora": 48.8248,
+                    "Lukas": 48.5258,
+                    "Sun": 54.0159
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Yve": 53.9582,
+                    "Khaleed": 55.0418,
+                    "Minotaur": 53.5623,
+                    "Kaja": 53.1757,
+                    "Khufra": 53.8095
+                },
+                "sub_hero_last": {
+                    "Aldous": 50.1649,
+                    "Masha": 54.2135,
+                    "Ruby": 51.5953,
+                    "Paquito": 51.5246,
+                    "Benedetta": 54.087
+                }
+            }
+        },
+        "Kagura": {
+            "heroName": "Kagura",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_da424b020b8ac8235d64a1b8a09aa749.png",
+            "appearanceRate": 0.416,
+            "banRate": 1.1031,
+            "winRate": 51.7279,
+            "heroType": "Mid Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Lolita": 56.4071,
+                    "Faramis": 50.7711,
+                    "Valir": 52.9866,
+                    "Popol and Kupa": 53.6631,
+                    "Guinevere": 51.2026
+                },
+                "sub_hero_last": {
+                    "Bruno": 47.8535,
+                    "Masha": 54.2135,
+                    "Kaja": 53.1757,
+                    "Alucard": 49.91,
+                    "Chip": 48.2213
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Barats": 49.6877,
+                    "Lolita": 56.4071,
+                    "Diggie": 52.2507,
+                    "Roger": 51.5304,
+                    "Kalea": 45.9501
+                },
+                "sub_hero_last": {
+                    "Zhuxin": 50.9813,
+                    "Luo Yi": 48.3742,
+                    "Vexana": 50.6805,
+                    "Gord": 55.3153,
+                    "Aurora": 47.721
+                }
+            }
+        },
+        "Natalia": {
+            "heroName": "Natalia",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_fbb5065b6ff174d1a20ccf5b7f523514.png",
+            "appearanceRate": 0.3581,
+            "banRate": 3.2548,
+            "winRate": 51.7679,
+            "heroType": "Jungle",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Hanzo": 51.1908,
+                    "Ling": 47.1615,
+                    "Xavier": 47.2659,
+                    "Gord": 55.3153,
+                    "Baxia": 51.3559
+                },
+                "sub_hero_last": {
+                    "Yve": 53.9582,
+                    "Cyclops": 51.8107,
+                    "Mathilda": 44.9361,
+                    "Saber": 49.0831,
+                    "Eudora": 48.8248
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Akai": 50.5949,
+                    "Marcel": 53.6689,
+                    "Chip": 48.2213,
+                    "Uranus": 52.2151,
+                    "Alice": 50.3016
+                },
+                "sub_hero_last": {
+                    "Mathilda": 44.9361,
+                    "Rafaela": 51.8482,
+                    "Kaja": 53.1757,
+                    "Khaleed": 55.0418,
+                    "Diggie": 52.2507
+                }
+            }
+        },
+        "Gord": {
+            "heroName": "Gord",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_47/100_9513f5e10ec33f76747732eaf2082259.png",
+            "appearanceRate": 1.2584,
+            "banRate": 3.0142,
+            "winRate": 55.2435,
+            "heroType": "Mid Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Barats": 49.6877,
+                    "Lolita": 56.4071,
+                    "Fredrinn": 50.0714,
+                    "Terizla": 53.2479,
+                    "Phoveus": 50.1538
+                },
+                "sub_hero_last": {
+                    "Natalia": 51.6901,
+                    "Ling": 47.1615,
+                    "Wanwan": 49.7358,
+                    "Harley": 49.7147,
+                    "Fanny": 43.2789
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Masha": 54.2135,
+                    "Aulus": 51.7089,
+                    "Karrie": 49.4244,
+                    "Edith": 51.7619,
+                    "Rafaela": 51.8482
+                },
+                "sub_hero_last": {
+                    "Xavier": 47.2659,
+                    "Yve": 53.9582,
+                    "Cecilion": 49.567,
+                    "Aurora": 47.721,
+                    "Pharsa": 47.6605
+                }
+            }
+        },
+        "Freya": {
+            "heroName": "Freya",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_2_1_18_2/100_b9c34c88762ca8e66ccd4d84071bf0bc.png",
+            "appearanceRate": 1.0659,
+            "banRate": 23.8176,
+            "winRate": 50.3924,
+            "heroType": "Exp Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Faramis": 50.7711,
+                    "Masha": 54.2135,
+                    "X.Borg": 49.9086,
+                    "Helcurt": 50.0697,
+                    "Kagura": 51.6873
+                },
+                "sub_hero_last": {
+                    "Phoveus": 50.1538,
+                    "Minsitthar": 52.2718,
+                    "Esmeralda": 44.9891,
+                    "Luo Yi": 48.3742,
+                    "Chip": 48.2213
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Diggie": 52.2507,
+                    "Mathilda": 44.9361,
+                    "Ixia": 49.7044,
+                    "Bane": 51.5702,
+                    "Hanzo": 51.1908
+                },
+                "sub_hero_last": {
+                    "Masha": 54.2135,
+                    "Arlott": 47.1243,
+                    "Alice": 50.3016,
+                    "Argus": 52.9491,
+                    "Dyrroth": 47.8168
+                }
+            }
+        },
+        "Hayabusa": {
+            "heroName": "Hayabusa",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_9cc074562291a02644a0ddae28eeaa42.png",
+            "appearanceRate": 0.8431,
+            "banRate": 7.0207,
+            "winRate": 48.2579,
+            "heroType": "Jungle",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Yve": 53.9582,
+                    "Joy": 46.5971,
+                    "Mathilda": 44.9361,
+                    "Nolan": 46.7786,
+                    "X.Borg": 49.9086
+                },
+                "sub_hero_last": {
+                    "Saber": 49.0831,
+                    "Fredrinn": 50.0714,
+                    "Eudora": 48.8248,
+                    "Cyclops": 51.8107,
+                    "Yin": 47.9619
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Khaleed": 55.0418,
+                    "Faramis": 50.7711,
+                    "Yve": 53.9582,
+                    "Valentina": 43.5742,
+                    "Uranus": 52.2151
+                },
+                "sub_hero_last": {
+                    "Ling": 47.1615,
+                    "Fanny": 43.2789,
+                    "Lancelot": 44.9204,
+                    "Hanzo": 51.1908,
+                    "Nolan": 46.7786
+                }
+            }
+        },
+        "Lolita": {
+            "heroName": "Lolita",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_474cea36a4bfdc7bf7d94530853a99b2.png",
+            "appearanceRate": 0.1012,
+            "banRate": 0.4502,
+            "winRate": 56.3733,
+            "heroType": "Roam",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Cyclops": 51.8107,
+                    "Chang'e": 49.335,
+                    "Edith": 51.7619,
+                    "Diggie": 52.2507,
+                    "Bruno": 47.8535
+                },
+                "sub_hero_last": {
+                    "Yve": 53.9582,
+                    "Aurora": 47.721,
+                    "Kagura": 51.6873,
+                    "Hanzo": 51.1908,
+                    "Kadita": 51.7806
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Khufra": 53.8095,
+                    "Kagura": 51.6873,
+                    "Zhuxin": 50.9813,
+                    "Silvanna": 53.3,
+                    "Guinevere": 51.2026
+                },
+                "sub_hero_last": {
+                    "Chip": 48.2213,
+                    "Diggie": 52.2507,
+                    "Atlas": 52.6892,
+                    "Estes": 52.0766,
+                    "Mathilda": 44.9361
+                }
+            }
+        },
+        "Minotaur": {
+            "heroName": "Minotaur",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_3ecd2c0843df7ec85044dafff6bf4553.png",
+            "appearanceRate": 0.3189,
+            "banRate": 2.5205,
+            "winRate": 53.435,
+            "heroType": "Roam",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Odette": 49.7216,
+                    "Khufra": 53.8095,
+                    "Eudora": 48.8248,
+                    "Lesley": 45.7685,
+                    "Johnson": 51.0548
+                },
+                "sub_hero_last": {
+                    "Joy": 46.5971,
+                    "Alice": 50.3016,
+                    "Beatrix": 50.0423,
+                    "Luo Yi": 48.3742,
+                    "Benedetta": 54.087
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Edith": 51.7619,
+                    "Yve": 53.9582,
+                    "Brody": 51.536,
+                    "Wanwan": 49.7358,
+                    "Saber": 49.0831
+                },
+                "sub_hero_last": {
+                    "Marcel": 53.6689,
+                    "Estes": 52.0766,
+                    "Lolita": 56.4071,
+                    "Floryn": 53.3471,
+                    "Mathilda": 44.9361
+                }
+            }
+        },
+        "Layla": {
+            "heroName": "Layla",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_b2b38e9406ea0de0b866db7674feea0f.png",
+            "appearanceRate": 1.49,
+            "banRate": 1.2044,
+            "winRate": 47.7261,
+            "heroType": "Gold Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Faramis": 50.7711,
+                    "Edith": 51.7619,
+                    "Hanabi": 54.7811,
+                    "Kaja": 53.1757,
+                    "Rafaela": 51.8482
+                },
+                "sub_hero_last": {
+                    "Atlas": 52.6892,
+                    "Johnson": 51.0548,
+                    "Lolita": 56.4071,
+                    "Uranus": 52.2151,
+                    "Sun": 54.0159
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Harith": 48.4702,
+                    "Popol and Kupa": 53.6631,
+                    "Chip": 48.2213,
+                    "Marcel": 53.6689,
+                    "Kalea": 45.9501
+                },
+                "sub_hero_last": {
+                    "Wanwan": 49.7358,
+                    "Irithel": 51.7791,
+                    "Clint": 51.0435,
+                    "Moskov": 48.3638,
+                    "Hanabi": 54.7811
+                }
+            }
+        },
+        "Fanny": {
+            "heroName": "Fanny",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_3391df36d6dcc54dd1c417098e15ec59.png",
+            "appearanceRate": 0.5527,
+            "banRate": 3.7877,
+            "winRate": 43.2912,
+            "heroType": "Jungle",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Gloo": 57.2039,
+                    "Hanzo": 51.1908,
+                    "Baxia": 51.3559,
+                    "Granger": 41.8447,
+                    "Atlas": 52.6892
+                },
+                "sub_hero_last": {
+                    "Masha": 54.2135,
+                    "Faramis": 50.7711,
+                    "Moskov": 48.3638,
+                    "Bruno": 47.8535,
+                    "Chou": 46.8968
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Masha": 54.2135,
+                    "Faramis": 50.7711,
+                    "Yve": 53.9582,
+                    "Mathilda": 44.9361,
+                    "Khufra": 53.8095
+                },
+                "sub_hero_last": {
+                    "Ling": 47.1615,
+                    "Hanzo": 51.1908,
+                    "Lancelot": 44.9204,
+                    "Hayabusa": 48.1689,
+                    "Roger": 51.5304
+                }
+            }
+        },
+        "Zilong": {
+            "heroName": "Zilong",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_9db57da4f0daef6d432676e4f19101ed.png",
+            "appearanceRate": 1.3195,
+            "banRate": 0.7631,
+            "winRate": 47.4674,
+            "heroType": "Exp Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Cici": 48.6686,
+                    "X.Borg": 49.9086,
+                    "Fanny": 43.2789,
+                    "Diggie": 52.2507,
+                    "Estes": 52.0766
+                },
+                "sub_hero_last": {
+                    "Eudora": 48.8248,
+                    "Chip": 48.2213,
+                    "Masha": 54.2135,
+                    "Gatotkaca": 47.1882,
+                    "Jawhead": 48.2395
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Gloo": 57.2039,
+                    "Lolita": 56.4071,
+                    "Barats": 49.6877,
+                    "Khaleed": 55.0418,
+                    "Kaja": 53.1757
+                },
+                "sub_hero_last": {
+                    "Masha": 54.2135,
+                    "Arlott": 47.1243,
+                    "Aldous": 50.1649,
+                    "Lapu-Lapu": 50.1177,
+                    "Yu Zhong": 47.5684
+                }
+            }
+        },
+        "Eudora": {
+            "heroName": "Eudora",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_2_1_42/100_87b2a655b254c136dce8976e21935a80.png",
+            "appearanceRate": 1.0417,
+            "banRate": 3.9851,
+            "winRate": 48.8688,
+            "heroType": "Mid Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Natalia": 51.6901,
+                    "Joy": 46.5971,
+                    "Ling": 47.1615,
+                    "Helcurt": 50.0697,
+                    "Zilong": 47.4174
+                },
+                "sub_hero_last": {
+                    "Barats": 49.6877,
+                    "Fredrinn": 50.0714,
+                    "Masha": 54.2135,
+                    "Baxia": 51.3559,
+                    "Atlas": 52.6892
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Zhask": 52.1168,
+                    "Alice": 50.3016,
+                    "Aldous": 50.1649,
+                    "Harley": 49.7147,
+                    "Zetian": 51.5702
+                },
+                "sub_hero_last": {
+                    "Zhuxin": 50.9813,
+                    "Valentina": 43.5742,
+                    "Masha": 54.2135,
+                    "Pharsa": 47.6605,
+                    "Faramis": 50.7711
+                }
+            }
+        },
+        "Rafaela": {
+            "heroName": "Rafaela",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_68277dce415742c4a98883151c693a07.png",
+            "appearanceRate": 0.3672,
+            "banRate": 2.0918,
+            "winRate": 52.0702,
+            "heroType": "Roam",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Diggie": 52.2507,
+                    "Masha": 54.2135,
+                    "Hylos": 49.802,
+                    "Natalia": 51.6901,
+                    "Valir": 52.9866
+                },
+                "sub_hero_last": {
+                    "Vale": 50.7646,
+                    "Nolan": 46.7786,
+                    "Harith": 48.4702,
+                    "Ixia": 49.7044,
+                    "Popol and Kupa": 53.6631
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Masha": 54.2135,
+                    "Edith": 51.7619,
+                    "Yve": 53.9582,
+                    "Ruby": 51.5953,
+                    "Jawhead": 48.2395
+                },
+                "sub_hero_last": {
+                    "Floryn": 53.3471,
+                    "Diggie": 52.2507,
+                    "Lolita": 56.4071,
+                    "Angela": 48.379,
+                    "Mathilda": 44.9361
+                }
+            }
+        },
+        "Clint": {
+            "heroName": "Clint",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_5a8345c69a4c9c611fdfce91089fe74a.png",
+            "appearanceRate": 0.681,
+            "banRate": 1.1917,
+            "winRate": 51.12,
+            "heroType": "Gold Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Lolita": 56.4071,
+                    "Faramis": 50.7711,
+                    "Baxia": 51.3559,
+                    "Valentina": 43.5742,
+                    "Marcel": 53.6689
+                },
+                "sub_hero_last": {
+                    "Layla": 47.8485,
+                    "Fanny": 43.2789,
+                    "Minotaur": 53.5623,
+                    "Ling": 47.1615,
+                    "Gloo": 57.2039
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Popol and Kupa": 53.6631,
+                    "Faramis": 50.7711,
+                    "Harith": 48.4702,
+                    "Roger": 51.5304,
+                    "Kimmy": 48.137
+                },
+                "sub_hero_last": {
+                    "Melissa": 51.2984,
+                    "Layla": 47.8485,
+                    "Irithel": 51.7791,
+                    "Ixia": 49.7044,
+                    "Beatrix": 50.0423
+                }
+            }
+        },
+        "Bruno": {
+            "heroName": "Bruno",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_ff39deb9c6afec3d977fdbe9d86f78cb.png",
+            "appearanceRate": 0.1659,
+            "banRate": 0.1223,
+            "winRate": 48.5282,
+            "heroType": "Gold Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Wanwan": 49.7358,
+                    "Kagura": 51.6873,
+                    "Chip": 48.2213,
+                    "Baxia": 51.3559,
+                    "Marcel": 53.6689
+                },
+                "sub_hero_last": {
+                    "Lolita": 56.4071,
+                    "Masha": 54.2135,
+                    "Barats": 49.6877,
+                    "Khufra": 53.8095,
+                    "Lesley": 45.7685
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Yve": 53.9582,
+                    "Mathilda": 44.9361,
+                    "Valentina": 43.5742,
+                    "Brody": 51.536,
+                    "Joy": 46.5971
+                },
+                "sub_hero_last": {
+                    "Ixia": 49.7044,
+                    "Melissa": 51.2984,
+                    "Moskov": 48.3638,
+                    "Layla": 47.8485,
+                    "Granger": 41.8447
+                }
+            }
+        },
+        "Bane": {
+            "heroName": "Bane",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_7e4e74bb161da0f477cc0d1819fa39e6.png",
+            "appearanceRate": 0.3591,
+            "banRate": 0.2321,
+            "winRate": 51.4188,
+            "heroType": "Jungle",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Chip": 48.2213,
+                    "Phoveus": 50.1538,
+                    "Kalea": 45.9501,
+                    "Khufra": 53.8095,
+                    "Marcel": 53.6689
+                },
+                "sub_hero_last": {
+                    "Lolita": 56.4071,
+                    "Atlas": 52.6892,
+                    "Ixia": 49.7044,
+                    "Nolan": 46.7786,
+                    "Hanzo": 51.1908
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Arlott": 47.1243,
+                    "Baxia": 51.3559,
+                    "Khaleed": 55.0418,
+                    "Chip": 48.2213,
+                    "Lukas": 48.5258
+                },
+                "sub_hero_last": {
+                    "Nolan": 46.7786,
+                    "Hanzo": 51.1908,
+                    "Fredrinn": 50.0714,
+                    "Yi Sun-shin": 51.4469,
+                    "Mathilda": 44.9361
+                }
+            }
+        },
+        "Franco": {
+            "heroName": "Franco",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_2_1_60_2/100_9bed3c0095335606e0ce616c6e5a8553.png",
+            "appearanceRate": 1.4529,
+            "banRate": 9.174,
+            "winRate": 44.4271,
+            "heroType": "Roam",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Diggie": 52.2507,
+                    "Fanny": 43.2789,
+                    "Angela": 48.379,
+                    "Mathilda": 44.9361,
+                    "Estes": 52.0766
+                },
+                "sub_hero_last": {
+                    "Faramis": 50.7711,
+                    "Hanzo": 51.1908,
+                    "Tigreal": 47.5348,
+                    "Sun": 54.0159,
+                    "Atlas": 52.6892
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Edith": 51.7619,
+                    "Aldous": 50.1649,
+                    "Silvanna": 53.3,
+                    "Hanabi": 54.7811,
+                    "Beatrix": 50.0423
+                },
+                "sub_hero_last": {
+                    "Diggie": 52.2507,
+                    "Khufra": 53.8095,
+                    "Atlas": 52.6892,
+                    "Rafaela": 51.8482,
+                    "Johnson": 51.0548
+                }
+            }
+        },
+        "Akai": {
+            "heroName": "Akai",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_28f223447f0174336ff0922d364d81d3.png",
+            "appearanceRate": 0.474,
+            "banRate": 4.3672,
+            "winRate": 50.7446,
+            "heroType": "Roam",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Granger": 41.8447,
+                    "Argus": 52.9491,
+                    "Harith": 48.4702,
+                    "Leomord": 53.1544,
+                    "Ixia": 49.7044
+                },
+                "sub_hero_last": {
+                    "Faramis": 50.7711,
+                    "Cyclops": 51.8107,
+                    "Diggie": 52.2507,
+                    "Alice": 50.3016,
+                    "Esmeralda": 44.9891
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Mathilda": 44.9361,
+                    "Angela": 48.379,
+                    "Floryn": 53.3471,
+                    "Natalia": 51.6901,
+                    "Faramis": 50.7711
+                },
+                "sub_hero_last": {
+                    "Belerick": 53.822,
+                    "Kaja": 53.1757,
+                    "Fredrinn": 50.0714,
+                    "Atlas": 52.6892,
+                    "Tigreal": 47.5348
+                }
+            }
+        },
+        "Karina": {
+            "heroName": "Karina",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_f49394186dc0e55d545da8377be83280.png",
+            "appearanceRate": 0.6542,
+            "banRate": 3.0091,
+            "winRate": 46.1868,
+            "heroType": "Jungle",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Kimmy": 48.137,
+                    "Helcurt": 50.0697,
+                    "Natalia": 51.6901,
+                    "Wanwan": 49.7358,
+                    "Aldous": 50.1649
+                },
+                "sub_hero_last": {
+                    "Brody": 51.536,
+                    "Granger": 41.8447,
+                    "Mathilda": 44.9361,
+                    "Clint": 51.0435,
+                    "Odette": 49.7216
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Benedetta": 54.087,
+                    "Kaja": 53.1757,
+                    "Lapu-Lapu": 50.1177,
+                    "Masha": 54.2135,
+                    "Aurora": 47.721
+                },
+                "sub_hero_last": {
+                    "Ling": 47.1615,
+                    "Hanzo": 51.1908,
+                    "Lancelot": 44.9204,
+                    "Fanny": 43.2789,
+                    "Nolan": 46.7786
+                }
+            }
+        },
+        "Alucard": {
+            "heroName": "Alucard",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_0f51b6906e08897aa02330d65b0deeac.png",
+            "appearanceRate": 0.76,
+            "banRate": 1.0028,
+            "winRate": 49.9232,
+            "heroType": "Jungle",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Sun": 54.0159,
+                    "Faramis": 50.7711,
+                    "Kagura": 51.6873,
+                    "Lolita": 56.4071,
+                    "Natalia": 51.6901
+                },
+                "sub_hero_last": {
+                    "Chip": 48.2213,
+                    "Fredrinn": 50.0714,
+                    "Phoveus": 50.1538,
+                    "Dyrroth": 47.8168,
+                    "Thamuz": 50.0017
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Faramis": 50.7711,
+                    "Tigreal": 47.5348,
+                    "Benedetta": 54.087,
+                    "Granger": 41.8447,
+                    "Vexana": 50.6805
+                },
+                "sub_hero_last": {
+                    "Hanzo": 51.1908,
+                    "Fanny": 43.2789,
+                    "Ling": 47.1615,
+                    "Roger": 51.5304,
+                    "Karina": 46.1349
+                }
+            }
+        },
+        "Tigreal": {
+            "heroName": "Tigreal",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_8b30576754be1a4f8bebd09df8d6bec7.png",
+            "appearanceRate": 2.3322,
+            "banRate": 11.147,
+            "winRate": 47.3045,
+            "heroType": "Roam",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Estes": 52.0766,
+                    "Eudora": 48.8248,
+                    "Franco": 44.3377,
+                    "Edith": 51.7619,
+                    "Zilong": 47.4174
+                },
+                "sub_hero_last": {
+                    "Diggie": 52.2507,
+                    "Alice": 50.3016,
+                    "Valir": 52.9866,
+                    "X.Borg": 49.9086,
+                    "Faramis": 50.7711
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Masha": 54.2135,
+                    "Alucard": 49.91,
+                    "Natan": 51.3067,
+                    "Julian": 50.2295,
+                    "Aldous": 50.1649
+                },
+                "sub_hero_last": {
+                    "Marcel": 53.6689,
+                    "Khufra": 53.8095,
+                    "Diggie": 52.2507,
+                    "Franco": 44.3377,
+                    "Johnson": 51.0548
+                }
+            }
+        },
+        "Nana": {
+            "heroName": "Nana",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_ee1e0d80d87bb614a0c552ef028f85ce.png",
+            "appearanceRate": 2.0959,
+            "banRate": 6.0855,
+            "winRate": 47.6793,
+            "heroType": "Mid Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Estes": 52.0766,
+                    "Odette": 49.7216,
+                    "Lolita": 56.4071,
+                    "Ruby": 51.5953,
+                    "Silvanna": 53.3
+                },
+                "sub_hero_last": {
+                    "Faramis": 50.7711,
+                    "Grock": 47.7789,
+                    "Yi Sun-shin": 51.4469,
+                    "Novaria": 48.8608,
+                    "Hylos": 49.802
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Harley": 49.7147,
+                    "Marcel": 53.6689,
+                    "Gusion": 48.8987,
+                    "Natan": 51.3067,
+                    "Cyclops": 51.8107
+                },
+                "sub_hero_last": {
+                    "Valentina": 43.5742,
+                    "Xavier": 47.2659,
+                    "Zhuxin": 50.9813,
+                    "Lylia": 50.225,
+                    "Gord": 55.3153
+                }
+            }
+        },
+        "Alice": {
+            "heroName": "Alice",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_2_1_18/100_18300163a5a912a84adb52b8d59b4618.png",
+            "appearanceRate": 0.6092,
+            "banRate": 13.8523,
+            "winRate": 50.3889,
+            "heroType": "Exp Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Chip": 48.2213,
+                    "Gloo": 57.2039,
+                    "Barats": 49.6877,
+                    "Phoveus": 50.1538,
+                    "Tigreal": 47.5348
+                },
+                "sub_hero_last": {
+                    "Karrie": 49.4244,
+                    "Angela": 48.379,
+                    "Baxia": 51.3559,
+                    "Floryn": 53.3471,
+                    "Valir": 52.9866
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Angela": 48.379,
+                    "Valentina": 43.5742,
+                    "Yve": 53.9582,
+                    "Xavier": 47.2659,
+                    "Pharsa": 47.6605
+                },
+                "sub_hero_last": {
+                    "Uranus": 52.2151,
+                    "Fredrinn": 50.0714,
+                    "Esmeralda": 44.9891,
+                    "Lolita": 56.4071,
+                    "Ruby": 51.5953
+                }
+            }
+        },
+        "Saber": {
+            "heroName": "Saber",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_6bbfac806f29d29f17fea9e98d2d2fee.png",
+            "appearanceRate": 1.1844,
+            "banRate": 36.4237,
+            "winRate": 49.1518,
+            "heroType": "Jungle",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Ling": 47.1615,
+                    "Hayabusa": 48.1689,
+                    "Natalia": 51.6901,
+                    "Marcel": 53.6689,
+                    "Irithel": 51.7791
+                },
+                "sub_hero_last": {
+                    "Fredrinn": 50.0714,
+                    "Barats": 49.6877,
+                    "Argus": 52.9491,
+                    "Sun": 54.0159,
+                    "Lukas": 48.5258
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Edith": 51.7619,
+                    "Akai": 50.5949,
+                    "Minotaur": 53.5623,
+                    "Khufra": 53.8095,
+                    "Belerick": 53.822
+                },
+                "sub_hero_last": {
+                    "Nolan": 46.7786,
+                    "Roger": 51.5304,
+                    "Karina": 46.1349,
+                    "Suyou": 51.5631,
+                    "Ling": 47.1615
+                }
+            }
+        },
+        "Balmond": {
+            "heroName": "Balmond",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_2_1_18_2/100_df9a6990b1946d045e4d3a46c90725cf.png",
+            "appearanceRate": 0.3631,
+            "banRate": 0.2415,
+            "winRate": 43.3642,
+            "heroType": "Jungle",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Barats": 49.6877,
+                    "Khufra": 53.8095,
+                    "Chip": 48.2213,
+                    "Eudora": 48.8248,
+                    "Martis": 46.1749
+                },
+                "sub_hero_last": {
+                    "X.Borg": 49.9086,
+                    "Estes": 52.0766,
+                    "Valir": 52.9866,
+                    "Cici": 48.6686,
+                    "Angela": 48.379
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Aldous": 50.1649,
+                    "Faramis": 50.7711,
+                    "Vale": 50.7646,
+                    "Angela": 48.379,
+                    "Lapu-Lapu": 50.1177
+                },
+                "sub_hero_last": {
+                    "Baxia": 51.3559,
+                    "Ling": 47.1615,
+                    "Yve": 53.9582,
+                    "Kaja": 53.1757,
+                    "Minotaur": 53.5623
+                }
+            }
+        },
+        "Miya": {
+            "heroName": "Miya",
+            "heroPic": "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_da894b37bfb5cadb32307f371f31918a.png",
+            "appearanceRate": 3.4379,
+            "banRate": 6.3367,
+            "winRate": 50.7085,
+            "heroType": "Gold Lane",
+            "hero_counter_info": {
+                "sub_hero": {
+                    "Saber": 49.0831,
+                    "Irithel": 51.7791,
+                    "Obsidia": 49.977,
+                    "Faramis": 50.7711,
+                    "Gloo": 57.2039
+                },
+                "sub_hero_last": {
+                    "Belerick": 53.822,
+                    "Khaleed": 55.0418,
+                    "Uranus": 52.2151,
+                    "Fredrinn": 50.0714,
+                    "Leomord": 53.1544
+                }
+            },
+            "hero_compatibility_info": {
+                "sub_hero": {
+                    "Harith": 48.4702,
+                    "Gloo": 57.2039,
+                    "Yin": 47.9619,
+                    "Fanny": 43.2789,
+                    "Jawhead": 48.2395
+                },
+                "sub_hero_last": {
+                    "Irithel": 51.7791,
+                    "Melissa": 51.2984,
+                    "Bruno": 47.8535,
+                    "Moskov": 48.3638,
+                    "Wanwan": 49.7358
+                }
+            }
+        }
+    }
+}

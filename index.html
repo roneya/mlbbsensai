@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MLBB Draft Assistant</title>
+<link rel="icon" type="image/png" href="ic.png">
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q2Z33K52NW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Q2Z33K52NW');
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:      #0d0d1a;
+  --bg2:     #1a1a2e;
+  --bg3:     #20203a;
+  --gold:    #f0a500;
+  --a-dark:  #0d47a1;
+  --a-mid:   #1565c0;
+  --a-light: #2196F3;
+  --a-muted: #90caf9;
+  --b-dark:  #b71c1c;
+  --b-mid:   #c62828;
+  --b-light: #f44336;
+  --b-muted: #ffcdd2;
+  --text:    #eee;
+  --muted:   #999;
+  --green:   #66bb6a;
+  --redneg:  #ef5350;
+  --border:  #252545;
+  --r: 10px;
+}
+body { font-family: 'Segoe UI', system-ui, Arial, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+.app { max-width: 1400px; margin: 0 auto; padding: 14px 16px; }
+
+/* ── Top Bar ──────────────────────────────────────────── */
+.topbar {
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+  background: var(--bg2); border-radius: var(--r); padding: 11px 18px;
+  margin-bottom: 10px; border: 1px solid var(--border);
+}
+.topbar h1 { font-size: 1.15rem; color: var(--gold); letter-spacing: 1px; font-weight: 700; }
+.controls { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
+.team-label { font-size: 0.78rem; color: var(--muted); }
+.team-btn {
+  padding: 5px 16px; border-radius: 7px; border: 2px solid var(--border);
+  background: transparent; color: var(--text); cursor: pointer; font-size: 0.82rem; transition: all 0.15s;
+}
+.team-btn:hover { border-color: #666; }
+.team-btn.team-A.active { background: var(--a-dark); border-color: var(--a-light); color: var(--a-muted); }
+.team-btn.team-B.active { background: var(--b-dark); border-color: var(--b-light); color: var(--b-muted); }
+.ctrl-btn {
+  padding: 5px 13px; border-radius: 7px; border: 1px solid var(--border);
+  background: var(--bg3); color: var(--muted); cursor: pointer; font-size: 0.8rem; transition: all 0.15s;
+}
+.ctrl-btn:hover { border-color: #666; color: var(--text); }
+
+/* ── Turn Bar ─────────────────────────────────────────── */
+.turn-bar {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  background: var(--bg2); border-radius: var(--r); padding: 10px 16px;
+  margin-bottom: 10px; border: 1px solid var(--border);
+}
+.turn-badge {
+  font-size: 0.95rem; font-weight: bold; padding: 5px 14px; border-radius: 7px;
+  white-space: nowrap; min-width: 90px; text-align: center; flex-shrink: 0;
+}
+.turn-badge.team-A { background: var(--a-dark); color: var(--a-muted); }
+.turn-badge.team-B { background: var(--b-dark); color: var(--b-muted); }
+.turn-badge.done   { background: #333;          color: var(--muted); }
+.draft-seq { display: flex; gap: 4px; flex-wrap: wrap; }
+.seq-dot {
+  width: 28px; height: 23px; border-radius: 5px; font-size: 0.62rem;
+  display: flex; align-items: center; justify-content: center; font-weight: bold; transition: all 0.18s;
+}
+.seq-dot.team-A { background: var(--a-mid); color: var(--a-muted); }
+.seq-dot.team-B { background: var(--b-mid); color: var(--b-muted); }
+.seq-dot.active { outline: 2px solid var(--gold); outline-offset: 1px; transform: scale(1.12); }
+.seq-dot.done   { opacity: 0.32; }
+
+/* ── Main Row ─────────────────────────────────────────── */
+.main-row { display: grid; grid-template-columns: 1fr 310px; gap: 10px; margin-bottom: 10px; }
+
+/* ══════════════════════════════════════════════════════════════════════════ */
+/* ── MOBILE RESPONSIVE ────────────────────────────────────────────────────── */
+/* ══════════════════════════════════════════════════════════════════════════ */
+
+/* Tablet & below: stack main row vertically */
+@media (max-width: 840px) {
+  .main-row { grid-template-columns: 1fr; }
+  .recs-panel { max-height: 280px; }
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  /* Reduce overall padding */
+  .app { padding: 10px 12px; }
+  
+  /* Topbar: stack on very small screens */
+  .topbar {
+    padding: 10px 14px;
+    gap: 10px;
+  }
+  .topbar h1 { font-size: 1rem; }
+  .controls { width: 100%; justify-content: center; }
+  .team-btn { flex: 1; min-width: 70px; padding: 6px 12px; }
+  .ctrl-btn { flex: 1; min-width: 60px; }
+  
+  /* Turn bar: make more compact */
+  .turn-bar {
+    padding: 8px 12px;
+    gap: 8px;
+  }
+  .turn-badge { font-size: 0.85rem; padding: 4px 10px; min-width: 70px; }
+  .seq-dot { width: 24px; height: 20px; font-size: 0.58rem; }
+  
+  /* Draft board: single column on very small screens */
+  .teams-grid { gap: 8px; }
+  .draft-board { padding: 12px; }
+  .pick-slot {
+    padding: 5px 7px;
+    min-height: 44px;
+    gap: 6px;
+  }
+  .pick-slot img { width: 34px; height: 34px; }
+  .slot-name { font-size: 0.78rem; }
+  .slot-type { font-size: 0.64rem; }
+  
+  /* Recommendations: adjust sizing */
+  .recs-panel { padding: 12px; }
+  .recs-inner { max-height: 240px; }
+  .rec-card { padding: 8px 9px; margin-bottom: 6px; }
+  .rec-img, .guide-img { width: 36px; height: 36px; }
+  .rec-name, .guide-name { font-size: 0.82rem; }
+  .rec-type, .guide-role { font-size: 0.64rem; }
+  .score-num { font-size: 0.92rem; }
+  .note, .guide-note { font-size: 0.68rem; }
+  
+  /* Pair recommendations: adjust layout */
+  .recs-split { gap: 8px; }
+  .pair-img { width: 30px; height: 30px; }
+  .pair-name { font-size: 0.64rem; }
+  .pair-plus { font-size: 0.9rem; }
+  
+  /* Solo recommendations: smaller grid */
+  #soloRecsInner { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 8px; }
+  
+  /* Analysis section */
+  .analysis-section { padding: 14px 16px; }
+  .hero-guide { grid-template-columns: 1fr; gap: 8px; }
+  .guide-card { padding: 9px 10px; }
+  
+  /* Hero grid: smaller cards on mobile */
+  .grid-section { padding: 12px; }
+  .hero-grid {
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+    gap: 5px;
+    max-height: 300px;
+  }
+  .hero-card { padding: 5px; }
+  .hero-card img { height: 55px; }
+  .hc-name { font-size: 0.64rem; }
+  .hc-type { font-size: 0.56rem; }
+  .search-bar { font-size: 0.85rem; padding: 8px 11px; }
+}
+
+/* Extra small devices */
+@media (max-width: 400px) {
+  /* Even more compact */
+  .app { padding: 8px; }
+  .topbar h1 { font-size: 0.9rem; }
+  .team-btn, .ctrl-btn { font-size: 0.75rem; padding: 5px 10px; }
+  
+  /* Stack team grid vertically on tiny screens */
+  .teams-grid { grid-template-columns: 1fr; }
+  .team-header { margin-bottom: 6px; }
+  
+  /* Hero grid: even smaller */
+  .hero-grid {
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    gap: 4px;
+  }
+  .hero-card img { height: 48px; }
+  .hc-name { font-size: 0.6rem; }
+}
+
+/* Landscape mobile: optimize horizontal space */
+@media (max-width: 840px) and (orientation: landscape) {
+  .teams-grid { grid-template-columns: 1fr 1fr; }
+  .hero-grid { max-height: 220px; }
+  .recs-inner { max-height: 200px; }
+}
+
+/* ── Draft Board ──────────────────────────────────────── */
+.draft-board { background: var(--bg2); border-radius: var(--r); padding: 14px; border: 1px solid var(--border); }
+.teams-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.team-header {
+  font-size: 0.8rem; font-weight: bold; padding: 3px 10px; border-radius: 5px;
+  display: inline-block; margin-bottom: 8px;
+}
+.teamA-header { background: var(--a-dark); color: var(--a-muted); }
+.teamB-header { background: var(--b-dark); color: var(--b-muted); }
+.pick-slots { display: flex; flex-direction: column; gap: 5px; }
+.pick-slot {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--bg3); border-radius: 7px; padding: 6px 9px;
+  min-height: 50px; border: 1px solid transparent; transition: border-color 0.2s;
+}
+.pick-slot.active-slot { border-color: var(--gold); }
+.pick-slot img { width: 38px; height: 38px; border-radius: 5px; object-fit: cover; flex-shrink: 0; }
+.slot-n { font-size: 0.62rem; color: #555; min-width: 12px; }
+.slot-name { font-size: 0.82rem; font-weight: 500; }
+.slot-type { font-size: 0.67rem; }
+.slot-empty-text { font-size: 0.75rem; color: #444; }
+
+/* ── Recommendations ──────────────────────────────────── */
+.recs-panel {
+  background: var(--bg2); border-radius: var(--r); padding: 14px;
+  border: 1px solid var(--border); display: flex; flex-direction: column;
+}
+.panel-title {
+  font-size: 0.75rem; color: var(--muted); font-weight: 600;
+  letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 10px;
+}
+.recs-inner { overflow-y: auto; flex: 1; max-height: 310px; }
+.recs-inner::-webkit-scrollbar { width: 4px; }
+.recs-inner::-webkit-scrollbar-thumb { background: #444; border-radius: 4px; }
+.recs-split { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.recs-col { display: flex; flex-direction: column; }
+.recs-subtitle { font-size: 0.68rem; color: #555; margin-bottom: 7px; }
+.rec-card {
+  background: var(--bg3); border-radius: 8px; padding: 9px 10px;
+  margin-bottom: 7px; cursor: pointer; border: 1px solid transparent;
+  transition: background 0.13s, border-color 0.13s, transform 0.1s;
+}
+.rec-card:hover { background: #2a2a40; border-color: #3a3a5a; transform: translateY(-1px); }
+.rec-card:last-child { margin-bottom: 0; }
+.pair-card { border-left: 2px solid #c8840055; }
+.rec-row { display: flex; align-items: center; gap: 9px; margin-bottom: 5px; }
+.rec-img { width: 40px; height: 40px; border-radius: 6px; object-fit: cover; flex-shrink: 0; }
+.rec-info { flex: 1; min-width: 0; }
+.rec-name { font-size: 0.86rem; font-weight: bold; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rec-type { font-size: 0.66rem; }
+.rec-score { text-align: right; flex-shrink: 0; }
+.score-num { font-size: 1rem; font-weight: bold; color: var(--gold); line-height: 1; }
+.wr-label  { font-size: 0.63rem; color: var(--muted); margin-top: 2px; }
+.notes { display: flex; flex-direction: column; gap: 1px; }
+.note { font-size: 0.7rem; line-height: 1.45; }
+.note.pos { color: var(--green); }
+.note.neg { color: var(--redneg); }
+.pair-row { display: flex; align-items: center; gap: 6px; }
+.pair-hero { display: flex; flex-direction: column; align-items: center; gap: 3px; flex: 1; min-width: 0; }
+.pair-img  { width: 34px; height: 34px; border-radius: 5px; object-fit: cover; }
+.pair-name { font-size: 0.67rem; font-weight: 500; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; }
+.pair-type { font-size: 0.6rem; }
+.pair-plus { color: var(--gold); font-size: 1rem; font-weight: bold; flex-shrink: 0; }
+.no-recs { text-align: center; color: #444; font-size: 0.8rem; padding: 28px 8px; }
+
+/* ── Post-Draft Analysis ──────────────────────────────── */
+.analysis-section {
+  background: var(--bg2); border-radius: var(--r); padding: 18px 20px;
+  margin-bottom: 10px; border: 1px solid var(--border);
+}
+.analysis-title {
+  font-size: 0.8rem; color: var(--muted); font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px;
+}
+.win-prob-block { margin-bottom: 18px; }
+.win-headline {
+  font-size: 1rem; font-weight: bold; margin-bottom: 10px; color: var(--text);
+}
+.win-headline span { color: var(--gold); }
+.prob-row { display: flex; align-items: center; gap: 10px; }
+.prob-team { font-size: 0.78rem; font-weight: bold; min-width: 60px; }
+.prob-team.ta { color: var(--a-muted); text-align: left; }
+.prob-team.tb { color: var(--b-muted); text-align: right; }
+.prob-bar-wrap { flex: 1; height: 14px; background: var(--bg3); border-radius: 7px; overflow: hidden; }
+.prob-bar-fill-a { height: 100%; background: linear-gradient(90deg, var(--a-dark), var(--a-light)); transition: width 0.4s; }
+.prob-pct { font-size: 0.72rem; color: var(--muted); min-width: 36px; text-align: center; }
+.hero-guide { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; }
+.guide-card {
+  background: var(--bg3); border-radius: 8px; padding: 10px 12px;
+  border-left: 3px solid #555;
+}
+.guide-card.agg { border-left-color: #ef5350; }
+.guide-card.bal { border-left-color: #ffa726; }
+.guide-card.saf { border-left-color: #64b5f6; }
+.guide-hero-row { display: flex; align-items: center; gap: 9px; margin-bottom: 7px; }
+.guide-img { width: 42px; height: 42px; border-radius: 6px; object-fit: cover; flex-shrink: 0; }
+.guide-info { flex: 1; min-width: 0; }
+.guide-name { font-size: 0.88rem; font-weight: bold; }
+.guide-role { font-size: 0.67rem; }
+.ps-badge {
+  font-size: 0.68rem; font-weight: bold; padding: 3px 9px; border-radius: 5px;
+  text-transform: uppercase; letter-spacing: 0.5px;
+}
+.ps-badge.agg { background: #b71c1c; color: #ffcdd2; }
+.ps-badge.bal { background: #e65100; color: #ffe0b2; }
+.ps-badge.saf { background: #0d47a1; color: #90caf9; }
+.guide-notes { display: flex; flex-direction: column; gap: 2px; }
+.guide-note { font-size: 0.71rem; line-height: 1.4; }
+.guide-note.pos { color: var(--green); }
+.guide-note.neg { color: var(--redneg); }
+
+/* ── Hero Grid ────────────────────────────────────────── */
+.grid-section {
+  background: var(--bg2); border-radius: var(--r); padding: 14px;
+  border: 1px solid var(--border);
+}
+.search-bar {
+  width: 100%; padding: 9px 13px; border-radius: 7px;
+  border: 1px solid var(--border); background: var(--bg3);
+  color: var(--text); font-size: 0.87rem; outline: none;
+  margin-bottom: 12px; transition: border-color 0.15s;
+}
+.search-bar:focus { border-color: var(--gold); }
+.hero-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
+  gap: 7px; max-height: 370px; overflow-y: auto;
+}
+.hero-grid::-webkit-scrollbar { width: 5px; }
+.hero-grid::-webkit-scrollbar-thumb { background: #444; border-radius: 4px; }
+.hero-card {
+  background: var(--bg3); border-radius: 7px; padding: 6px; cursor: pointer;
+  text-align: center; border: 2px solid transparent; transition: all 0.13s;
+}
+.hero-card:hover { background: #2a2a40; border-color: #444; }
+.hero-card.drafted { display: none; }
+.hero-card.enemy-banned { opacity: 0.35; pointer-events: none; position: relative; }
+.hero-card.counters-enemy { border-color: #66bb6a; box-shadow: 0 0 7px rgba(102,187,106,0.45); }
+.hero-card img { width: 100%; height: 65px; object-fit: cover; border-radius: 5px; display: block; }
+.hc-name { font-size: 0.67rem; margin-top: 3px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.hc-type { font-size: 0.59rem; }
+
+/* ── Role filter ──────────────────────────────────────── */
+.role-filter { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 10px; }
+.role-btn {
+  padding: 4px 11px; border-radius: 6px; border: 1px solid var(--border);
+  background: var(--bg3); color: var(--muted); cursor: pointer; font-size: 0.75rem; transition: all 0.13s;
+}
+.role-btn:hover { border-color: #555; color: var(--text); }
+.role-btn.active { border-color: var(--gold); color: var(--gold); background: rgba(240,165,0,0.1); }
+.ctrl-btn.ban-mode { border-color: var(--redneg); color: var(--redneg); background: rgba(239,83,80,0.1); }
+
+/* ── Role colours ─────────────────────────────────────── */
+.role-Roam      { color: #ba68c8; }
+.role-Mid\ Lane { color: #64b5f6; }
+.role-Gold\ Lane{ color: #ffa726; }
+.role-Exp\ Lane { color: #66bb6a; }
+.role-Jungle    { color: #26c6da; }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- Top Bar -->
+  <div class="topbar">
+    <h1>MLBB Draft Assistant</h1>
+    <div class="controls">
+      <span class="team-label">Your Team:</span>
+      <button class="team-btn team-A active" data-team="A">Team A</button>
+      <button class="team-btn team-B" data-team="B">Team B</button>
+      <button id="markBanBtn" class="ctrl-btn">Mark Enemy Ban</button>
+      <button id="undoBtn" class="ctrl-btn">Undo</button>
+      <button id="resetBtn" class="ctrl-btn">Reset</button>
+    </div>
+  </div>
+
+  <!-- Turn Bar -->
+  <div class="turn-bar">
+    <div id="currentTurn" class="turn-badge team-A">Turn: A1</div>
+    <div id="draftSeq" class="draft-seq"></div>
+  </div>
+
+  <!-- Ban Section (COMMENTED OUT FOR TESTING) -->
+  <!--
+  <div id="banSection" class="draft-board" style="margin-bottom:10px">
+    <div class="teams-grid">
+      <div>
+        <div class="team-header teamA-header">Team A Bans</div>
+        <div id="teamABans" class="pick-slots" style="flex-direction:row;flex-wrap:wrap;gap:5px"></div>
+      </div>
+      <div>
+        <div class="team-header teamB-header">Team B Bans</div>
+        <div id="teamBBans" class="pick-slots" style="flex-direction:row;flex-wrap:wrap;gap:5px"></div>
+      </div>
+    </div>
+  </div>
+  -->
+
+  <!-- Main Row: Draft Board + Recommendations -->
+  <div class="main-row">
+    <div class="draft-board">
+      <div class="teams-grid">
+        <div>
+          <div class="team-header teamA-header">Team A</div>
+          <div id="teamAPicks" class="pick-slots"></div>
+        </div>
+        <div>
+          <div class="team-header teamB-header">Team B</div>
+          <div id="teamBPicks" class="pick-slots"></div>
+        </div>
+      </div>
+    </div>
+    <div class="recs-panel">
+      <div class="panel-title">Pair Recommendations</div>
+      <div class="recs-inner" id="recsInner">
+        <div class="no-recs">Loading…</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Solo Recommendations (shown during double picks) -->
+  <div id="soloRecsSection" class="analysis-section" style="display:none;margin-bottom:10px">
+    <div class="panel-title">Solo Recommendations (Counter Picks)</div>
+    <div id="soloRecsInner" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px"></div>
+  </div>
+
+  <!-- Post-Draft Analysis (shown only after all 10 picks) -->
+  <div id="analysis" class="analysis-section" style="display:none"></div>
+
+  <!-- Hero Grid -->
+  <div class="grid-section">
+    <input id="search" class="search-bar" placeholder="Search heroes by name…" autocomplete="off">
+    <div class="role-filter">
+      <button class="role-btn active" data-role="All">All</button>
+      <button class="role-btn" data-role="Roam">Roam</button>
+      <button class="role-btn" data-role="Mid Lane">Mid</button>
+      <button class="role-btn" data-role="Gold Lane">Gold</button>
+      <button class="role-btn" data-role="Exp Lane">EXP</button>
+      <button class="role-btn" data-role="Jungle">Jungle</button>
+    </div>
+    <div id="heroes" class="hero-grid"></div>
+  </div>
+
+</div>
+<script>
+// ── Constants ──────────────────────────────────────────────────────────────
+const BAN_ORDER      = ["A","A","A","B","B","B","A","A","B","B"]; // 3+3, then 2+2
+const BAN_LABELS     = ["A-Ban1","A-Ban2","A-Ban3","B-Ban1","B-Ban2","B-Ban3","A-Ban4","A-Ban5","B-Ban4","B-Ban5"];
+const DRAFT_ORDER    = ["A","B","B","A","A","B","B","A","A","B"];
+const TURN_LABELS    = ["A1","B1","B2","A2","A3","B3","B4","A4","A5","B5"];
+const ROLE_BONUSES   = { Roam:30,  Mid:25,  Gold:25,  EXP:10,  Jungle:10  };
+const ROLE_PENALTIES = { Roam:-30, Mid:-25, Gold:-25, EXP:-10, Jungle:-10 };
+
+// ── State ──────────────────────────────────────────────────────────────────
+let HEROES       = {};
+let bans         = { A: [], B: [] };
+let picks        = { A: [], B: [] };
+let enemyBanned  = [];
+let banIdx       = 0;
+let turnIdx      = 0;
+let myTeam       = "A";
+let phase        = "pick"; // "ban" or "pick" (ban phase commented out for testing)
+let roleFilter   = "All";
+let markBanMode  = false;
+
+// ── Bootstrap ──────────────────────────────────────────────────────────────
+function init() {
+  fetch("hero_info.json?v=" + Date.now())
+    .then(r => {
+      console.log("Fetch response:", r.status, r.ok);
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      return r.json();
+    })
+    .then(data => { 
+      console.log("Data loaded:", data);
+      HEROES = data.hero_info; 
+      renderAll(); 
+    })
+    .catch(err => {
+      console.error("Fetch error:", err);
+      document.getElementById("heroes").innerHTML =
+        '<div style="color:#f55;padding:20px;text-align:center">Error: ' + err.message + '</div>';
+    });
+
+  document.querySelectorAll(".team-btn").forEach(btn =>
+    btn.addEventListener("click", () => {
+      myTeam = btn.dataset.team;
+      document.querySelectorAll(".team-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      renderAll();
+    })
+  );
+  document.getElementById("search").addEventListener("input", renderHeroGrid);
+
+  document.querySelectorAll(".role-btn").forEach(btn =>
+    btn.addEventListener("click", () => {
+      roleFilter = btn.dataset.role;
+      document.querySelectorAll(".role-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      renderHeroGrid();
+    })
+  );
+
+  document.getElementById("markBanBtn").addEventListener("click", () => {
+    markBanMode = !markBanMode;
+    document.getElementById("markBanBtn").classList.toggle("ban-mode", markBanMode);
+    document.getElementById("markBanBtn").textContent = markBanMode ? "Cancel Ban Mark" : "Mark Enemy Ban";
+  });
+
+  document.getElementById("resetBtn").addEventListener("click", () => {
+    bans = { A: [], B: [] };
+    picks = { A: [], B: [] };
+    enemyBanned = [];
+    banIdx = 0;
+    turnIdx = 0;
+    phase = "pick";
+    markBanMode = false;
+    document.getElementById("markBanBtn").classList.remove("ban-mode");
+    document.getElementById("markBanBtn").textContent = "Mark Enemy Ban";
+    renderAll();
+  });
+  document.getElementById("undoBtn").addEventListener("click", () => {
+    if (phase === "ban") {
+      if (banIdx === 0) return;
+      banIdx--;
+      bans[BAN_ORDER[banIdx]].pop();
+    } else {
+      if (turnIdx === 0) return;
+      turnIdx--;
+      picks[DRAFT_ORDER[turnIdx]].pop();
+    }
+    renderAll();
+  });
+}
+
+// ── State helpers ──────────────────────────────────────────────────────────
+function allBanned()  { return [...bans.A, ...bans.B, ...enemyBanned]; }
+function allDrafted() { return [...allBanned(), ...picks.A, ...picks.B]; }
+function curTeam()    {
+  if (phase === "ban") return banIdx < 10 ? BAN_ORDER[banIdx] : null;
+  return turnIdx < 10 ? DRAFT_ORDER[turnIdx] : null;
+}
+
+// ── Get counter winrates directly from JSON ────────────────────────────────
+function getCounterWinrates(heroId, enemyIds) {
+  // Check if this hero appears in enemy's sub_hero list (heroes that counter them)
+  let totalWR = 0;
+  let count = 0;
+  
+  for (const enemyId of enemyIds) {
+    const enemy = HEROES[enemyId];
+    if (enemy?.hero_counter_info?.sub_hero?.[heroId]) {
+      // This hero counters this enemy
+      const iwr = enemy.hero_counter_info.sub_hero[heroId]?.increaseWinRate ?? 0;
+      totalWR += iwr;
+      count++;
+    }
+  }
+  return (HEROES[heroId]?.winRate || 50) + (count > 0 ? totalWR / count : 0);
+}
+
+function banHero(id) {
+  if (phase !== "ban" || banIdx >= 10 || allBanned().includes(id)) return;
+  bans[BAN_ORDER[banIdx]].push(id);
+  banIdx++;
+  if (banIdx >= 10) phase = "pick"; // Switch to pick phase after all bans
+  renderAll();
+}
+
+function pickHero(id) {
+  if (markBanMode) {
+    const idx = enemyBanned.indexOf(id);
+    if (idx >= 0) enemyBanned.splice(idx, 1);
+    else enemyBanned.push(id);
+    renderHeroGrid();
+    renderRecommendations();
+    return;
+  }
+  if (phase === "ban") {
+    banHero(id);
+    return;
+  }
+  if (turnIdx >= 10 || allDrafted().includes(id)) return;
+  picks[DRAFT_ORDER[turnIdx]].push(id);
+  turnIdx++;
+  renderAll();
+}
+
+function pickPair(id1, id2) {
+  if (turnIdx >= 10) return;
+  const team = curTeam();
+  picks[team].push(id1);
+  turnIdx++;
+  if (turnIdx < 10 && curTeam() === team && !allDrafted().includes(id2)) {
+    picks[team].push(id2);
+    turnIdx++;
+  }
+  renderAll();
+}
+
+// ── Role conflict check ────────────────────────────────────────────────────
+// Returns true if this hero's role is already filled by existingPicks and
+// the EXP/Jungle flex exception does NOT apply.
+function roleConflicts(heroId, existingPicks) {
+  const role = HEROES[heroId]?.heroType;
+  if (!role) return false;
+  const roles = existingPicks.map(id => HEROES[id]?.heroType).filter(Boolean);
+  if (!roles.includes(role)) return false;
+  // Flex exception: allow EXP when only Jungle taken (not EXP), and vice versa
+  if (role === "EXP"    && roles.includes("Jungle") && !roles.includes("EXP"))    return false;
+  if (role === "Jungle" && roles.includes("EXP")    && !roles.includes("Jungle")) return false;
+  return true; // role already covered — conflict
+}
+
+// ── Scoring ────────────────────────────────────────────────────────────────
+function computeScore(heroId, allies, enemies) {
+  const h = HEROES[heroId];
+  if (!h) return -Infinity;
+
+  let s = (h.winRate || 0) + (h.appearanceRate || 0) * 100 - (h.banRate || 0) * 0.10;
+
+  const compat  = h.hero_compatibility_info || {};
+  const counter = h.hero_counter_info       || {};
+
+  for (const a of allies) {
+    if (compat.sub_hero?.[a])      s += (compat.sub_hero[a].increaseWinRate      ?? 0);
+    if (compat.sub_hero_last?.[a]) s += (compat.sub_hero_last[a].increaseWinRate  ?? 0);
+  }
+  for (const e of enemies) {
+    // sub_hero = heroes that counter THIS hero (bad) → penalty
+    // sub_hero_last = heroes THIS hero counters (good) → bonus
+    if (counter.sub_hero?.[e])      s -= (counter.sub_hero[e].increaseWinRate      ?? 0);
+    if (counter.sub_hero_last?.[e]) s -= (counter.sub_hero_last[e].increaseWinRate ?? 0);
+  }
+
+  const allyRoles = allies.map(a => HEROES[a]?.heroType).filter(Boolean);
+  const role = h.heroType;
+  if (role) {
+    if (!allyRoles.includes(role)) {
+      s += ROLE_BONUSES[role] || 0;
+    } else {
+      const flex = (role === "EXP"    && allyRoles.includes("Jungle"))
+                || (role === "Jungle" && allyRoles.includes("EXP"));
+      s += flex ? (ROLE_PENALTIES[role] || 0) * 0.5 : (ROLE_PENALTIES[role] || 0);
+    }
+  }
+  return s;
+}
+
+function pairSynergy(id1, id2) {
+  let syn = 0;
+  const c1 = HEROES[id1]?.hero_compatibility_info || {};
+  const c2 = HEROES[id2]?.hero_compatibility_info || {};
+  if (c1.sub_hero?.[id2])      syn += (c1.sub_hero[id2].increaseWinRate      ?? 0);
+  if (c1.sub_hero_last?.[id2]) syn += (c1.sub_hero_last[id2].increaseWinRate  ?? 0);
+  if (c2.sub_hero?.[id1])      syn += (c2.sub_hero[id1].increaseWinRate      ?? 0);
+  if (c2.sub_hero_last?.[id1]) syn += (c2.sub_hero_last[id1].increaseWinRate  ?? 0);
+  return syn;
+}
+
+// ── Explanation bullets ────────────────────────────────────────────────────
+function buildExplanation(heroId, allies, enemies) {
+  const h       = HEROES[heroId];
+  const compat  = h.hero_compatibility_info || {};
+  const counter = h.hero_counter_info       || {};
+  const allyRoles = allies.map(a => HEROES[a]?.heroType).filter(Boolean);
+  const notes = [];
+
+  // Find best combo with existing allies
+  let bestComboAlly = null;
+  let bestComboScore = 0;
+  for (const a of allies) {
+    const score = compat.sub_hero?.[a] || 0;
+    if (score > bestComboScore && score > 52) {
+      bestComboScore = score;
+      bestComboAlly = a;
+    }
+  }
+  if (bestComboAlly) {
+    const name = HEROES[bestComboAlly]?.heroName;
+    notes.push({ pos:true, t:`Best combo with ${name}`, priority: true });
+  }
+
+  for (const e of enemies) {
+    const name = HEROES[e]?.heroName; if (!name) continue;
+    // Use enemy's own sub_hero list (already curated by API) — no threshold needed
+    const eCounter = HEROES[e]?.hero_counter_info || {};
+    if      (eCounter.sub_hero?.[heroId])      notes.push({ pos:true,  t:`Counters ${name}` });
+    else if (eCounter.sub_hero_last?.[heroId]) notes.push({ pos:false, t:`Countered by ${name}` });
+  }
+  for (const a of allies) {
+    const name = HEROES[a]?.heroName; if (!name) continue;
+    if      (compat.sub_hero?.[a]      > 53.0) notes.push({ pos:true,  t:`Strong with ${name}` });
+    else if (compat.sub_hero_last?.[a] > 53.0) notes.push({ pos:false, t:`Poor synergy with ${name}` });
+  }
+  const role = h.heroType;
+  if (role) {
+    if (!allyRoles.includes(role)) {
+      notes.push({ pos:true,  t:`Fills ${role} role` });
+    } else {
+      const flex = (role === "EXP"    && allyRoles.includes("Jungle"))
+                || (role === "Jungle" && allyRoles.includes("EXP"));
+      notes.push({ pos:false, t: flex ? `Slight overlap with ${role}` : `Overlaps ${role} role` });
+    }
+  }
+  return notes.slice(0, 5);
+}
+
+// ── Post-Draft Analysis ────────────────────────────────────────────────────
+function computeTeamScore(teamId) {
+  const t = picks[teamId];
+  const e = picks[teamId === "A" ? "B" : "A"];
+  // +150 offset per hero so scores stay positive even in bad matchups
+  return t.reduce((sum, id) => sum + computeScore(id, t.filter(x => x !== id), e) + 150, 0);
+}
+
+function heroPlaystyle(heroId, enemies) {
+  const counter = HEROES[heroId]?.hero_counter_info || {};
+  let val = ((HEROES[heroId]?.winRate || 50) - 50) * 1.5;
+  for (const e of enemies) {
+    // sub_hero = countered by enemy (bad) → negative
+    // sub_hero_last = counters enemy (good) → positive
+    if (counter.sub_hero?.[e])      val -= counter.sub_hero[e]      - 50;
+    if (counter.sub_hero_last?.[e]) val += counter.sub_hero_last[e] - 50;
+  }
+  if (val > 4)  return { label:"Aggressive", cls:"agg" };
+  if (val < -4) return { label:"Safe",       cls:"saf" };
+  return           { label:"Balanced",  cls:"bal" };
+}
+
+function renderAnalysis() {
+  const el = document.getElementById("analysis");
+  if (turnIdx < 10) { el.style.display = "none"; return; }
+  el.style.display = "block";
+
+  const sA   = computeTeamScore("A");
+  const sB   = computeTeamScore("B");
+  const pA   = Math.min(78, Math.max(22, Math.round(sA / (sA + sB) * 100)));
+  const pB   = 100 - pA;
+  const winner = pA > pB ? "Team A" : pA < pB ? "Team B" : null;
+  const headline = winner
+    ? `<span>${winner}</span> looks stronger — ${Math.max(pA, pB)}% predicted win chance`
+    : "Draft is perfectly even — 50/50";
+
+  // Hero guide for MY team
+  const myPicks   = picks[myTeam];
+  const enemyPicks = picks[myTeam === "A" ? "B" : "A"];
+
+  const guideCards = myPicks.map(id => {
+    const h   = HEROES[id];
+    const ps  = heroPlaystyle(id, enemyPicks);
+    const counter = h.hero_counter_info       || {};
+    const compat  = h.hero_compatibility_info || {};
+    const notes   = [];
+
+    // What this hero is good vs
+    for (const e of enemyPicks) {
+      const name = HEROES[e]?.heroName; if (!name) continue;
+      const eCounter = HEROES[e]?.hero_counter_info || {};
+      if (eCounter.sub_hero?.[id])
+        notes.push({ pos:true,  t:`Counters ${name} — push advantage` });
+      else if (eCounter.sub_hero_last?.[id])
+        notes.push({ pos:false, t:`Watch out for ${name}` });
+    }
+    // Ally synergy cues
+    for (const a of myPicks) {
+      if (a === id) continue;
+      const name = HEROES[a]?.heroName; if (!name) continue;
+      if (compat.sub_hero?.[a])
+        notes.push({ pos:true,  t:`Team fight with ${name}` });
+    }
+
+    const notesHtml = notes.slice(0, 3).map(n =>
+      `<div class="guide-note ${n.pos ? "pos" : "neg"}">${n.pos ? "+" : "−"} ${n.t}</div>`
+    ).join("");
+
+    return `<div class="guide-card ${ps.cls}">
+      <div class="guide-hero-row">
+        <img src="${h.heroPic}" class="guide-img" alt="${h.heroName}">
+        <div class="guide-info">
+          <div class="guide-name">${h.heroName}</div>
+          <div class="guide-role role-${h.heroType}">${h.heroType || ""}</div>
+        </div>
+        <div class="ps-badge ${ps.cls}">${ps.label}</div>
+      </div>
+      <div class="guide-notes">${notesHtml || '<div class="guide-note" style="color:#555">Neutral matchup</div>'}</div>
+    </div>`;
+  }).join("");
+
+  el.innerHTML = `
+    <div class="analysis-title">Draft Analysis</div>
+
+    <div class="win-prob-block">
+      <div class="win-headline">${headline}</div>
+      <div class="prob-row">
+        <span class="prob-team ta">Team A ${pA}%</span>
+        <div class="prob-bar-wrap">
+          <div class="prob-bar-fill-a" style="width:${pA}%"></div>
+        </div>
+        <span class="prob-team tb">${pB}% Team B</span>
+      </div>
+    </div>
+
+    <div class="panel-title" style="margin-bottom:10px">
+      Your Team (${myTeam === "A" ? "Team A" : "Team B"}) — Hero Guide
+    </div>
+    <div class="hero-guide">${guideCards}</div>
+  `;
+}
+
+// ── Render ─────────────────────────────────────────────────────────────────
+function renderAll() {
+  renderTurnBar();
+  // renderBanBoard(); // COMMENTED OUT - Ban phase disabled for testing
+  renderDraftBoard();
+  renderRecommendations();
+  renderHeroGrid();
+  renderAnalysis();
+}
+
+function renderTurnBar() {
+  const badge = document.getElementById("currentTurn");
+  const seq   = document.getElementById("draftSeq");
+  
+  if (phase === "ban") {
+    if (banIdx >= 10) {
+      badge.textContent = "Ban Phase Complete";
+      badge.className = "turn-badge done";
+    } else {
+      const team = BAN_ORDER[banIdx];
+      badge.textContent = `Ban: ${BAN_LABELS[banIdx]}`;
+      badge.className = `turn-badge team-${team}`;
+    }
+    seq.innerHTML = BAN_LABELS.map((lbl, i) => {
+      const t   = BAN_ORDER[i];
+      const cls = `seq-dot team-${t}${i === banIdx ? " active" : i < banIdx ? " done" : ""}`;
+      return `<div class="${cls}" title="${lbl}">${lbl.replace(/[^0-9]/g, '')}</div>`;
+    }).join("");
+  } else {
+    if (turnIdx >= 10) {
+      badge.textContent = "Draft Complete";
+      badge.className = "turn-badge done";
+    } else {
+      const team     = DRAFT_ORDER[turnIdx];
+      const isDouble = turnIdx < 9 && DRAFT_ORDER[turnIdx] === DRAFT_ORDER[turnIdx + 1];
+      badge.textContent = isDouble
+        ? `Turn: ${TURN_LABELS[turnIdx]} + ${TURN_LABELS[turnIdx + 1]}`
+        : `Turn: ${TURN_LABELS[turnIdx]}`;
+      badge.className = `turn-badge team-${team}`;
+    }
+    seq.innerHTML = TURN_LABELS.map((lbl, i) => {
+      const t   = DRAFT_ORDER[i];
+      const cls = `seq-dot team-${t}${i === turnIdx ? " active" : i < turnIdx ? " done" : ""}`;
+      return `<div class="${cls}" title="${lbl}">${lbl}</div>`;
+    }).join("");
+  }
+}
+
+function renderBanBoard() {
+  ["A","B"].forEach(team => {
+    const el = document.getElementById(`team${team}Bans`);
+    const teamBans = bans[team];
+    if (teamBans.length === 0) {
+      el.innerHTML = '<div class="slot-empty-text">No bans yet</div>';
+    } else {
+      el.innerHTML = teamBans.map(id => {
+        const h = HEROES[id];
+        return `<div style="position:relative;width:50px;height:50px">
+          <img src="${h.heroPic}" alt="${h.heroName}" style="width:100%;height:100%;border-radius:5px;object-fit:cover;opacity:0.5">
+          <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#f55;font-size:2rem;font-weight:bold">✗</div>
+        </div>`;
+      }).join("");
+    }
+  });
+}
+
+function renderDraftBoard() {
+  ["A","B"].forEach(team => {
+    const el       = document.getElementById(`team${team}Picks`);
+    const isActive = curTeam() === team;
+    const nextSlot = picks[team].length;
+    el.innerHTML = Array.from({ length: 5 }, (_, i) => {
+      const id = picks[team][i];
+      if (id) {
+        const h = HEROES[id];
+        return `<div class="pick-slot">
+          <span class="slot-n">${i+1}</span>
+          <img src="${h.heroPic}" alt="${h.heroName}">
+          <div>
+            <div class="slot-name">${h.heroName}</div>
+            <div class="slot-type role-${h.heroType}">${h.heroType || ""}</div>
+          </div>
+        </div>`;
+      }
+      const act = isActive && i === nextSlot ? " active-slot" : "";
+      return `<div class="pick-slot${act}">
+        <span class="slot-n">${i+1}</span>
+        <span class="slot-empty-text">Pick ${i+1}</span>
+      </div>`;
+    }).join("");
+  });
+}
+
+function renderRecommendations() {
+  const el = document.getElementById("recsInner");
+  
+  // Ban Phase Recommendations
+  if (phase === "ban") {
+    const team = curTeam();
+    if (team !== myTeam) {
+      el.innerHTML = `<div class="no-recs">Waiting for ${team === "A" ? "Team A" : "Team B"}…</div>`;
+      return;
+    }
+    
+    const banned = allBanned();
+    const avail = Object.keys(HEROES).filter(id => !banned.includes(id));
+    
+    // Recommend heroes to ban based on meta (high banRate + winRate)
+    const banCandidates = avail
+      .map(id => {
+        const h = HEROES[id];
+        const banScore = (h.banRate || 0) * 2 + (h.winRate || 0);
+        return { id, s: banScore };
+      })
+      .sort((a, b) => b.s - a.s)
+      .slice(0, 8);
+    
+    el.innerHTML = '<div class="recs-subtitle">Recommended Bans (Meta Heroes)</div>' +
+      banCandidates.map(r => buildRecCard(r.id, r.s, [], [])).join("");
+    return;
+  }
+  
+  // Pick Phase Recommendations
+  if (turnIdx >= 10) { el.innerHTML = '<div class="no-recs">See analysis below</div>'; return; }
+
+  const team = curTeam();
+  if (team !== myTeam) {
+    el.innerHTML = `<div class="no-recs">Waiting for ${team === "A" ? "Team A" : "Team B"}…</div>`;
+    return;
+  }
+
+  const enemy    = myTeam === "A" ? "B" : "A";
+  const allies   = picks[myTeam];
+  const enemies  = picks[enemy];
+  const drafted  = allDrafted();
+
+  // Filter: exclude already-drafted heroes AND heroes whose role is already filled
+  const avail = Object.keys(HEROES).filter(id =>
+    !drafted.includes(id) && !roleConflicts(id, allies)
+  );
+  
+  // Check if this is a double turn (current + next OR current + previous are same team)
+  const isDoubleTurn = (turnIdx < 9 && DRAFT_ORDER[turnIdx] === DRAFT_ORDER[turnIdx + 1]) ||
+                       (turnIdx > 0 && DRAFT_ORDER[turnIdx] === DRAFT_ORDER[turnIdx - 1]);
+  const isFirstOfDouble = turnIdx < 9 && DRAFT_ORDER[turnIdx] === DRAFT_ORDER[turnIdx + 1];
+
+  // First pick: show top 5 meta heroes per role
+  if (turnIdx === 0 && enemies.length === 0) {
+    // First pick with no enemy picks yet — show top 3 per role using full score
+    const roleOrder = ["Roam", "Mid Lane", "Gold Lane", "Exp Lane", "Jungle"];
+    let html = '';
+    for (const roleName of roleOrder) {
+      const heroesInRole = avail
+        .filter(id => HEROES[id]?.heroType === roleName)
+        .map(id => ({ id, s: computeScore(id, [], []) }))
+        .sort((a, b) => b.s - a.s)
+        .slice(0, 3);
+      if (heroesInRole.length > 0) {
+        html += `<div class="recs-subtitle">${roleName}</div>`;
+        html += heroesInRole.map(r => buildRecCard(r.id, r.s, [], [])).join("");
+      }
+    }
+    el.innerHTML = html || '<div class="no-recs">No heroes available</div>';
+  } else if (isDoubleTurn && isFirstOfDouble) {
+    const scores = {};
+    for (const id of avail) scores[id] = computeScore(id, allies, enemies);
+    const top40 = [...avail].sort((a, b) => scores[b] - scores[a]).slice(0, 40);
+
+    const pairs = [];
+    for (let i = 0; i < top40.length; i++) {
+      for (let j = i + 1; j < top40.length; j++) {
+        const h1 = top40[i], h2 = top40[j];
+        // Ensure h2's role doesn't conflict with allies + h1
+        if (roleConflicts(h2, [...allies, h1])) continue;
+        const s1 = scores[h1];
+        const s2 = computeScore(h2, [...allies, h1], enemies);
+        pairs.push({ h1, h2, total: s1 + s2 + pairSynergy(h1, h2) });
+      }
+    }
+    pairs.sort((a, b) => b.total - a.total);
+    
+    // Show pairs in main panel
+    el.innerHTML = '<div class="recs-subtitle">Top Pairs</div>' +
+      pairs.slice(0, 3).map(buildPairCard).join("");
+    
+    // Show solo picks in separate section (DIRECT FROM JSON COUNTER DATA)
+    const soloRanked = avail
+      .map(id => ({ 
+        id, 
+        s: getCounterWinrates(id, enemies) // Direct counter winrates from JSON
+      }))
+      .sort((a, b) => b.s - a.s)
+      .slice(0, 5);
+    
+    const soloSection = document.getElementById("soloRecsSection");
+    const soloInner = document.getElementById("soloRecsInner");
+    soloSection.style.display = "block";
+    soloInner.innerHTML = soloRanked.map(r => buildRecCard(r.id, r.s, allies, enemies)).join("");
+  } else if (isDoubleTurn && !isFirstOfDouble) {
+    // Second pick of double turn - hide right panel content
+    el.innerHTML = '<div class="no-recs">Pick 2nd hero from Solo Recommendations below</div>';
+    
+    const soloRanked = avail
+      .map(id => ({ 
+        id, 
+        s: getCounterWinrates(id, enemies) // Direct counter winrates from JSON
+      }))
+      .sort((a, b) => b.s - a.s)
+      .slice(0, 5);
+    
+    const soloSection = document.getElementById("soloRecsSection");
+    const soloInner = document.getElementById("soloRecsInner");
+    soloSection.style.display = "block";
+    soloInner.innerHTML = soloRanked.map(r => buildRecCard(r.id, r.s, allies, enemies)).join("");
+  } else {
+    // Hide solo section for non-double picks
+    document.getElementById("soloRecsSection").style.display = "none";
+    
+    const ranked = avail
+      .map(id => ({ id, s: computeScore(id, allies, enemies) }))
+      .sort((a, b) => b.s - a.s)
+      .slice(0, 5);
+    el.innerHTML = '<div class="recs-subtitle">Top Picks</div>' +
+      ranked.map(r => buildRecCard(r.id, r.s, allies, enemies)).join("");
+  }
+}
+
+function buildRecCard(heroId, s, allies, enemies) {
+  const h     = HEROES[heroId];
+  const notes = buildExplanation(heroId, allies, enemies);
+  const notesHtml = notes.map(n =>
+    `<div class="note ${n.pos ? "pos" : "neg"}">${n.pos ? "+" : "−"} ${n.t}</div>`
+  ).join("");
+  return `<div class="rec-card" onclick="pickHero('${heroId}')">
+    <div class="rec-row">
+      <img src="${h.heroPic}" class="rec-img" alt="${h.heroName}">
+      <div class="rec-info">
+        <div class="rec-name">${h.heroName}</div>
+        <div class="rec-type role-${h.heroType}">${h.heroType || ""}</div>
+      </div>
+      <div class="rec-score">
+        <div class="score-num">${Math.round(s)}</div>
+        <div class="wr-label">WR ${(h.winRate || 0).toFixed(1)}%</div>
+      </div>
+    </div>
+    <div class="notes">${notesHtml}</div>
+  </div>`;
+}
+
+function buildPairCard({ h1, h2, total }) {
+  const a = HEROES[h1], b = HEROES[h2];
+  return `<div class="rec-card pair-card" onclick="pickPair('${h1}','${h2}')">
+    <div class="pair-row">
+      <div class="pair-hero">
+        <img src="${a.heroPic}" class="pair-img" alt="${a.heroName}">
+        <div class="pair-name">${a.heroName}</div>
+        <div class="pair-type role-${a.heroType}">${a.heroType || ""}</div>
+      </div>
+      <div class="pair-plus">+</div>
+      <div class="pair-hero">
+        <img src="${b.heroPic}" class="pair-img" alt="${b.heroName}">
+        <div class="pair-name">${b.heroName}</div>
+        <div class="pair-type role-${b.heroType}">${b.heroType || ""}</div>
+      </div>
+      <div class="rec-score" style="margin-left:auto">
+        <div class="score-num">${Math.round(total)}</div>
+        <div class="wr-label">pair score</div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderHeroGrid() {
+  const q        = document.getElementById("search").value.toLowerCase().trim();
+  const drafted  = [...picks.A, ...picks.B, ...bans.A, ...bans.B];
+  const enemies  = picks[myTeam === "A" ? "B" : "A"];
+  const list     = Object.entries(HEROES)
+    .filter(([, h]) => {
+      if (q && !h.heroName.toLowerCase().includes(q)) return false;
+      if (roleFilter !== "All" && h.heroType !== roleFilter) return false;
+      return true;
+    })
+    .sort(([, a], [, b]) => a.heroName.localeCompare(b.heroName));
+
+  document.getElementById("heroes").innerHTML = list.map(([id, h]) => {
+    const isDrafted     = drafted.includes(id);
+    const isEnemyBanned = enemyBanned.includes(id);
+    const isCounter     = !isDrafted && !isEnemyBanned && enemies.length > 0 &&
+      enemies.some(e => HEROES[e]?.hero_counter_info?.sub_hero?.[id]);
+    const cls = ["hero-card",
+      isDrafted ? "drafted" : "",
+      isEnemyBanned ? "enemy-banned" : "",
+      isCounter ? "counters-enemy" : ""
+    ].filter(Boolean).join(" ");
+    return `<div class="${cls}" onclick="pickHero('${id}')">
+      <img src="${h.heroPic}" alt="${h.heroName}" loading="lazy">
+      <div class="hc-name">${h.heroName}</div>
+      <div class="hc-type role-${h.heroType}">${h.heroType || ""}</div>
+    </div>`;
+  }).join("");
+}
+
+document.addEventListener("DOMContentLoaded", init);
+</script>
+</body>
+</html>
