@@ -74,6 +74,14 @@ body { font-family: 'Segoe UI', system-ui, Arial, sans-serif; background: var(--
 .turn-badge.team-A { background: var(--a-dark); color: var(--a-muted); }
 .turn-badge.team-B { background: var(--b-dark); color: var(--b-muted); }
 .turn-badge.done   { background: #333;          color: var(--muted); }
+.phase-badge {
+  font-size: 0.8rem; padding: 4px 10px; border-radius: 7px;
+  background: var(--bg3); border: 1px solid var(--border);
+  display: flex; align-items: center; gap: 4px; white-space: nowrap; flex-shrink: 0;
+}
+.phase-badge.early    { border-color: #ef5350; color: #ef5350; }
+.phase-badge.balanced { border-color: var(--gold); color: var(--gold); }
+.phase-badge.late     { border-color: #42a5f5; color: #42a5f5; }
 .draft-seq { display: flex; gap: 4px; flex-wrap: wrap; }
 .seq-dot {
   width: 28px; height: 23px; border-radius: 5px; font-size: 0.62rem;
@@ -392,6 +400,7 @@ body { font-family: 'Segoe UI', system-ui, Arial, sans-serif; background: var(--
   <!-- Turn Bar -->
   <div class="turn-bar">
     <div id="currentTurn" class="turn-badge team-A">Turn: A1</div>
+    <div id="phaseBadge" class="phase-badge balanced">⚖️ Balanced</div>
     <div id="draftSeq" class="draft-seq"></div>
   </div>
 
@@ -556,18 +565,56 @@ function curTeam()    {
   return turnIdx < 10 ? DRAFT_ORDER[turnIdx] : null;
 }
 
+// ── Phase Detection ────────────────────────────────────────────────────────
+function detectGamePhase(allies, enemies) {
+  if (enemies.length < 2) return 'balanced';
+
+  let lateGameCount = 0;
+  let earlyGameCount = 0;
+
+  for (const enemyId of enemies) {
+    const enemy = HEROES[enemyId];
+    if (!enemy) continue;
+    const subLast = enemy.hero_counter_info?.sub_hero_last;
+    if (!subLast) continue;
+
+    let lateAvg = 0, lateCount = 0;
+    let earlyAvg = 0, earlyCount = 0;
+
+    for (const matchup of Object.values(subLast)) {
+      if (matchup.min_win_rate18_20 !== undefined) { lateAvg  += matchup.min_win_rate18_20 * 100; lateCount++;  }
+      if (matchup.min_win_rate20    !== undefined) { lateAvg  += matchup.min_win_rate20    * 100; lateCount++;  }
+      if (matchup.min_win_rate10_12 !== undefined) { earlyAvg += matchup.min_win_rate10_12 * 100; earlyCount++; }
+    }
+
+    if (lateCount  > 0 && lateAvg  / lateCount  < 48) lateGameCount++;
+    if (earlyCount > 0 && earlyAvg / earlyCount < 47) earlyGameCount++;
+  }
+
+  if (lateGameCount  >= 2) return 'early';
+  if (earlyGameCount >= 2) return 'late';
+  return 'balanced';
+}
+
+const PHASE_TIME_FIELDS = {
+  early:    ['min_win_rate10_12', 'min_win_rate12_14'],
+  balanced: ['min_win_rate14_16', 'min_win_rate16_18'],
+  late:     ['min_win_rate18_20', 'min_win_rate20'],
+};
+
 // ── Get counter winrates directly from JSON ────────────────────────────────
 function getCounterWinrates(heroId, enemyIds) {
-  // Check if this hero appears in enemy's sub_hero list (heroes that counter them)
   let totalWR = 0;
   let count = 0;
-  
+  const heroCounter = HEROES[heroId]?.hero_counter_info || {};
+
   for (const enemyId of enemyIds) {
-    const enemy = HEROES[enemyId];
-    if (enemy?.hero_counter_info?.sub_hero?.[heroId]) {
-      // This hero counters this enemy
-      const iwr = enemy.hero_counter_info.sub_hero[heroId]?.increaseWinRate ?? 0;
-      totalWR += iwr;
+    if (heroCounter.sub_hero?.[enemyId]) {
+      totalWR += heroCounter.sub_hero[enemyId]?.increaseWinRate ?? 0;  // positive: heroId counters enemy
+      count++;
+    }
+    if (heroCounter.sub_hero_last?.[enemyId]) {
+      totalWR += heroCounter.sub_hero_last[enemyId]?.increaseWinRate ?? 0;  // negative: enemy counters heroId
       count++;
     }
   }
@@ -652,11 +699,35 @@ function computeScore(heroId, allies, enemies) {
     if (compat.sub_hero?.[a])      s += (compat.sub_hero[a].increaseWinRate      ?? 0);
     if (compat.sub_hero_last?.[a]) s += (compat.sub_hero_last[a].increaseWinRate  ?? 0);
   }
+  const phase = detectGamePhase(allies, enemies);
+  const timeFields = PHASE_TIME_FIELDS[phase];
+
   for (const e of enemies) {
-    // sub_hero = heroes that counter THIS hero (bad) → penalty
-    // sub_hero_last = heroes THIS hero counters (good) → bonus
-    if (counter.sub_hero?.[e])      s -= (counter.sub_hero[e].increaseWinRate      ?? 0);
-    if (counter.sub_hero_last?.[e]) s -= (counter.sub_hero_last[e].increaseWinRate ?? 0);
+    // sub_hero = THIS hero counters enemy (good) → positive increaseWinRate → bonus
+    // sub_hero_last = enemy counters THIS hero (bad) → negative increaseWinRate → penalty
+    if (counter.sub_hero?.[e]) {
+      const matchup = counter.sub_hero[e];
+      let bonus = matchup.increaseWinRate ?? 0;
+      let twTotal = 0, twCount = 0;
+      for (const f of timeFields) { if (matchup[f] !== undefined) { twTotal += matchup[f] * 100; twCount++; } }
+      if (twCount > 0) {
+        const avg = twTotal / twCount;
+        if (avg > 55) bonus *= 1.25;
+        else if (avg < 48) bonus *= 0.75;
+      }
+      s += bonus;
+    }
+    if (counter.sub_hero_last?.[e]) {
+      const matchup = counter.sub_hero_last[e];
+      let penalty = matchup.increaseWinRate ?? 0;
+      let twTotal = 0, twCount = 0;
+      for (const f of timeFields) { if (matchup[f] !== undefined) { twTotal += matchup[f] * 100; twCount++; } }
+      if (twCount > 0) {
+        const avg = twTotal / twCount;
+        if (avg < 45) penalty *= 1.25;
+      }
+      s += penalty;
+    }
   }
 
   const allyRoles = allies.map(a => HEROES[a]?.heroType).filter(Boolean);
@@ -749,8 +820,8 @@ function heroPlaystyle(heroId, enemies) {
   const counter = HEROES[heroId]?.hero_counter_info || {};
   let val = ((HEROES[heroId]?.winRate || 50) - 50) * 1.5;
   for (const e of enemies) {
-    if (counter.sub_hero?.[e])      val -= (counter.sub_hero[e].winRate      || 50) - 50;
-    if (counter.sub_hero_last?.[e]) val += (counter.sub_hero_last[e].winRate || 50) - 50;
+    if (counter.sub_hero?.[e])      val += (counter.sub_hero[e].increaseWinRate      ?? 0);  // good matchup → aggressive
+    if (counter.sub_hero_last?.[e]) val += (counter.sub_hero_last[e].increaseWinRate ?? 0);  // bad matchup (negative) → safe
   }
   if (val > 4)  return { label:"Aggressive", cls:"agg" };
   if (val < -4) return { label:"Safe",       cls:"saf" };
@@ -980,6 +1051,15 @@ function renderTurnBar() {
       const cls = `seq-dot team-${t}${i === turnIdx ? " active" : i < turnIdx ? " done" : ""}`;
       return `<div class="${cls}" title="${lbl}">${lbl}</div>`;
     }).join("");
+  }
+
+  const phaseBadge = document.getElementById("phaseBadge");
+  if (phaseBadge) {
+    const enemy = myTeam === "A" ? "B" : "A";
+    const phaseVal = detectGamePhase(picks[myTeam], picks[enemy]);
+    const phaseLabels = { early: "⚔️ Early Game", balanced: "⚖️ Balanced", late: "🛡️ Late Game" };
+    phaseBadge.textContent = phaseLabels[phaseVal];
+    phaseBadge.className = `phase-badge ${phaseVal}`;
   }
 }
 
