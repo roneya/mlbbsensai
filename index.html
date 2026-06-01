@@ -233,6 +233,8 @@ body { font-family: 'Segoe UI', system-ui, Arial, sans-serif; background: var(--
 .recs-split { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .recs-col { display: flex; flex-direction: column; }
 .recs-subtitle { font-size: 0.68rem; color: #555; margin-bottom: 7px; }
+#teamNeeds { font-size: 0.72rem; color: #aaa; padding: 2px 0 6px; }
+#teamNeeds span { color: var(--gold); font-weight: 600; }
 .rec-card {
   background: var(--bg3); border-radius: 8px; padding: 9px 10px;
   margin-bottom: 7px; cursor: pointer; border: 1px solid transparent;
@@ -420,6 +422,7 @@ body { font-family: 'Segoe UI', system-ui, Arial, sans-serif; background: var(--
     </div>
     <div class="recs-panel">
       <div class="panel-title">Recommendations</div>
+      <div id="teamNeeds" style="display:none"></div>
       <div class="recs-inner" id="recsInner">
         <div class="no-recs">Loading…</div>
       </div>
@@ -635,6 +638,12 @@ function pickHero(id) {
   picks[DRAFT_ORDER[turnIdx]].push(id);
   turnIdx++;
   renderAll();
+}
+
+function missingRoles(allies) {
+  const ALL_ROLES = ["Roam", "Mid Lane", "Gold Lane", "Exp Lane", "Jungle"];
+  const filled = new Set(allies.map(id => HEROES[id]?.heroType).filter(Boolean));
+  return ALL_ROLES.filter(r => !filled.has(r));
 }
 
 // ── Role conflict check ────────────────────────────────────────────────────
@@ -1110,7 +1119,20 @@ function renderRecommendations() {
 
   // Filter: exclude already-drafted heroes (role conflicts handled by ROLE_PENALTIES in computeScore)
   const avail = Object.keys(HEROES).filter(id => !drafted.includes(id));
-  
+
+  // Update "Team needs:" banner
+  const needsBanner = document.getElementById("teamNeeds");
+  if (needsBanner) {
+    const needed = missingRoles(allies);
+    if (allies.length > 0 && needed.length > 0) {
+      needsBanner.style.display = "block";
+      needsBanner.innerHTML = "Team needs: " +
+        needed.map(r => `<span>${r}</span>`).join(" · ");
+    } else {
+      needsBanner.style.display = "none";
+    }
+  }
+
   // First pick: show top 5 meta heroes per role
   if (turnIdx === 0 && enemies.length === 0) {
     // First pick with no enemy picks yet — show top 3 per role using full score

@@ -26,9 +26,11 @@ function loadFns(HEROES) {
   vm.runInContext(patchedJs, context);
 
   return {
-    computeScore:    context.computeScore,
-    heroPlaystyle:   context.heroPlaystyle,
-    buildExplanation: context.buildExplanation,
+    computeScore:         context.computeScore,
+    heroPlaystyle:        context.heroPlaystyle,
+    buildExplanation:     context.buildExplanation,
+    missingRoles:         context.missingRoles,
+    computeAdjustedScore: context.computeAdjustedScore,
   };
 }
 
@@ -171,4 +173,39 @@ test('buildExplanation: role overlap note appears when role already in allies', 
   const overlapNote = notes.find(n => n.t.includes('Overlaps'));
   assert.ok(overlapNote, `expected an overlap note, got: ${JSON.stringify(notes)}`);
   assert.ok(!overlapNote.pos, 'role overlap note should be negative');
+});
+
+// ── missingRoles ──────────────────────────────────────────────────────────
+test('missingRoles: returns all 5 roles when allies is empty', () => {
+  const { missingRoles } = loadFns(HEROES);
+  const missing = missingRoles([]);
+  assert.deepEqual(
+    [...missing].sort(),
+    ['Exp Lane', 'Gold Lane', 'Jungle', 'Mid Lane', 'Roam']
+  );
+});
+
+test('missingRoles: Roam absent from result when a Roam ally is present', () => {
+  const { missingRoles } = loadFns(HEROES);
+  const missing = missingRoles(['Lolita']); // Lolita heroType='Roam'
+  assert.ok(!missing.includes('Roam'), `Roam should be filled: ${missing}`);
+  assert.equal(missing.length, 4);
+});
+
+test('missingRoles: returns empty array when all 5 roles are filled', () => {
+  const FULL = {
+    ...HEROES,
+    G: { heroName:'G', heroType:'Gold Lane', winRate:50, appearanceRate:0, banRate:0, heroPic:'',
+         hero_compatibility_info:{sub_hero:{},sub_hero_last:{}},
+         hero_counter_info:{sub_hero:{},sub_hero_last:{}} },
+    E: { heroName:'E', heroType:'Exp Lane', winRate:50, appearanceRate:0, banRate:0, heroPic:'',
+         hero_compatibility_info:{sub_hero:{},sub_hero_last:{}},
+         hero_counter_info:{sub_hero:{},sub_hero_last:{}} },
+    J: { heroName:'J', heroType:'Jungle', winRate:50, appearanceRate:0, banRate:0, heroPic:'',
+         hero_compatibility_info:{sub_hero:{},sub_hero_last:{}},
+         hero_counter_info:{sub_hero:{},sub_hero_last:{}} },
+  };
+  const { missingRoles } = loadFns(FULL);
+  // Lolita=Roam, Cyclops=Mid Lane, G=Gold Lane, E=Exp Lane, J=Jungle
+  assert.equal(missingRoles(['Lolita','Cyclops','G','E','J']).length, 0);
 });
