@@ -781,12 +781,14 @@ function buildExplanation(heroId, allies, enemies) {
   for (const e of enemies) {
     const name = HEROES[e]?.heroName; if (!name) continue;
     const eCounter = HEROES[e]?.hero_counter_info || {};
-    if (eCounter.sub_hero?.[heroId]) {
-      const tc = eCounter.sub_hero[heroId]?.timingCurve;
+    if (eCounter.sub_hero_last?.[heroId]) {
+      // heroId in enemy's sub_hero_last → heroId counters enemy (good)
+      const tc = eCounter.sub_hero_last[heroId]?.timingCurve;
       const tl = getTimingLabel(tc);
       const badge = tl ? ` <span class="timing-badge ${tl.cls}">${tl.label}</span>` : "";
       notes.push({ pos:true,  t:`Counters ${name}${badge}` });
-    } else if (eCounter.sub_hero_last?.[heroId]) {
+    } else if (eCounter.sub_hero?.[heroId]) {
+      // heroId in enemy's sub_hero → enemy counters heroId (bad)
       notes.push({ pos:false, t:`Countered by ${name}` });
     }
   }
@@ -1200,12 +1202,9 @@ function renderRecommendations() {
     el.innerHTML = '<div class="recs-subtitle">Top Pairs</div>' +
       pairs.slice(0, 3).map(buildPairCard).join("");
     
-    // Show solo picks in separate section (DIRECT FROM JSON COUNTER DATA)
+    // Show solo picks in separate section
     const soloRanked = avail
-      .map(id => ({ 
-        id, 
-        s: getCounterWinrates(id, enemies) // Direct counter winrates from JSON
-      }))
+      .map(id => ({ id, s: computeScore(id, allies, enemies) }))
       .sort((a, b) => b.s - a.s)
       .slice(0, 5);
     
@@ -1218,13 +1217,10 @@ function renderRecommendations() {
     el.innerHTML = '<div class="no-recs">Pick 2nd hero from Solo Recommendations below</div>';
     
     const soloRanked = avail
-      .map(id => ({ 
-        id, 
-        s: getCounterWinrates(id, enemies) // Direct counter winrates from JSON
-      }))
+      .map(id => ({ id, s: computeScore(id, allies, enemies) }))
       .sort((a, b) => b.s - a.s)
       .slice(0, 5);
-    
+
     const soloSection = document.getElementById("soloRecsSection");
     const soloInner = document.getElementById("soloRecsInner");
     soloSection.style.display = "block";
@@ -1249,11 +1245,11 @@ function buildRecCard(heroId, s, allies, enemies) {
     `<div class="note ${n.pos ? "pos" : "neg"}">${n.pos ? "+" : "−"} ${n.t}</div>`
   ).join("");
 
-  // Timing badge: dominant counter timing vs the enemy team
+  // Timing badge: when this hero is strongest against an enemy they counter
   let timingBadgeHtml = "";
   const counter = h.hero_counter_info || {};
   for (const e of enemies) {
-    const entry = counter.sub_hero_last?.[e];
+    const entry = counter.sub_hero?.[e];
     if (entry?.timingCurve) {
       const tl = getTimingLabel(entry.timingCurve);
       if (tl && tl.cls !== "flex") {
