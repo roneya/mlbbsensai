@@ -314,6 +314,16 @@ body { font-family: 'Segoe UI', system-ui, Arial, sans-serif; background: var(--
 .guide-note { font-size: 0.71rem; line-height: 1.4; }
 .guide-note.pos { color: var(--green); }
 .guide-note.neg { color: var(--redneg); }
+.gp-block { margin-top: 16px; background: rgba(255,255,255,0.03); border: 1px solid #2a2a2a; border-radius: 8px; padding: 13px; }
+.gp-heading { font-size: 0.92rem; font-weight: bold; color: var(--gold); margin-bottom: 5px; display: flex; align-items: center; gap: 8px; }
+.gp-wincon { font-size: 0.77rem; color: #999; margin-bottom: 12px; line-height: 1.5; }
+.gp-section { margin-bottom: 10px; }
+.gp-label { font-size: 0.68rem; font-weight: bold; color: #888; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 5px; }
+.gp-item { display: flex; align-items: flex-start; gap: 7px; font-size: 0.75rem; color: #bbb; margin-bottom: 5px; line-height: 1.45; }
+.gp-item.pos b { color: #81c784; }
+.gp-item.neg b { color: #ef9a9a; }
+.gp-item.carry b { color: #ce93d8; }
+.gp-icon { width: 28px; height: 28px; border-radius: 4px; object-fit: cover; flex-shrink: 0; margin-top: 1px; }
 
 /* ── Hero Grid ────────────────────────────────────────── */
 .grid-section {
@@ -747,6 +757,103 @@ function heroPlaystyle(heroId, enemies) {
   return           { label:"Balanced",  cls:"bal" };
 }
 
+function buildGamePlan(myPicks, enemyPicks) {
+  const earlyBullies = [], earlyThreats = [], lateCarries = [];
+  let earlyWRSum = 0, lateWRSum = 0, matchCount = 0;
+
+  for (const e of enemyPicks) {
+    const eH = HEROES[e]; if (!eH) continue;
+    for (const h of myPicks) {
+      const hH = HEROES[h]; if (!hH) continue;
+
+      // h counters enemy e: timingCurve = h's win rate at each phase vs e
+      const hVsE = eH.hero_counter_info?.sub_hero?.[h];
+      if (hVsE?.timingCurve) {
+        const tc = hVsE.timingCurve;
+        const early = ((tc["6_8"]||0) + (tc["8_10"]||0) + (tc["10_12"]||0)) / 3;
+        const late  = ((tc["16_18"]||0) + (tc["18_20"]||0) + (tc["20+"]||0)) / 3;
+        earlyWRSum += early; lateWRSum += late; matchCount++;
+
+        if (early > 54 && !earlyBullies.find(b => b.enemy === e))
+          earlyBullies.push({ enemy: e, ourHero: h, earlyWR: early });
+
+        // h counters e but only late → h needs to scale
+        if (early < 44 && late > 51 && !lateCarries.find(c => c.hero === h))
+          lateCarries.push({ hero: h, earlyWR: early, lateWR: late });
+      }
+
+      // enemy e counters h: timingCurve = e's win rate at each phase vs h
+      const eVsH = hH.hero_counter_info?.sub_hero?.[e];
+      if (eVsH?.timingCurve) {
+        const tc = eVsH.timingCurve;
+        const early = ((tc["6_8"]||0) + (tc["8_10"]||0) + (tc["10_12"]||0)) / 3;
+        if (early > 55 && !earlyThreats.find(t => t.enemy === e))
+          earlyThreats.push({ enemy: e, vsHero: h, earlyWR: early });
+      }
+    }
+  }
+
+  const teamEarly = matchCount > 0 ? earlyWRSum / matchCount : 50;
+  const teamLate  = matchCount > 0 ? lateWRSum  / matchCount : 50;
+  const diff = teamLate - teamEarly;
+  const timing = diff > 5 ? "late" : diff < -5 ? "early" : "flex";
+  return { earlyBullies, earlyThreats, lateCarries, timing, teamEarly, teamLate };
+}
+
+function renderGamePlan(myPicks, enemyPicks) {
+  const p = buildGamePlan(myPicks, enemyPicks);
+  const timingMeta = {
+    early: { label: "EARLY TEAM", desc: "Your team peaks before 14 min — take fights, take towers, take objectives early. Don't let the enemy scale." },
+    late:  { label: "LATE TEAM",  desc: "You scale past 16 min — farm safely, avoid early brawls, win decisive late teamfights." },
+    flex:  { label: "FLEX",       desc: "Balanced draft — play around individual matchup windows each phase." }
+  };
+  const tm = timingMeta[p.timing];
+
+  const bulliesHtml = p.earlyBullies.length ? `
+    <div class="gp-section">
+      <div class="gp-label">⚡ Bully Early</div>
+      ${p.earlyBullies.slice(0,3).map(b => {
+        const eH = HEROES[b.enemy], hH = HEROES[b.ourHero];
+        return `<div class="gp-item pos">
+          <img src="${eH?.heroPic}" class="gp-icon" alt="">
+          <div>${hH?.heroName} dominates <b>${eH?.heroName}</b> before 12min (${b.earlyWR.toFixed(0)}% WR) — fight them constantly</div>
+        </div>`;
+      }).join("")}
+    </div>` : "";
+
+  const threatsHtml = p.earlyThreats.length ? `
+    <div class="gp-section">
+      <div class="gp-label">⚠️ Avoid Early</div>
+      ${p.earlyThreats.slice(0,3).map(t => {
+        const eH = HEROES[t.enemy], hH = HEROES[t.vsHero];
+        return `<div class="gp-item neg">
+          <img src="${eH?.heroPic}" class="gp-icon" alt="">
+          <div>Respect <b>${eH?.heroName}</b> early — they threaten ${hH?.heroName} before 14min (${t.earlyWR.toFixed(0)}% enemy WR). Play around them.</div>
+        </div>`;
+      }).join("")}
+    </div>` : "";
+
+  const carriesHtml = p.lateCarries.length ? `
+    <div class="gp-section">
+      <div class="gp-label">🌙 Protect & Scale</div>
+      ${p.lateCarries.slice(0,2).map(c => {
+        const hH = HEROES[c.hero];
+        return `<div class="gp-item carry">
+          <img src="${hH?.heroPic}" class="gp-icon" alt="">
+          <div>Babysit <b>${hH?.heroName}</b> — weak early (${c.earlyWR.toFixed(0)}% WR), monster late (${c.lateWR.toFixed(0)}% WR). Don't force fights for them before 16min.</div>
+        </div>`;
+      }).join("")}
+    </div>` : "";
+
+  if (!bulliesHtml && !threatsHtml && !carriesHtml) return "";
+
+  return `<div class="gp-block">
+    <div class="gp-heading">Game Plan <span class="timing-badge ${p.timing}">${tm.label}</span></div>
+    <div class="gp-wincon">${tm.desc}</div>
+    ${bulliesHtml}${threatsHtml}${carriesHtml}
+  </div>`;
+}
+
 function renderAnalysis() {
   const el = document.getElementById("analysis");
   if (turnIdx < 10) { el.style.display = "none"; return; }
@@ -824,6 +931,7 @@ function renderAnalysis() {
       Your Team (${myTeam === "A" ? "Team A" : "Team B"}) — Hero Guide
     </div>
     <div class="hero-guide">${guideCards}</div>
+    ${renderGamePlan(myPicks, enemyPicks)}
   `;
 }
 
