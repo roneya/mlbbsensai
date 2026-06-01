@@ -1153,10 +1153,8 @@ function renderRecommendations() {
   const enemies  = picks[enemy];
   const drafted  = allDrafted();
 
-  // Filter: exclude already-drafted heroes AND heroes whose role is already filled
-  const avail = Object.keys(HEROES).filter(id =>
-    !drafted.includes(id) && !roleConflicts(id, allies)
-  );
+  // Filter: exclude already-drafted heroes (role conflicts handled by ROLE_PENALTIES in computeScore)
+  const avail = Object.keys(HEROES).filter(id => !drafted.includes(id));
   
   // Check if this is a double turn (current + next OR current + previous are same team)
   const isDoubleTurn = (turnIdx < 9 && DRAFT_ORDER[turnIdx] === DRAFT_ORDER[turnIdx + 1]) ||
