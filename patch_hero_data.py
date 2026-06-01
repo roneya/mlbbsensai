@@ -71,6 +71,16 @@ for rec in records3:
     if ability_stats:
         hero_info[hname]["abilityStats"] = ability_stats
 
+    # heroClass (Tank/Fighter/Mage/etc.)
+    hero_class = next((s for s in hero_data.get("sortlabel", []) if s), "")
+    if hero_class:
+        hero_info[hname]["heroClass"] = hero_class
+
+    # speciality tags
+    speciality = [s for s in hero_data.get("speciality", []) if s]
+    if speciality:
+        hero_info[hname]["speciality"] = speciality
+
     # relation
     relation = {}
     for key in ("strong", "weak", "assist"):
@@ -89,13 +99,8 @@ print(f"  Updated {updated} heroes with relation + abilityStats")
 
 # ── Patch 2: increaseWinRate in sub_hero/sub_hero_last from API 2 ────────────
 if PATCH_INCREASE_WIN_RATE:
-    print("Patch 2: Fetching increaseWinRate from API 2 (264 calls, ~90s)...")
+    print("Patch 2: Fetching increaseWinRate + timingCurve from API 2 (264 calls, ~90s)...")
     headers2 = {**HEADERS_BASE, "authorization": "bzSIpad3osbcCB/vIK+VlLmJde8="}
-    max_hero_id = max(hdata.get("heroName") and int(str(rec.get("data",{}).get("heroid", 0)))
-                      for hname, hdata in hero_info.items()
-                      for rec in [{"data": {"heroid": 0}}])
-
-    # Get max hero id from heroid_to_name
     max_id = max(heroid_to_name.keys()) if heroid_to_name else 132
 
     def fetch_counter_compat(match_type):
@@ -126,12 +131,24 @@ if PATCH_INCREASE_WIN_RATE:
                     for item in d.get(sub_key, []):
                         iname = heroid_to_name.get(item.get("heroid"))
                         if iname and iname in existing:
+                            timing = {
+                                "6_8":  round(item.get("min_win_rate6_8",  0) * 100, 2),
+                                "8_10": round(item.get("min_win_rate8_10", 0) * 100, 2),
+                                "10_12":round(item.get("min_win_rate10_12",0) * 100, 2),
+                                "12_14":round(item.get("min_win_rate12_14",0) * 100, 2),
+                                "14_16":round(item.get("min_win_rate14_16",0) * 100, 2),
+                                "16_18":round(item.get("min_win_rate16_18",0) * 100, 2),
+                                "18_20":round(item.get("min_win_rate18_20",0) * 100, 2),
+                                "20+":  round(item.get("min_win_rate20",   0) * 100, 2),
+                            }
                             if isinstance(existing[iname], dict):
                                 existing[iname]["increaseWinRate"] = round(item.get("increase_win_rate", 0) * 100, 4)
+                                existing[iname]["timingCurve"] = timing
                             else:
                                 existing[iname] = {
                                     "winRate": existing[iname],
-                                    "increaseWinRate": round(item.get("increase_win_rate", 0) * 100, 4)
+                                    "increaseWinRate": round(item.get("increase_win_rate", 0) * 100, 4),
+                                    "timingCurve": timing
                                 }
 
                 print(f"  Hero {hero_id} ({hname}) -> {field_name}")

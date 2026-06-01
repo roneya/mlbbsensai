@@ -90,3 +90,6 @@ ENV/
 
 # Superpowers docs
 docs/superpowers/
+
+# API sample/reference files (dev-only, not needed for app)
+api*_sample.json

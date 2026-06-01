@@ -105,6 +105,12 @@ def add_hero_types(hero_info):
 
         if hero_id in hero_info:
             hero_info[hero_id]["heroType"] = hero_type
+            hero_class = next((s for s in hero_data.get("sortlabel", []) if s), "")
+            if hero_class:
+                hero_info[hero_id]["heroClass"] = hero_class
+            speciality = [s for s in hero_data.get("speciality", []) if s]
+            if speciality:
+                hero_info[hero_id]["speciality"] = speciality
             if ability_stats:
                 hero_info[hero_id]["abilityStats"] = ability_stats
             if relation:
@@ -148,7 +154,17 @@ def add_counter_and_compatibility(hero_info, max_hero_id):
                     return {
                         str(item["heroid"]): {
                             "winRate": round(item.get("hero_win_rate", 0) * 100, 4),
-                            "increaseWinRate": round(item.get("increase_win_rate", 0) * 100, 4)
+                            "increaseWinRate": round(item.get("increase_win_rate", 0) * 100, 4),
+                            "timingCurve": {
+                                "6_8":  round(item.get("min_win_rate6_8",  0) * 100, 2),
+                                "8_10": round(item.get("min_win_rate8_10", 0) * 100, 2),
+                                "10_12":round(item.get("min_win_rate10_12",0) * 100, 2),
+                                "12_14":round(item.get("min_win_rate12_14",0) * 100, 2),
+                                "14_16":round(item.get("min_win_rate14_16",0) * 100, 2),
+                                "16_18":round(item.get("min_win_rate16_18",0) * 100, 2),
+                                "18_20":round(item.get("min_win_rate18_20",0) * 100, 2),
+                                "20+":  round(item.get("min_win_rate20",   0) * 100, 2),
+                            }
                         }
                         for item in items if "heroid" in item
                     }

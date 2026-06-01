@@ -303,6 +303,13 @@ body { font-family: 'Segoe UI', system-ui, Arial, sans-serif; background: var(--
 .ps-badge.agg { background: #b71c1c; color: #ffcdd2; }
 .ps-badge.bal { background: #e65100; color: #ffe0b2; }
 .ps-badge.saf { background: #0d47a1; color: #90caf9; }
+.timing-badge {
+  font-size: 0.62rem; font-weight: bold; padding: 2px 7px; border-radius: 4px;
+  text-transform: uppercase; letter-spacing: 0.4px; margin-left: 5px;
+}
+.timing-badge.early { background: #1b5e20; color: #a5d6a7; }
+.timing-badge.late  { background: #311b92; color: #ce93d8; }
+.timing-badge.flex  { background: #33333a; color: #bdbdbd; }
 .guide-notes { display: flex; flex-direction: column; gap: 2px; }
 .guide-note { font-size: 0.71rem; line-height: 1.4; }
 .guide-note.pos { color: var(--green); }
@@ -557,6 +564,17 @@ function getCounterWinrates(heroId, enemyIds) {
   return (HEROES[heroId]?.winRate || 50) + (count > 0 ? totalWR / count : 0);
 }
 
+// Early avg > late avg by >8pp → Early counter; late avg > early by >8pp → Late; else Flex
+function getTimingLabel(timingCurve) {
+  if (!timingCurve) return null;
+  const earlyAvg = ((timingCurve["6_8"] || 0) + (timingCurve["8_10"] || 0) + (timingCurve["10_12"] || 0)) / 3;
+  const lateAvg  = ((timingCurve["16_18"] || 0) + (timingCurve["18_20"] || 0) + (timingCurve["20+"] || 0)) / 3;
+  const diff = lateAvg - earlyAvg;
+  if (diff > 8)  return { label: "Late",  cls: "late" };
+  if (diff < -8) return { label: "Early", cls: "early" };
+  return { label: "Flex", cls: "flex" };
+}
+
 function banHero(id) {
   if (phase !== "ban" || banIdx >= 10 || allBanned().includes(id)) return;
   bans[BAN_ORDER[banIdx]].push(id);
@@ -668,8 +686,8 @@ function buildExplanation(heroId, allies, enemies) {
   let bestComboAlly = null;
   let bestComboScore = 0;
   for (const a of allies) {
-    const score = compat.sub_hero?.[a] || 0;
-    if (score > bestComboScore && score > 52) {
+    const score = compat.sub_hero?.[a]?.increaseWinRate || 0;
+    if (score > bestComboScore && score > 2.0) {
       bestComboScore = score;
       bestComboAlly = a;
     }
@@ -681,15 +699,20 @@ function buildExplanation(heroId, allies, enemies) {
 
   for (const e of enemies) {
     const name = HEROES[e]?.heroName; if (!name) continue;
-    // Use enemy's own sub_hero list (already curated by API) — no threshold needed
     const eCounter = HEROES[e]?.hero_counter_info || {};
-    if      (eCounter.sub_hero?.[heroId])      notes.push({ pos:true,  t:`Counters ${name}` });
-    else if (eCounter.sub_hero_last?.[heroId]) notes.push({ pos:false, t:`Countered by ${name}` });
+    if (eCounter.sub_hero?.[heroId]) {
+      const tc = eCounter.sub_hero[heroId]?.timingCurve;
+      const tl = getTimingLabel(tc);
+      const badge = tl ? ` <span class="timing-badge ${tl.cls}">${tl.label}</span>` : "";
+      notes.push({ pos:true,  t:`Counters ${name}${badge}` });
+    } else if (eCounter.sub_hero_last?.[heroId]) {
+      notes.push({ pos:false, t:`Countered by ${name}` });
+    }
   }
   for (const a of allies) {
     const name = HEROES[a]?.heroName; if (!name) continue;
-    if      (compat.sub_hero?.[a]      > 53.0) notes.push({ pos:true,  t:`Strong with ${name}` });
-    else if (compat.sub_hero_last?.[a] > 53.0) notes.push({ pos:false, t:`Poor synergy with ${name}` });
+    if      ((compat.sub_hero?.[a]?.winRate      || 0) > 53.0) notes.push({ pos:true,  t:`Strong with ${name}` });
+    else if ((compat.sub_hero_last?.[a]?.winRate || 0) > 53.0) notes.push({ pos:false, t:`Poor synergy with ${name}` });
   }
   const role = h.heroType;
   if (role) {
@@ -716,10 +739,8 @@ function heroPlaystyle(heroId, enemies) {
   const counter = HEROES[heroId]?.hero_counter_info || {};
   let val = ((HEROES[heroId]?.winRate || 50) - 50) * 1.5;
   for (const e of enemies) {
-    // sub_hero = countered by enemy (bad) → negative
-    // sub_hero_last = counters enemy (good) → positive
-    if (counter.sub_hero?.[e])      val -= counter.sub_hero[e]      - 50;
-    if (counter.sub_hero_last?.[e]) val += counter.sub_hero_last[e] - 50;
+    if (counter.sub_hero?.[e])      val -= (counter.sub_hero[e].winRate      || 50) - 50;
+    if (counter.sub_hero_last?.[e]) val += (counter.sub_hero_last[e].winRate || 50) - 50;
   }
   if (val > 4)  return { label:"Aggressive", cls:"agg" };
   if (val < -4) return { label:"Safe",       cls:"saf" };
@@ -1039,12 +1060,27 @@ function buildRecCard(heroId, s, allies, enemies) {
   const notesHtml = notes.map(n =>
     `<div class="note ${n.pos ? "pos" : "neg"}">${n.pos ? "+" : "−"} ${n.t}</div>`
   ).join("");
+
+  // Timing badge: dominant counter timing vs the enemy team
+  let timingBadgeHtml = "";
+  const counter = h.hero_counter_info || {};
+  for (const e of enemies) {
+    const entry = counter.sub_hero_last?.[e];
+    if (entry?.timingCurve) {
+      const tl = getTimingLabel(entry.timingCurve);
+      if (tl && tl.cls !== "flex") {
+        timingBadgeHtml = `<span class="timing-badge ${tl.cls}">${tl.label}</span>`;
+        break;
+      }
+    }
+  }
+
   return `<div class="rec-card" onclick="pickHero('${heroId}')">
     <div class="rec-row">
       <img src="${h.heroPic}" class="rec-img" alt="${h.heroName}">
       <div class="rec-info">
         <div class="rec-name">${h.heroName}</div>
-        <div class="rec-type role-${h.heroType}">${h.heroType || ""}</div>
+        <div class="rec-type role-${h.heroType}">${h.heroType || ""}${timingBadgeHtml}</div>
       </div>
       <div class="rec-score">
         <div class="score-num">${Math.round(s)}</div>
