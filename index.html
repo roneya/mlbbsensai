@@ -82,6 +82,10 @@ body { font-family: 'Segoe UI', system-ui, Arial, sans-serif; background: var(--
 .phase-badge.early    { border-color: #ef5350; color: #ef5350; }
 .phase-badge.balanced { border-color: var(--gold); color: var(--gold); }
 .phase-badge.late     { border-color: #42a5f5; color: #42a5f5; }
+.phase-badge.dive    { border-color: #ef5350; color: #ef5350; }
+.phase-badge.poke    { border-color: #ab47bc; color: #ab47bc; }
+.phase-badge.sustain { border-color: #42a5f5; color: #42a5f5; }
+.phase-badge.balanced-comp { border-color: #555; color: #999; }
 .draft-seq { display: flex; gap: 4px; flex-wrap: wrap; }
 .seq-dot {
   width: 28px; height: 23px; border-radius: 5px; font-size: 0.62rem;
@@ -388,6 +392,7 @@ body { font-family: 'Segoe UI', system-ui, Arial, sans-serif; background: var(--
   <div class="turn-bar">
     <div id="currentTurn" class="turn-badge team-A">Turn: A1</div>
     <div id="phaseBadge" class="phase-badge balanced">⚖️ Balanced</div>
+    <div id="compBadge" class="phase-badge" style="display:none"></div>
     <div id="draftSeq" class="draft-seq"></div>
   </div>
 
@@ -578,6 +583,18 @@ function detectGamePhase(allies, enemies) {
   return 'balanced';
 }
 
+function detectEnemyComp(enemies) {
+  if (enemies.length < 2) return null;
+  const classes = enemies.map(id => HEROES[id]?.heroClass || "");
+  const diveCount  = classes.filter(c => c === "Assassin" || c === "Fighter").length;
+  const pokeCount  = classes.filter(c => c === "Mage"     || c === "Marksman").length;
+  const tankSupCount = classes.filter(c => c === "Tank"   || c === "Support").length;
+  if (diveCount  >= 2) return "Dive";
+  if (pokeCount  >= 2) return "Poke";
+  if (tankSupCount >= 2) return "Sustain";
+  return "Balanced";
+}
+
 const PHASE_TIME_FIELDS = {
   early:    ['min_win_rate10_12', 'min_win_rate12_14'],
   balanced: ['min_win_rate14_16', 'min_win_rate16_18'],
@@ -727,6 +744,16 @@ function computeScore(heroId, allies, enemies) {
       s += flex ? (ROLE_PENALTIES[role] || 0) * 0.5 : (ROLE_PENALTIES[role] || 0);
     }
   }
+
+  const comp = detectEnemyComp(enemies);
+  if (comp === "Dive") {
+    if (h.heroClass === "Tank") s += 15;
+    else if (h.heroClass === "Support") s += 10;
+  } else if (comp === "Poke") {
+    if (h.heroClass === "Assassin") s += 15;
+    else if (h.heroClass === "Fighter") s += 10;
+  }
+
   return s;
 }
 
@@ -1050,6 +1077,21 @@ function renderTurnBar() {
     const phaseLabels = { early: "⚔️ Early Game", balanced: "⚖️ Balanced", late: "🛡️ Late Game" };
     phaseBadge.textContent = phaseLabels[phaseVal];
     phaseBadge.className = `phase-badge ${phaseVal}`;
+  }
+
+  const compBadge = document.getElementById("compBadge");
+  if (compBadge) {
+    const enemy = myTeam === "A" ? "B" : "A";
+    const comp = detectEnemyComp(picks[enemy]);
+    if (comp && picks[enemy].length >= 2) {
+      const compLabels = { Dive: "Dive Comp", Poke: "Poke Comp", Sustain: "Sustain Comp", Balanced: "Balanced Comp" };
+      const compCls    = { Dive: "dive", Poke: "poke", Sustain: "sustain", Balanced: "balanced-comp" };
+      compBadge.textContent = `Enemy: ${compLabels[comp]}`;
+      compBadge.className = `phase-badge ${compCls[comp]}`;
+      compBadge.style.display = "";
+    } else {
+      compBadge.style.display = "none";
+    }
   }
 }
 
