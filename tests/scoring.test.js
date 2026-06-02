@@ -31,6 +31,7 @@ function loadFns(HEROES) {
     buildExplanation:     context.buildExplanation,
     missingRoles:         context.missingRoles,
     computeAdjustedScore: context.computeAdjustedScore,
+    computeDraftGrade:    context.computeDraftGrade,
   };
 }
 

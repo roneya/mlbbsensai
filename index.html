@@ -309,6 +309,15 @@ body { font-family: 'Segoe UI', system-ui, Arial, sans-serif; background: var(--
 .timing-badge.early { background: #1b5e20; color: #a5d6a7; }
 .timing-badge.late  { background: #311b92; color: #ce93d8; }
 .timing-badge.flex  { background: #33333a; color: #bdbdbd; }
+.grade-badge {
+  display: inline-block; font-size: 1.1rem; font-weight: bold;
+  padding: 2px 10px; border-radius: 6px; margin-left: 8px;
+  vertical-align: middle;
+}
+.grade-badge.A { background: #1b3a1b; color: #81c784; }
+.grade-badge.B { background: #1a2a40; color: #90caf9; }
+.grade-badge.C { background: #3a3000; color: #f0a500; }
+.grade-badge.D { background: #3a1b1b; color: #ef5350; }
 .tier-badge {
   display: inline-block; font-size: 0.6rem; font-weight: bold;
   padding: 1px 5px; border-radius: 4px; margin-left: 4px;
@@ -966,6 +975,41 @@ function renderGamePlan(myPicks, enemyPicks) {
   </div>`;
 }
 
+function computeDraftGrade(myPicks, enemyPicks) {
+  // 1. Synergy density
+  let totalSynergy = 0;
+  for (let i = 0; i < myPicks.length; i++) {
+    for (let j = i + 1; j < myPicks.length; j++) {
+      const iwr = HEROES[myPicks[i]]?.hero_compatibility_info?.sub_hero?.[myPicks[j]]?.increaseWinRate ?? 0;
+      const iwr2 = HEROES[myPicks[j]]?.hero_compatibility_info?.sub_hero?.[myPicks[i]]?.increaseWinRate ?? 0;
+      totalSynergy += Math.max(iwr, iwr2);
+    }
+  }
+  const synergyScore = Math.min(100, Math.round(totalSynergy / 10 * 20));
+
+  // 2. Role coverage
+  const ALL_ROLES = ["Roam", "Mid Lane", "Gold Lane", "Exp Lane", "Jungle"];
+  const filledRoles = new Set(myPicks.map(id => HEROES[id]?.heroType).filter(Boolean));
+  const coverageScore = Math.round(filledRoles.size / 5 * 100);
+
+  // 3. Counter coverage
+  let counterCoverage;
+  if (enemyPicks.length === 0) {
+    counterCoverage = 50;
+  } else {
+    const heroesWithCounters = myPicks.filter(id =>
+      enemyPicks.some(e => HEROES[id]?.hero_counter_info?.sub_hero?.[e])
+    ).length;
+    counterCoverage = Math.round(heroesWithCounters / 5 * 100);
+  }
+
+  const avg = Math.round((synergyScore + coverageScore + counterCoverage) / 3);
+  if (avg >= 80) return "A";
+  if (avg >= 65) return "B";
+  if (avg >= 50) return "C";
+  return "D";
+}
+
 function renderAnalysis() {
   const el = document.getElementById("analysis");
   if (turnIdx < 10) { el.style.display = "none"; return; }
@@ -1025,8 +1069,10 @@ function renderAnalysis() {
     </div>`;
   }).join("");
 
+  const grade = computeDraftGrade(myPicks, enemyPicks);
+
   el.innerHTML = `
-    <div class="analysis-title">Draft Analysis</div>
+    <div class="analysis-title">Draft Analysis <span class="grade-badge ${grade}">${grade}</span></div>
 
     <div class="win-prob-block">
       <div class="win-headline">${headline}</div>
