@@ -209,3 +209,54 @@ test('missingRoles: returns empty array when all 5 roles are filled', () => {
   // Lolita=Roam, Cyclops=Mid Lane, G=Gold Lane, E=Exp Lane, J=Jungle
   assert.equal(missingRoles(['Lolita','Cyclops','G','E','J']).length, 0);
 });
+
+// ── Ally synergy time weighting ───────────────────────────────────────────
+const SYNERGY_STRONG_PHASE = {
+  heroName: 'SynergyStrong', heroType: 'Gold Lane',
+  winRate: 50, appearanceRate: 0, banRate: 0, heroPic: '',
+  hero_compatibility_info: {
+    sub_hero: {
+      Lolita: {
+        increaseWinRate: 3.0,
+        min_win_rate14_16: 0.60,
+        min_win_rate16_18: 0.62,
+      }
+    },
+    sub_hero_last: {},
+  },
+  hero_counter_info: { sub_hero: {}, sub_hero_last: {} },
+};
+
+const SYNERGY_WEAK_PHASE = {
+  heroName: 'SynergyWeak', heroType: 'Exp Lane',
+  winRate: 50, appearanceRate: 0, banRate: 0, heroPic: '',
+  hero_compatibility_info: {
+    sub_hero: {
+      Lolita: {
+        increaseWinRate: 3.0,
+        min_win_rate14_16: 0.45,
+        min_win_rate16_18: 0.46,
+      }
+    },
+    sub_hero_last: {},
+  },
+  hero_counter_info: { sub_hero: {}, sub_hero_last: {} },
+};
+
+test('computeScore ally synergy: strong-phase synergy scores higher than weak-phase synergy', () => {
+  const PHASED_HEROES = { ...HEROES, SynergyStrong: SYNERGY_STRONG_PHASE, SynergyWeak: SYNERGY_WEAK_PHASE };
+  const { computeScore } = loadFns(PHASED_HEROES);
+  const scoreStrong = computeScore('SynergyStrong', ['Lolita'], []);
+  const scoreWeak   = computeScore('SynergyWeak',   ['Lolita'], []);
+  assert.ok(scoreStrong > scoreWeak,
+    `strong-phase synergy score (${scoreStrong}) should exceed weak-phase (${scoreWeak})`);
+});
+
+test('computeScore ally synergy: without an ally, both heroes score equally', () => {
+  const PHASED_HEROES = { ...HEROES, SynergyStrong: SYNERGY_STRONG_PHASE, SynergyWeak: SYNERGY_WEAK_PHASE };
+  const { computeScore } = loadFns(PHASED_HEROES);
+  const scoreStrong = computeScore('SynergyStrong', [], []);
+  const scoreWeak   = computeScore('SynergyWeak',   [], []);
+  assert.equal(scoreStrong, scoreWeak,
+    `without ally, both scores should be equal: strong=${scoreStrong} weak=${scoreWeak}`);
+});

@@ -661,6 +661,17 @@ function roleConflicts(heroId, existingPicks) {
 }
 
 // ── Scoring ────────────────────────────────────────────────────────────────
+function applyTimeWeight(bonus, matchup, timeFields) {
+  let twTotal = 0, twCount = 0;
+  for (const f of timeFields) { if (matchup[f] !== undefined) { twTotal += matchup[f] * 100; twCount++; } }
+  if (twCount > 0) {
+    const avg = twTotal / twCount;
+    if (avg > 55) bonus *= 1.25;
+    else if (avg < 48) bonus *= 0.75;
+  }
+  return bonus;
+}
+
 function computeScore(heroId, allies, enemies) {
   const h = HEROES[heroId];
   if (!h) return -Infinity;
@@ -670,27 +681,26 @@ function computeScore(heroId, allies, enemies) {
   const compat  = h.hero_compatibility_info || {};
   const counter = h.hero_counter_info       || {};
 
-  for (const a of allies) {
-    if (compat.sub_hero?.[a])      s += (compat.sub_hero[a].increaseWinRate      ?? 0);
-    if (compat.sub_hero_last?.[a]) s += (compat.sub_hero_last[a].increaseWinRate  ?? 0);
-  }
   const phase = detectGamePhase(allies, enemies);
   const timeFields = PHASE_TIME_FIELDS[phase];
+
+  for (const a of allies) {
+    if (compat.sub_hero?.[a]) {
+      const matchup = compat.sub_hero[a];
+      s += applyTimeWeight(matchup.increaseWinRate ?? 0, matchup, timeFields);
+    }
+    if (compat.sub_hero_last?.[a]) {
+      const matchup = compat.sub_hero_last[a];
+      s += applyTimeWeight(matchup.increaseWinRate ?? 0, matchup, timeFields);
+    }
+  }
 
   for (const e of enemies) {
     // sub_hero = THIS hero counters enemy (good) → positive increaseWinRate → bonus
     // sub_hero_last = enemy counters THIS hero (bad) → negative increaseWinRate → penalty
     if (counter.sub_hero?.[e]) {
       const matchup = counter.sub_hero[e];
-      let bonus = matchup.increaseWinRate ?? 0;
-      let twTotal = 0, twCount = 0;
-      for (const f of timeFields) { if (matchup[f] !== undefined) { twTotal += matchup[f] * 100; twCount++; } }
-      if (twCount > 0) {
-        const avg = twTotal / twCount;
-        if (avg > 55) bonus *= 1.25;
-        else if (avg < 48) bonus *= 0.75;
-      }
-      s += bonus;
+      s += applyTimeWeight(matchup.increaseWinRate ?? 0, matchup, timeFields);
     }
     if (counter.sub_hero_last?.[e]) {
       const matchup = counter.sub_hero_last[e];
