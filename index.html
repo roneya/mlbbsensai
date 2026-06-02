@@ -1214,7 +1214,7 @@ function buildRecCard(heroId, s, allies, enemies) {
     }
   }
 
-  return `<div class="rec-card" onclick="pickHero('${heroId}')">
+  return `<div class="rec-card" onclick="pickHero('${heroId.replace(/'/g, "\\'")}')">
     <div class="rec-row">
       <img src="${h.heroPic}" class="rec-img" alt="${h.heroName}">
       <div class="rec-info">
@@ -1253,7 +1253,7 @@ function renderHeroGrid() {
       isEnemyBanned ? "enemy-banned" : "",
       isCounter ? "counters-enemy" : ""
     ].filter(Boolean).join(" ");
-    return `<div class="${cls}" onclick="pickHero('${id}')">
+    return `<div class="${cls}" onclick="pickHero('${id.replace(/'/g, "\\'")}')">
       <img src="${h.heroPic}" alt="${h.heroName}" loading="lazy">
       <div class="hc-name">${h.heroName}</div>
       <div class="hc-type role-${h.heroType}">${h.heroType || ""}</div>
