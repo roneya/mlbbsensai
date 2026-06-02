@@ -461,6 +461,18 @@ const DRAFT_ORDER    = ["A","B","B","A","A","B","B","A","A","B"];
 const TURN_LABELS    = ["A1","B1","B2","A2","A3","B3","B4","A4","A5","B5"];
 const ROLE_BONUSES   = { Roam:30,  Mid:25,  Gold:25,  EXP:10,  Jungle:10  };
 const ROLE_PENALTIES = { Roam:-30, Mid:-25, Gold:-25, EXP:-10, Jungle:-10 };
+const SLOT_ROLE_PREFS = {
+  0: ["Roam", "Mid Lane"],
+  1: ["Roam", "Gold Lane"],
+  2: ["Mid Lane", "Jungle"],
+  3: ["Gold Lane", "Jungle"],
+  4: ["Exp Lane", "Mid Lane"],
+  5: ["Jungle", "Exp Lane"],
+  6: ["Gold Lane", "Mid Lane"],
+  7: ["Exp Lane", "Jungle"],
+  8: ["Gold Lane", "Exp Lane"],
+  9: ["Exp Lane", "Roam"],
+};
 
 // ── State ──────────────────────────────────────────────────────────────────
 let HEROES       = {};
@@ -753,6 +765,9 @@ function computeScore(heroId, allies, enemies) {
     if (h.heroClass === "Assassin") s += 15;
     else if (h.heroClass === "Fighter") s += 10;
   }
+
+  const slotPrefs = SLOT_ROLE_PREFS[turnIdx];
+  if (slotPrefs && role && slotPrefs.includes(role)) s += 10;
 
   return s;
 }

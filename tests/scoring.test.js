@@ -78,7 +78,7 @@ test('computeScore: no allies no enemies returns base score only', () => {
   const { computeScore } = loadFns({ Lolita: LOLITA });
   const score = computeScore('Lolita', [], []);
   const expected = LOLITA.winRate + LOLITA.appearanceRate * 100;
-  assert.ok(score > expected - 5 && score < expected + 35,  // role bonus for Roam (+30)
+  assert.ok(score > expected - 5 && score < expected + 45,  // role bonus for Roam (+30) + slot bonus (+10)
     `score ${score} out of expected range around ${expected}`);
 });
 
