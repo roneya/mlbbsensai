@@ -1097,9 +1097,17 @@ function renderDraftBoard() {
   });
 }
 
+function normalizeScores(candidates) {
+  if (candidates.length === 0) return [];
+  const scores = candidates.map(c => c.s);
+  const max = Math.max(...scores);
+  const min = Math.min(...scores);
+  return candidates.map(c => ({ ...c, fit: max === min ? 100 : Math.round((c.s - min) / (max - min) * 100) }));
+}
+
 function renderRecommendations() {
   const el = document.getElementById("recsInner");
-  
+
   // Ban Phase Recommendations
   if (phase === "ban") {
     const team = curTeam();
@@ -1107,10 +1115,10 @@ function renderRecommendations() {
       el.innerHTML = `<div class="no-recs">Waiting for ${team === "A" ? "Team A" : "Team B"}…</div>`;
       return;
     }
-    
+
     const banned = allBanned();
     const avail = Object.keys(HEROES).filter(id => !banned.includes(id));
-    
+
     // Recommend heroes to ban based on meta (high banRate + winRate)
     const banCandidates = avail
       .map(id => {
@@ -1120,9 +1128,10 @@ function renderRecommendations() {
       })
       .sort((a, b) => b.s - a.s)
       .slice(0, 8);
-    
+
+    const normalized = normalizeScores(banCandidates);
     el.innerHTML = '<div class="recs-subtitle">Recommended Bans (Meta Heroes)</div>' +
-      banCandidates.map(r => buildRecCard(r.id, r.s, [], [])).join("");
+      normalized.map(r => buildRecCard(r.id, r.fit, [], [])).join("");
     return;
   }
   
@@ -1171,8 +1180,9 @@ function renderRecommendations() {
         .sort((a, b) => b.s - a.s)
         .slice(0, 3);
       if (heroesInRole.length > 0) {
+        const normalized = normalizeScores(heroesInRole);
         html += `<div class="recs-subtitle">${roleName}</div>`;
-        html += heroesInRole.map(r => buildRecCard(r.id, r.s, [], [])).join("");
+        html += normalized.map(r => buildRecCard(r.id, r.fit, [], [])).join("");
       }
     }
     el.innerHTML = html || '<div class="no-recs">No heroes available</div>';
@@ -1181,15 +1191,17 @@ function renderRecommendations() {
       .map(id => ({ id, s: computeAdjustedScore(id, avail, allies, enemies) }))
       .sort((a, b) => b.s - a.s)
       .slice(0, 5);
+    const normalized = normalizeScores(ranked);
     el.innerHTML = '<div class="recs-subtitle">Top Picks (double turn)</div>' +
-      ranked.map(r => buildRecCard(r.id, r.s, allies, enemies)).join("");
+      normalized.map(r => buildRecCard(r.id, r.fit, allies, enemies)).join("");
   } else {
     const ranked = avail
       .map(id => ({ id, s: computeScore(id, allies, enemies) }))
       .sort((a, b) => b.s - a.s)
       .slice(0, 5);
+    const normalized = normalizeScores(ranked);
     el.innerHTML = '<div class="recs-subtitle">Top Picks</div>' +
-      ranked.map(r => buildRecCard(r.id, r.s, allies, enemies)).join("");
+      normalized.map(r => buildRecCard(r.id, r.fit, allies, enemies)).join("");
   }
 }
 
@@ -1222,7 +1234,7 @@ function buildRecCard(heroId, s, allies, enemies) {
         <div class="rec-type role-${h.heroType}">${h.heroType || ""}${timingBadgeHtml}</div>
       </div>
       <div class="rec-score">
-        <div class="score-num">${Math.round(s)}</div>
+        <div class="score-num">Fit: ${s}%</div>
         <div class="wr-label">WR ${(h.winRate || 0).toFixed(1)}%</div>
       </div>
     </div>
