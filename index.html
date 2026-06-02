@@ -1118,20 +1118,53 @@ function renderRecommendations() {
 
     const banned = allBanned();
     const avail = Object.keys(HEROES).filter(id => !banned.includes(id));
+    const allies = picks[myTeam];
 
-    // Recommend heroes to ban based on meta (high banRate + winRate)
-    const banCandidates = avail
-      .map(id => {
-        const h = HEROES[id];
-        const banScore = (h.banRate || 0) * 2 + (h.winRate || 0);
-        return { id, s: banScore };
-      })
-      .sort((a, b) => b.s - a.s)
-      .slice(0, 8);
+    // Check if we have picks: if so, use context-aware bans; otherwise use meta bans
+    if (allies.length === 0) {
+      // Meta ban mode: recommend heroes to ban based on meta (high banRate + winRate)
+      const banCandidates = avail
+        .map(id => {
+          const h = HEROES[id];
+          const banScore = (h.banRate || 0) * 2 + (h.winRate || 0);
+          return { id, s: banScore };
+        })
+        .sort((a, b) => b.s - a.s)
+        .slice(0, 8);
 
-    const normalized = normalizeScores(banCandidates);
-    el.innerHTML = '<div class="recs-subtitle">Recommended Bans (Meta Heroes)</div>' +
-      normalized.map(r => buildRecCard(r.id, r.fit, [], [])).join("");
+      const normalized = normalizeScores(banCandidates);
+      el.innerHTML = '<div class="recs-subtitle">Recommended Bans (Meta Heroes)</div>' +
+        normalized.map(r => buildRecCard(r.id, r.fit, [], [])).join("");
+    } else {
+      // Context-aware ban mode: recommend heroes to ban based on threat to our picks
+      const banCandidates = avail
+        .map(id => {
+          // Compute threat score: sum of increaseWinRate across all allies
+          const threatScore = allies.reduce((sum, allyId) => {
+            const iwr = HEROES[id]?.hero_counter_info?.sub_hero?.[allyId]?.increaseWinRate ?? 0;
+            return sum + iwr;
+          }, 0);
+          return { id, s: threatScore };
+        })
+        .sort((a, b) => b.s - a.s)
+        .slice(0, 8);
+
+      const normalized = normalizeScores(banCandidates);
+      el.innerHTML = '<div class="recs-subtitle">Recommended Bans (Counters Your Picks)</div>' +
+        normalized.map(r => {
+          // Find which ally this hero most strongly counters
+          const topAlly = allies.reduce((best, allyId) => {
+            const iwr = HEROES[r.id]?.hero_counter_info?.sub_hero?.[allyId]?.increaseWinRate ?? 0;
+            const bestIWR = HEROES[r.id]?.hero_counter_info?.sub_hero?.[best]?.increaseWinRate ?? 0;
+            return iwr > bestIWR ? allyId : best;
+          }, allies[0]);
+          const topIWR = HEROES[r.id]?.hero_counter_info?.sub_hero?.[topAlly]?.increaseWinRate ?? 0;
+          const noteOverride = topIWR > 0
+            ? [{ pos: false, t: `counters your ${HEROES[topAlly]?.heroName}` }]
+            : [];
+          return buildRecCard(r.id, r.fit, [], [], noteOverride);
+        }).join("");
+    }
     return;
   }
   
@@ -1205,9 +1238,9 @@ function renderRecommendations() {
   }
 }
 
-function buildRecCard(heroId, s, allies, enemies) {
+function buildRecCard(heroId, s, allies, enemies, noteOverride = null) {
   const h     = HEROES[heroId];
-  const notes = buildExplanation(heroId, allies, enemies);
+  const notes = noteOverride !== null ? noteOverride : buildExplanation(heroId, allies, enemies);
   const notesHtml = notes.map(n =>
     `<div class="note ${n.pos ? "pos" : "neg"}">${n.pos ? "+" : "−"} ${n.t}</div>`
   ).join("");
