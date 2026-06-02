@@ -260,3 +260,54 @@ test('computeScore ally synergy: without an ally, both heroes score equally', ()
   assert.equal(scoreStrong, scoreWeak,
     `without ally, both scores should be equal: strong=${scoreStrong} weak=${scoreWeak}`);
 });
+
+// ── computeAdjustedScore ──────────────────────────────────────────────────
+const ADJ_A = {
+  heroName: 'AdjA', heroType: 'Roam',
+  winRate: 50, appearanceRate: 0, banRate: 0, heroPic: '',
+  hero_compatibility_info: { sub_hero: {}, sub_hero_last: {} },
+  hero_counter_info: { sub_hero: {}, sub_hero_last: {} },
+};
+
+const ADJ_B = {
+  heroName: 'AdjB', heroType: 'Roam',
+  winRate: 55, appearanceRate: 0, banRate: 0, heroPic: '',
+  hero_compatibility_info: { sub_hero: {}, sub_hero_last: {} },
+  hero_counter_info: { sub_hero: {}, sub_hero_last: {} },
+};
+
+const ADJ_X = {
+  heroName: 'AdjX', heroType: 'Mid Lane',
+  winRate: 50, appearanceRate: 0, banRate: 0, heroPic: '',
+  hero_compatibility_info: {
+    sub_hero: {
+      AdjA: { increaseWinRate: 50.0 },
+    },
+    sub_hero_last: {},
+  },
+  hero_counter_info: { sub_hero: {}, sub_hero_last: {} },
+};
+
+test('computeAdjustedScore: hero enabling strong follow-up outranks higher base-score hero', () => {
+  const ADJ_HEROES = { AdjA: ADJ_A, AdjB: ADJ_B, AdjX: ADJ_X };
+  const { computeScore, computeAdjustedScore } = loadFns(ADJ_HEROES);
+  const avail = ['AdjA', 'AdjB', 'AdjX'];
+
+  assert.ok(computeScore('AdjB', [], []) > computeScore('AdjA', [], []),
+    'AdjB should have higher base score');
+
+  const adjA = computeAdjustedScore('AdjA', avail, [], []);
+  const adjB = computeAdjustedScore('AdjB', avail, [], []);
+  assert.ok(adjA > adjB,
+    `AdjA adjusted (${adjA}) should exceed AdjB adjusted (${adjB}) due to follow-up synergy`);
+});
+
+test('computeAdjustedScore: role conflict excludes follow-up picks', () => {
+  const ADJ_HEROES = { AdjA: ADJ_A, AdjB: ADJ_B, AdjX: ADJ_X };
+  const { computeAdjustedScore } = loadFns(ADJ_HEROES);
+  const avail = ['AdjA', 'AdjB', 'AdjX'];
+
+  const adjA = computeAdjustedScore('AdjA', avail, [], []);
+  assert.ok(adjA > 150,
+    `AdjA adjusted score ${adjA} should reflect X synergy (expected >150)`);
+});

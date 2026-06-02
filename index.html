@@ -729,6 +729,19 @@ function computeScore(heroId, allies, enemies) {
   return s;
 }
 
+function computeAdjustedScore(heroId, avail, allies, enemies) {
+  const base = computeScore(heroId, allies, enemies);
+  const withA = [...allies, heroId];
+  let best = -Infinity;
+  for (const b of avail) {
+    if (b === heroId) continue;
+    if (roleConflicts(b, withA)) continue;
+    const s = computeScore(b, withA, enemies);
+    if (s > best) best = s;
+  }
+  return base + (best === -Infinity ? 0 : best);
+}
+
 // ── Explanation bullets ────────────────────────────────────────────────────
 function buildExplanation(heroId, allies, enemies) {
   const h       = HEROES[heroId];
@@ -1129,6 +1142,9 @@ function renderRecommendations() {
 
   // Filter: exclude already-drafted heroes (role conflicts handled by ROLE_PENALTIES in computeScore)
   const avail = Object.keys(HEROES).filter(id => !drafted.includes(id));
+  const isDoubleTurn = (turnIdx < 9 && DRAFT_ORDER[turnIdx] === DRAFT_ORDER[turnIdx + 1]) ||
+                       (turnIdx > 0 && DRAFT_ORDER[turnIdx] === DRAFT_ORDER[turnIdx - 1]);
+  const isFirstOfDouble = turnIdx < 9 && DRAFT_ORDER[turnIdx] === DRAFT_ORDER[turnIdx + 1];
 
   // Update "Team needs:" banner
   const needsBanner = document.getElementById("teamNeeds");
@@ -1160,6 +1176,13 @@ function renderRecommendations() {
       }
     }
     el.innerHTML = html || '<div class="no-recs">No heroes available</div>';
+  } else if (isDoubleTurn && isFirstOfDouble) {
+    const ranked = avail
+      .map(id => ({ id, s: computeAdjustedScore(id, avail, allies, enemies) }))
+      .sort((a, b) => b.s - a.s)
+      .slice(0, 5);
+    el.innerHTML = '<div class="recs-subtitle">Top Picks (double turn)</div>' +
+      ranked.map(r => buildRecCard(r.id, r.s, allies, enemies)).join("");
   } else {
     const ranked = avail
       .map(id => ({ id, s: computeScore(id, allies, enemies) }))
