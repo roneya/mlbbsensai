@@ -242,6 +242,7 @@ body { font-family: 'Segoe UI', system-ui, Arial, sans-serif; background: var(--
 }
 .rec-card:hover { background: #2a2a40; border-color: #3a3a5a; transform: translateY(-1px); }
 .rec-card:last-child { margin-bottom: 0; }
+.threat-card { border-left: 2px solid #ef5350; }
 .rec-row { display: flex; align-items: center; gap: 9px; margin-bottom: 5px; }
 .rec-img { width: 40px; height: 40px; border-radius: 6px; object-fit: cover; flex-shrink: 0; }
 .rec-info { flex: 1; min-width: 0; }
@@ -1105,6 +1106,44 @@ function normalizeScores(candidates) {
   return candidates.map(c => ({ ...c, fit: max === min ? 100 : Math.round((c.s - min) / (max - min) * 100) }));
 }
 
+function buildThreatsSection(avail, allies) {
+  const threats = avail
+    .map(id => {
+      const score = allies.reduce((sum, a) =>
+        sum + (HEROES[id]?.hero_counter_info?.sub_hero?.[a]?.increaseWinRate ?? 0), 0);
+      // find which ally is most threatened
+      const topAlly = allies.reduce((best, a) => {
+        const iwr = HEROES[id]?.hero_counter_info?.sub_hero?.[a]?.increaseWinRate ?? 0;
+        const bestIwr = HEROES[id]?.hero_counter_info?.sub_hero?.[best]?.increaseWinRate ?? 0;
+        return iwr > bestIwr ? a : best;
+      }, allies[0]);
+      return { id, score, topAlly };
+    })
+    .filter(t => t.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 3);
+
+  if (threats.length === 0) return "";
+
+  const cards = threats.map(t => {
+    const h = HEROES[t.id];
+    const allyName = HEROES[t.topAlly]?.heroName ?? "";
+    const note = allyName ? `<div class="note neg">− threatens your ${allyName}</div>` : "";
+    return `<div class="rec-card threat-card">
+      <div class="rec-row">
+        <img src="${h.heroPic}" class="rec-img" alt="${h.heroName}">
+        <div class="rec-info">
+          <div class="rec-name">${h.heroName}</div>
+          <div class="rec-type role-${h.heroType}">${h.heroType || ""}</div>
+        </div>
+      </div>
+      <div class="notes">${note}</div>
+    </div>`;
+  }).join("");
+
+  return `<div class="recs-subtitle" style="margin-top:10px;color:#ef5350;">Threats in Pool</div>${cards}`;
+}
+
 function renderRecommendations() {
   const el = document.getElementById("recsInner");
 
@@ -1219,6 +1258,9 @@ function renderRecommendations() {
       }
     }
     el.innerHTML = html || '<div class="no-recs">No heroes available</div>';
+    if (allies.length >= 1) {
+      el.innerHTML += buildThreatsSection(avail, allies);
+    }
   } else if (isDoubleTurn && isFirstOfDouble) {
     const ranked = avail
       .map(id => ({ id, s: computeAdjustedScore(id, avail, allies, enemies) }))
@@ -1227,6 +1269,9 @@ function renderRecommendations() {
     const normalized = normalizeScores(ranked);
     el.innerHTML = '<div class="recs-subtitle">Top Picks (double turn)</div>' +
       normalized.map(r => buildRecCard(r.id, r.fit, allies, enemies)).join("");
+    if (allies.length >= 1) {
+      el.innerHTML += buildThreatsSection(avail, allies);
+    }
   } else {
     const ranked = avail
       .map(id => ({ id, s: computeScore(id, allies, enemies) }))
@@ -1235,6 +1280,9 @@ function renderRecommendations() {
     const normalized = normalizeScores(ranked);
     el.innerHTML = '<div class="recs-subtitle">Top Picks</div>' +
       normalized.map(r => buildRecCard(r.id, r.fit, allies, enemies)).join("");
+    if (allies.length >= 1) {
+      el.innerHTML += buildThreatsSection(avail, allies);
+    }
   }
 }
 
