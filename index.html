@@ -309,6 +309,15 @@ body { font-family: 'Segoe UI', system-ui, Arial, sans-serif; background: var(--
 .timing-badge.early { background: #1b5e20; color: #a5d6a7; }
 .timing-badge.late  { background: #311b92; color: #ce93d8; }
 .timing-badge.flex  { background: #33333a; color: #bdbdbd; }
+.tier-badge {
+  display: inline-block; font-size: 0.6rem; font-weight: bold;
+  padding: 1px 5px; border-radius: 4px; margin-left: 4px;
+  vertical-align: middle; line-height: 1.4;
+}
+.tier-badge.S { background: #7b4f00; color: #f0a500; }
+.tier-badge.A { background: #4a0072; color: #ce93d8; }
+.tier-badge.B { background: #1b3a1b; color: #81c784; }
+.tier-badge.C { background: #2a2a2a; color: #888; }
 .guide-notes { display: flex; flex-direction: column; gap: 2px; }
 .guide-note { font-size: 0.71rem; line-height: 1.4; }
 .guide-note.pos { color: var(--green); }
@@ -1343,6 +1352,15 @@ function renderRecommendations() {
   }
 }
 
+function getHeroTier(h) {
+  const wr = h.winRate || 0;
+  const br = h.banRate || 0;
+  if (wr >= 53 && br >= 20) return "S";
+  if (wr >= 52 || br >= 10) return "A";
+  if (wr >= 50) return "B";
+  return "C";
+}
+
 function buildRecCard(heroId, s, allies, enemies, noteOverride = null) {
   const h     = HEROES[heroId];
   const notes = noteOverride !== null ? noteOverride : buildExplanation(heroId, allies, enemies);
@@ -1368,7 +1386,7 @@ function buildRecCard(heroId, s, allies, enemies, noteOverride = null) {
     <div class="rec-row">
       <img src="${h.heroPic}" class="rec-img" alt="${h.heroName}">
       <div class="rec-info">
-        <div class="rec-name">${h.heroName}</div>
+        <div class="rec-name">${h.heroName} <span class="tier-badge ${getHeroTier(h)}">${getHeroTier(h)}</span></div>
         <div class="rec-type role-${h.heroType}">${h.heroType || ""}${timingBadgeHtml}</div>
       </div>
       <div class="rec-score">
@@ -1405,7 +1423,7 @@ function renderHeroGrid() {
     ].filter(Boolean).join(" ");
     return `<div class="${cls}" onclick="pickHero('${id.replace(/'/g, "\\'")}')">
       <img src="${h.heroPic}" alt="${h.heroName}" loading="lazy">
-      <div class="hc-name">${h.heroName}</div>
+      <div class="hc-name">${h.heroName} <span class="tier-badge ${getHeroTier(h)}">${getHeroTier(h)}</span></div>
       <div class="hc-type role-${h.heroType}">${h.heroType || ""}</div>
     </div>`;
   }).join("");
