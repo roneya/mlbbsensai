@@ -247,6 +247,10 @@ body { font-family: 'Segoe UI', system-ui, Arial, sans-serif; background: var(--
 .rec-card:hover { background: #2a2a40; border-color: #3a3a5a; transform: translateY(-1px); }
 .rec-card:last-child { margin-bottom: 0; }
 .threat-card { border-left: 2px solid #ef5350; }
+.counter-label { font-size: 0.65rem; font-weight: bold; padding: 1px 5px; border-radius: 3px; margin-left: 5px; vertical-align: middle; }
+.counter-label.hard   { background: #4a1010; color: #ef5350; }
+.counter-label.strong { background: #3a2000; color: #ffa726; }
+.counter-label.soft   { background: #2a2a00; color: #fff176; }
 .rec-row { display: flex; align-items: center; gap: 9px; margin-bottom: 5px; }
 .rec-img { width: 40px; height: 40px; border-radius: 6px; object-fit: cover; flex-shrink: 0; }
 .rec-info { flex: 1; min-width: 0; }
@@ -388,6 +392,11 @@ body { font-family: 'Segoe UI', system-ui, Arial, sans-serif; background: var(--
 .role-Gold\ Lane{ color: #ffa726; }
 .role-Exp\ Lane { color: #66bb6a; }
 .role-Jungle    { color: #26c6da; }
+@media (max-width: 600px) {
+  .hero-grid { grid-template-columns: repeat(4, 1fr) !important; }
+  .recs-split { grid-template-columns: 1fr; }
+  .rec-card { width: 100%; box-sizing: border-box; }
+}
 </style>
 </head>
 <body>
@@ -496,6 +505,7 @@ const SLOT_ROLE_PREFS = {
 let HEROES       = {};
 let bans         = { A: [], B: [] };
 let picks        = { A: [], B: [] };
+const scoreCache = new Map();
 let enemyBanned  = [];
 let banIdx       = 0;
 let turnIdx      = 0;
@@ -666,6 +676,7 @@ function banHero(id) {
   bans[BAN_ORDER[banIdx]].push(id);
   banIdx++;
   if (banIdx >= 10) phase = "pick"; // Switch to pick phase after all bans
+  scoreCache.clear();
   renderAll();
 }
 
@@ -685,6 +696,7 @@ function pickHero(id) {
   if (turnIdx >= 10 || allDrafted().includes(id)) return;
   picks[DRAFT_ORDER[turnIdx]].push(id);
   turnIdx++;
+  scoreCache.clear();
   renderAll();
 }
 
@@ -723,6 +735,8 @@ function applyTimeWeight(bonus, matchup, timeFields) {
 function computeScore(heroId, allies, enemies) {
   const h = HEROES[heroId];
   if (!h) return -Infinity;
+  const cacheKey = heroId + "|" + allies.join(",") + "|" + enemies.join(",");
+  if (scoreCache.has(cacheKey)) return scoreCache.get(cacheKey);
 
   let s = (h.winRate || 0) + (h.appearanceRate || 0) * 100 - (h.banRate || 0) * 0.10;
 
@@ -787,6 +801,7 @@ function computeScore(heroId, allies, enemies) {
   const slotPrefs = SLOT_ROLE_PREFS[turnIdx];
   if (slotPrefs && role && slotPrefs.includes(role)) s += 10;
 
+  scoreCache.set(cacheKey, s);
   return s;
 }
 
@@ -1240,12 +1255,15 @@ function buildThreatsSection(avail, allies) {
   const cards = threats.map(t => {
     const h = HEROES[t.id];
     const allyName = HEROES[t.topAlly]?.heroName ?? "";
+    const topIwr = HEROES[t.id]?.hero_counter_info?.sub_hero?.[t.topAlly]?.increaseWinRate ?? 0;
+    const strengthCls = topIwr >= 3.0 ? "hard" : topIwr >= 1.5 ? "strong" : "soft";
+    const strengthLbl = topIwr >= 3.0 ? "Hard" : topIwr >= 1.5 ? "Strong" : "Soft";
     const note = allyName ? `<div class="note neg">− threatens your ${allyName}</div>` : "";
     return `<div class="rec-card threat-card">
       <div class="rec-row">
         <img src="${h.heroPic}" class="rec-img" alt="${h.heroName}">
         <div class="rec-info">
-          <div class="rec-name">${h.heroName}</div>
+          <div class="rec-name">${h.heroName} <span class="counter-label ${strengthCls}">${strengthLbl}</span></div>
           <div class="rec-type role-${h.heroType}">${h.heroType || ""}</div>
         </div>
       </div>
