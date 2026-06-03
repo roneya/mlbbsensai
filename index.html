@@ -505,7 +505,6 @@ const SLOT_ROLE_PREFS = {
 let HEROES       = {};
 let bans         = { A: [], B: [] };
 let picks        = { A: [], B: [] };
-const scoreCache = new Map();
 let enemyBanned  = [];
 let banIdx       = 0;
 let turnIdx      = 0;
@@ -676,7 +675,6 @@ function banHero(id) {
   bans[BAN_ORDER[banIdx]].push(id);
   banIdx++;
   if (banIdx >= 10) phase = "pick"; // Switch to pick phase after all bans
-  scoreCache.clear();
   renderAll();
 }
 
@@ -696,7 +694,6 @@ function pickHero(id) {
   if (turnIdx >= 10 || allDrafted().includes(id)) return;
   picks[DRAFT_ORDER[turnIdx]].push(id);
   turnIdx++;
-  scoreCache.clear();
   renderAll();
 }
 
@@ -735,9 +732,6 @@ function applyTimeWeight(bonus, matchup, timeFields) {
 function computeScore(heroId, allies, enemies) {
   const h = HEROES[heroId];
   if (!h) return -Infinity;
-  const cacheKey = heroId + "|" + allies.join(",") + "|" + enemies.join(",");
-  if (scoreCache.has(cacheKey)) return scoreCache.get(cacheKey);
-
   let s = (h.winRate || 0) + (h.appearanceRate || 0) * 100 - (h.banRate || 0) * 0.10;
 
   const compat  = h.hero_compatibility_info || {};
@@ -801,7 +795,6 @@ function computeScore(heroId, allies, enemies) {
   const slotPrefs = SLOT_ROLE_PREFS[turnIdx];
   if (slotPrefs && role && slotPrefs.includes(role)) s += 10;
 
-  scoreCache.set(cacheKey, s);
   return s;
 }
 
