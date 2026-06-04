@@ -1,3 +1,15 @@
+"""
+Step 2 of 2 — build hero_info.json from all API sources.
+Run AFTER fetch_hero_matchups.py.
+
+When a new hero is added:
+  1. Update MAX_HERO_ID in fetch_hero_matchups.py
+  2. python3 fetch_hero_matchups.py   → refreshes api_matchups.json (skills)
+  3. python3 build_hero_data.py       → rebuilds hero_info.json (all data)
+
+max_hero_id is auto-detected from the stats API — no change needed here.
+"""
+
 import json
 import re
 import requests
