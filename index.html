@@ -599,6 +599,33 @@ function getSkillTags(heroId) {
   return SKILLS[name].skills.flatMap(s => s.tags);
 }
 
+// Returns speciality array, e.g. ["Burst","Finisher"]
+function getSpeciality(heroId) {
+  return HEROES[heroId]?.speciality || [];
+}
+
+// Returns curated relation object {strong:{heroes,desc}, weak:{heroes,desc}, assist:{heroes,desc}}
+function getRelation(heroId) {
+  return HEROES[heroId]?.relation || {};
+}
+
+// True if heroName appears in another hero's curated strong/weak/assist list
+function isCuratedCounter(heroId, enemyId) {
+  const rel = getRelation(heroId);
+  const enemyName = HEROES[enemyId]?.heroName;
+  return enemyName && rel.strong?.heroes?.includes(enemyName);
+}
+function isCuratedWeakness(heroId, enemyId) {
+  const rel = getRelation(heroId);
+  const enemyName = HEROES[enemyId]?.heroName;
+  return enemyName && rel.weak?.heroes?.includes(enemyName);
+}
+function isCuratedSynergy(heroId, allyId) {
+  const rel = getRelation(heroId);
+  const allyName = HEROES[allyId]?.heroName;
+  return allyName && rel.assist?.heroes?.includes(allyName);
+}
+
 function detectGamePhase(allies, enemies) {
   if (enemies.length < 2) return 'balanced';
 
@@ -832,6 +859,48 @@ function computeScore(heroId, allies, enemies) {
     if (gPhase === "late" && (hasShield || hasHeal)) s += 5;
   }
 
+  // ── Speciality bonuses ─────────────────────────────────────────────────
+  const specs = getSpeciality(heroId);
+  if (specs.length > 0) {
+    const allySpecs = allies.flatMap(a => getSpeciality(a));
+
+    // Crowd Control synergy: each additional CC specialist makes CC heroes stronger
+    const allyCCSpec = allySpecs.filter(s => s === "Crowd Control" || s === "Control").length;
+    if ((specs.includes("Crowd Control") || specs.includes("Control")) && allyCCSpec >= 1) s += 8;
+
+    // Finisher pairs with Chase: assassin chases → finisher cleans up
+    const allyHasChase    = allySpecs.includes("Chase");
+    const allyHasFinisher = allySpecs.includes("Finisher");
+    if (specs.includes("Finisher") && allyHasChase)    s += 6;
+    if (specs.includes("Chase")    && allyHasFinisher) s += 6;
+
+    // Initiator needs burst follow-up to be useful
+    const allyHasBurst = allySpecs.includes("Burst");
+    if (specs.includes("Initiator") && allyHasBurst) s += 8;
+    if (specs.includes("Burst") && allySpecs.includes("Initiator")) s += 8;
+
+    // Poke comp detection via speciality (more precise than heroClass)
+    const enemyPokeCount = enemies.filter(e => getSpeciality(e).includes("Poke")).length;
+    if (enemyPokeCount >= 2) {
+      if (specs.includes("Chase") || specs.includes("Charge")) s += 10; // close gap on poke
+    }
+
+    // Guard + Regen = sustain tank wall, good vs Burst-heavy enemies
+    const enemyBurstCount = enemies.filter(e => getSpeciality(e).includes("Burst")).length;
+    if (enemyBurstCount >= 2) {
+      if (specs.includes("Guard") || specs.includes("Regen")) s += 8;
+    }
+  }
+
+  // ── Curated relation bonuses (dev-verified counter/synergy) ───────────
+  for (const e of enemies) {
+    if (isCuratedCounter(heroId, e))   s += 12; // dev says this hero beats that enemy
+    if (isCuratedWeakness(heroId, e))  s -= 10; // dev says that enemy beats this hero
+  }
+  for (const a of allies) {
+    if (isCuratedSynergy(heroId, a))   s += 10; // dev says these two work well together
+  }
+
   return s;
 }
 
@@ -919,6 +988,34 @@ function buildExplanation(heroId, allies, enemies) {
     if ((tags.includes("Remove CC") || tags.includes("CC Immune")) && comp === "Poke")
       notes.push({ pos:true, t:`Cleanses poke CC` });
   }
+
+  // Curated relation notes (highest priority — dev-verified)
+  const rel = getRelation(heroId);
+  const specs = getSpeciality(heroId);
+
+  for (const e of enemies) {
+    const eName = HEROES[e]?.heroName;
+    if (!eName) continue;
+    if (rel.strong?.heroes?.includes(eName))
+      notes.unshift({ pos:true,  t:`Counters ${eName}`, priority:true });
+    if (rel.weak?.heroes?.includes(eName))
+      notes.unshift({ pos:false, t:`Weak vs ${eName}`,  priority:true });
+  }
+  for (const a of allies) {
+    const aName = HEROES[a]?.heroName;
+    if (!aName) continue;
+    if (rel.assist?.heroes?.includes(aName))
+      notes.unshift({ pos:true,  t:`Curated pair with ${aName}`, priority:true });
+  }
+
+  // Speciality synergy notes
+  const allySpecs = allies.flatMap(a => getSpeciality(a));
+  if (specs.includes("Initiator") && allySpecs.includes("Burst"))
+    notes.push({ pos:true, t:`Initiator + Burst combo` });
+  if (specs.includes("Finisher") && allySpecs.includes("Chase"))
+    notes.push({ pos:true, t:`Finisher behind Chase heroes` });
+  if ((specs.includes("Crowd Control") || specs.includes("Control")) && allySpecs.filter(s => s === "Crowd Control" || s === "Control").length >= 1)
+    notes.push({ pos:true, t:`Double CC lockdown` });
 
   return notes.slice(0, 5);
 }
