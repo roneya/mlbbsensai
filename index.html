@@ -668,13 +668,35 @@ function detectGamePhase(allies, enemies) {
 
 function detectEnemyComp(enemies) {
   if (enemies.length < 2) return null;
-  const classes = enemies.map(id => HEROES[id]?.heroClass || "");
-  const diveCount  = classes.filter(c => c === "Assassin" || c === "Fighter").length;
-  const pokeCount  = classes.filter(c => c === "Mage"     || c === "Marksman").length;
-  const tankSupCount = classes.filter(c => c === "Tank"   || c === "Support").length;
-  if (diveCount  >= 2) return "Dive";
-  if (pokeCount  >= 2) return "Poke";
-  if (tankSupCount >= 2) return "Sustain";
+
+  let diveScore = 0, pokeScore = 0, sustainScore = 0;
+
+  for (const id of enemies) {
+    const cls   = HEROES[id]?.heroClass || "";
+    const specs = getSpeciality(id);
+    const tags  = getSkillTags(id);
+
+    // Poke signals: speciality is most reliable
+    if (specs.includes("Poke"))                              pokeScore += 2;
+    if (cls === "Mage" || cls === "Marksman")                pokeScore += 1;
+
+    // Dive signals: Chase/Charge speciality + mobile classes
+    if (specs.includes("Chase") || specs.includes("Charge")) diveScore += 2;
+    if (cls === "Assassin")                                  diveScore += 2;
+    if (cls === "Fighter" && !specs.includes("Poke"))        diveScore += 1;
+    if (tags.includes("Dash") || tags.includes("Mobility"))  diveScore += 1;
+
+    // Sustain signals
+    if (specs.includes("Regen") || specs.includes("Guard"))  sustainScore += 2;
+    if (cls === "Tank" || cls === "Support")                  sustainScore += 1;
+    if (tags.includes("Heal") || tags.includes("Shield"))     sustainScore += 1;
+  }
+
+  const max = Math.max(diveScore, pokeScore, sustainScore);
+  if (max < 3) return "Balanced";
+  if (pokeScore    === max) return "Poke";
+  if (diveScore    === max) return "Dive";
+  if (sustainScore === max) return "Sustain";
   return "Balanced";
 }
 
@@ -784,16 +806,18 @@ function computeScore(heroId, allies, enemies) {
   const phase = detectGamePhase(allies, enemies);
   const timeFields = PHASE_TIME_FIELDS[phase];
 
+  // Synergy breadth: sum contributions across ALL allies, but apply diminishing
+  // returns so the 1st ally counts fully, 2nd at 80%, 3rd at 60%, etc.
+  // This rewards heroes that fit the whole team over heroes with one strong pair.
+  let synergyContribs = [];
   for (const a of allies) {
-    if (compat.sub_hero?.[a]) {
-      const matchup = compat.sub_hero[a];
-      s += applyTimeWeight(matchup.increaseWinRate ?? 0, matchup, timeFields);
-    }
-    if (compat.sub_hero_last?.[a]) {
-      const matchup = compat.sub_hero_last[a];
-      s += applyTimeWeight(matchup.increaseWinRate ?? 0, matchup, timeFields);
-    }
+    let contrib = 0;
+    if (compat.sub_hero?.[a])      contrib += applyTimeWeight(compat.sub_hero[a].increaseWinRate      ?? 0, compat.sub_hero[a],      timeFields);
+    if (compat.sub_hero_last?.[a]) contrib += applyTimeWeight(compat.sub_hero_last[a].increaseWinRate ?? 0, compat.sub_hero_last[a], timeFields);
+    if (contrib !== 0) synergyContribs.push(contrib);
   }
+  synergyContribs.sort((a, b) => Math.abs(b) - Math.abs(a)); // strongest first
+  synergyContribs.forEach((v, i) => { s += v * Math.max(0.4, 1 - i * 0.2); });
 
   for (const e of enemies) {
     // sub_hero = THIS hero counters enemy (good) → positive increaseWinRate → bonus
