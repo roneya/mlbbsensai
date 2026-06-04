@@ -260,6 +260,9 @@ body { font-family: 'Segoe UI', system-ui, Arial, sans-serif; background: var(--
 .score-num { font-size: 1rem; font-weight: bold; color: var(--gold); line-height: 1; }
 .wr-label  { font-size: 0.63rem; color: var(--muted); margin-top: 2px; }
 .notes { display: flex; flex-direction: column; gap: 1px; }
+.rel-why { font-size: 0.75em; margin-top: 4px; padding: 4px 6px; border-radius: 4px; line-height: 1.4; }
+.rel-why.pos { color: #7eb8f7; background: rgba(126,184,247,0.08); }
+.rel-why.neg { color: #f7a07e; background: rgba(247,160,126,0.08); }
 .note { font-size: 0.7rem; line-height: 1.45; }
 .note.pos { color: var(--green); }
 .note.neg { color: var(--redneg); }
@@ -589,11 +592,21 @@ function curTeam()    {
 }
 
 // ── Phase Detection ────────────────────────────────────────────────────────
-// Returns flat array of all skill tag strings for a hero, e.g. ["CC","Burst","Mobility"]
+// Returns flat array of skill tags + desc-mined precision tags for a hero
+// Precision tags: Suppress, Stun, Knockup, Dash (derived from skill descriptions)
 function getSkillTags(heroId) {
   const skills = HEROES[heroId]?.skills;
   if (!skills) return [];
-  return skills.flatMap(s => s.tags);
+  const tags = skills.flatMap(s => s.tags);
+  for (const sk of skills) {
+    const d = sk.desc.toLowerCase();
+    if (d.includes("suppress"))                         tags.push("Suppress");
+    if (d.includes("stun"))                             tags.push("Stun");
+    if (d.includes("knock") || d.includes("airborne")) tags.push("Knockup");
+    if (d.includes("dash")  || d.includes("blink"))    tags.push("Dash");
+    if (d.includes("immobil"))                          tags.push("Immobilize");
+  }
+  return tags;
 }
 
 // Returns speciality array, e.g. ["Burst","Finisher"]
@@ -836,9 +849,14 @@ function computeScore(heroId, allies, enemies) {
     const hasShield   = tags.includes("Shield");
     const hasRemoveCC = tags.includes("Remove CC") || tags.includes("CC Immune");
 
-    // More CC allies → enemy harder to dive → CC is more impactful
+    // Precision CC bonuses — suppress > stun > knockup > generic CC
+    if (tags.includes("Suppress"))   s += 14;  // hardest CC in game, always valuable
+    else if (tags.includes("Stun"))  s += 8;
+    else if (tags.includes("Knockup")) s += 6;
+
+    // More CC allies → CC chain is more impactful
     const allyCCCount = allies.filter(a => getSkillTags(a).includes("CC")).length;
-    if (hasCC && allyCCCount >= 1) s += 6;   // combo with existing CC
+    if (hasCC && allyCCCount >= 1) s += 6;
 
     if (comp === "Dive") {
       if (hasCC)    s += 8;   // lock them down
@@ -1464,15 +1482,28 @@ function renderRecommendations() {
       el.innerHTML = '<div class="recs-subtitle">Recommended Bans (Meta Heroes)</div>' +
         normalized.map(r => buildRecCard(r.id, r.fit, [], [])).join("");
     } else {
-      // Context-aware ban mode: recommend heroes to ban based on threat to our picks
+      // Context-aware ban mode: threat score = winrate counter data + curated relation bonus
       const banCandidates = avail
         .map(id => {
-          // Compute threat score: sum of increaseWinRate across all allies
-          const threatScore = allies.reduce((sum, allyId) => {
+          let threatScore = 0;
+          let topAlly = allies[0];
+          let topIWR = 0;
+          let curatedNote = null;
+
+          for (const allyId of allies) {
+            // Win-rate based threat
             const iwr = HEROES[id]?.hero_counter_info?.sub_hero?.[allyId]?.increaseWinRate ?? 0;
-            return sum + iwr;
-          }, 0);
-          return { id, s: threatScore };
+            threatScore += iwr;
+            if (iwr > topIWR) { topIWR = iwr; topAlly = allyId; }
+
+            // Curated relation: if this hero is listed in ally's weak list → big threat bonus
+            if (HEROES[allyId]?.relation?.weak?.heroes?.includes(HEROES[id]?.heroName)) {
+              threatScore += 15;
+              curatedNote = { pos: false, t: `Counters ${HEROES[allyId]?.heroName} (dev-verified)` };
+            }
+          }
+
+          return { id, s: threatScore, topAlly, topIWR, curatedNote };
         })
         .sort((a, b) => b.s - a.s)
         .slice(0, 8);
@@ -1480,17 +1511,12 @@ function renderRecommendations() {
       const normalized = normalizeScores(banCandidates);
       el.innerHTML = '<div class="recs-subtitle">Recommended Bans (Counters Your Picks)</div>' +
         normalized.map(r => {
-          // Find which ally this hero most strongly counters
-          const topAlly = allies.reduce((best, allyId) => {
-            const iwr = HEROES[r.id]?.hero_counter_info?.sub_hero?.[allyId]?.increaseWinRate ?? 0;
-            const bestIWR = HEROES[r.id]?.hero_counter_info?.sub_hero?.[best]?.increaseWinRate ?? 0;
-            return iwr > bestIWR ? allyId : best;
-          }, allies[0]);
-          const topIWR = HEROES[r.id]?.hero_counter_info?.sub_hero?.[topAlly]?.increaseWinRate ?? 0;
-          const noteOverride = topIWR > 0
-            ? [{ pos: false, t: `counters your ${HEROES[topAlly]?.heroName}` }]
-            : [];
-          return buildRecCard(r.id, r.fit, [], [], noteOverride);
+          const notes = r.curatedNote
+            ? [r.curatedNote]
+            : r.topIWR > 0
+              ? [{ pos: false, t: `counters your ${HEROES[r.topAlly]?.heroName}` }]
+              : [];
+          return buildRecCard(r.id, r.fit, [], [], notes);
         }).join("");
     }
     return;
@@ -1605,6 +1631,30 @@ function buildRecCard(heroId, s, allies, enemies, noteOverride = null) {
     }
   }
 
+  // Relation why-text: find the most relevant desc to show
+  let whyHtml = "";
+  const rel = getRelation(heroId);
+  for (const e of enemies) {
+    const eName = HEROES[e]?.heroName;
+    if (rel.strong?.heroes?.includes(eName) && rel.strong.desc) {
+      whyHtml = `<div class="rel-why pos">💡 ${rel.strong.desc.split(".")[0]}.</div>`;
+      break;
+    }
+    if (rel.weak?.heroes?.includes(eName) && rel.weak.desc) {
+      whyHtml = `<div class="rel-why neg">⚠️ ${rel.weak.desc.split(".")[0]}.</div>`;
+      break;
+    }
+  }
+  if (!whyHtml) {
+    for (const a of allies) {
+      const aName = HEROES[a]?.heroName;
+      if (rel.assist?.heroes?.includes(aName) && rel.assist.desc) {
+        whyHtml = `<div class="rel-why pos">🤝 ${rel.assist.desc.split(".")[0]}.</div>`;
+        break;
+      }
+    }
+  }
+
   return `<div class="rec-card" onclick="pickHero('${heroId.replace(/'/g, "\\'")}')">
     <div class="rec-row">
       <img src="${h.heroPic}" class="rec-img" alt="${h.heroName}">
@@ -1618,6 +1668,7 @@ function buildRecCard(heroId, s, allies, enemies, noteOverride = null) {
       </div>
     </div>
     <div class="notes">${notesHtml}</div>
+    ${whyHtml}
   </div>`;
 }
 
