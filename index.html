@@ -503,6 +503,7 @@ const SLOT_ROLE_PREFS = {
 
 // ── State ──────────────────────────────────────────────────────────────────
 let HEROES       = {};
+let SKILLS       = {}; // hero_skills.json — keyed by heroName
 let bans         = { A: [], B: [] };
 let picks        = { A: [], B: [] };
 let enemyBanned  = [];
@@ -515,16 +516,15 @@ let markBanMode  = false;
 
 // ── Bootstrap ──────────────────────────────────────────────────────────────
 function init() {
-  fetch("hero_info.json?v=" + Date.now())
-    .then(r => {
-      console.log("Fetch response:", r.status, r.ok);
-      if (!r.ok) throw new Error("HTTP " + r.status);
-      return r.json();
-    })
-    .then(data => { 
-      console.log("Data loaded:", data);
-      HEROES = data.hero_info; 
-      renderAll(); 
+  Promise.all([
+    fetch("hero_info.json?v="   + Date.now()).then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); }),
+    fetch("hero_skills.json?v=" + Date.now()).then(r => r.ok ? r.json() : { hero_skills: {} }),
+  ])
+    .then(([heroData, skillData]) => {
+      HEROES = heroData.hero_info;
+      SKILLS = skillData.hero_skills || {};
+      console.log("Data loaded:", Object.keys(HEROES).length, "heroes,", Object.keys(SKILLS).length, "skill sets");
+      renderAll();
     })
     .catch(err => {
       console.error("Fetch error:", err);
@@ -592,6 +592,13 @@ function curTeam()    {
 }
 
 // ── Phase Detection ────────────────────────────────────────────────────────
+// Returns flat array of all skill tag strings for a hero, e.g. ["CC","Burst","Mobility"]
+function getSkillTags(heroId) {
+  const name = HEROES[heroId]?.heroName;
+  if (!name || !SKILLS[name]) return [];
+  return SKILLS[name].skills.flatMap(s => s.tags);
+}
+
 function detectGamePhase(allies, enemies) {
   if (enemies.length < 2) return 'balanced';
 
@@ -795,6 +802,36 @@ function computeScore(heroId, allies, enemies) {
   const slotPrefs = SLOT_ROLE_PREFS[turnIdx];
   if (slotPrefs && role && slotPrefs.includes(role)) s += 10;
 
+  // ── Skill-tag bonuses ──────────────────────────────────────────────────
+  const tags = getSkillTags(heroId);
+  if (tags.length > 0) {
+    const hasCC       = tags.includes("CC");
+    const hasBurst    = tags.includes("Burst");
+    const hasMobility = tags.includes("Mobility");
+    const hasHeal     = tags.includes("Heal");
+    const hasShield   = tags.includes("Shield");
+    const hasRemoveCC = tags.includes("Remove CC") || tags.includes("CC Immune");
+
+    // More CC allies → enemy harder to dive → CC is more impactful
+    const allyCCCount = allies.filter(a => getSkillTags(a).includes("CC")).length;
+    if (hasCC && allyCCCount >= 1) s += 6;   // combo with existing CC
+
+    if (comp === "Dive") {
+      if (hasCC)    s += 8;   // lock them down
+      if (hasShield || hasHeal) s += 6;   // survive the dive
+    } else if (comp === "Poke") {
+      if (hasMobility) s += 8;  // close the gap
+      if (hasBurst)    s += 6;  // punish squishy poke heroes
+      if (hasRemoveCC) s += 4;  // ignore their slows/roots
+    } else if (comp === "Sustain") {
+      if (hasBurst) s += 10;  // burst through sustain before they outheal
+    }
+
+    // Late-scaling team → survivability matters more
+    const gPhase = detectGamePhase(allies, enemies);
+    if (gPhase === "late" && (hasShield || hasHeal)) s += 5;
+  }
+
   return s;
 }
 
@@ -863,6 +900,26 @@ function buildExplanation(heroId, allies, enemies) {
       notes.push({ pos:false, t: flex ? `Slight overlap with ${role}` : `Overlaps ${role} role` });
     }
   }
+
+  // Skill-tag notes
+  const tags = getSkillTags(heroId);
+  if (tags.length > 0) {
+    const comp = detectEnemyComp(enemies);
+    const allyCCCount = allies.filter(a => getSkillTags(a).includes("CC")).length;
+    if (tags.includes("CC") && allyCCCount >= 1)
+      notes.push({ pos:true, t:`Adds CC (${allyCCCount + 1} total with allies)` });
+    else if (tags.includes("CC"))
+      notes.push({ pos:true, t:`Has CC` });
+    if (comp === "Dive" && (tags.includes("Shield") || tags.includes("Heal")))
+      notes.push({ pos:true, t:`Survives their Dive comp` });
+    if (comp === "Poke" && tags.includes("Mobility"))
+      notes.push({ pos:true, t:`Mobility to close poke gap` });
+    if (comp === "Sustain" && tags.includes("Burst"))
+      notes.push({ pos:true, t:`Burst cuts through Sustain comp` });
+    if ((tags.includes("Remove CC") || tags.includes("CC Immune")) && comp === "Poke")
+      notes.push({ pos:true, t:`Cleanses poke CC` });
+  }
+
   return notes.slice(0, 5);
 }
 
@@ -926,7 +983,12 @@ function buildGamePlan(myPicks, enemyPicks) {
   const teamLate  = matchCount > 0 ? lateWRSum  / matchCount : 50;
   const diff = teamLate - teamEarly;
   const timing = diff > 5 ? "late" : diff < -5 ? "early" : "flex";
-  return { earlyBullies, earlyThreats, lateCarries, timing, teamEarly, teamLate };
+
+  const ccHeroes    = myPicks.filter(id => getSkillTags(id).includes("CC")).map(id => HEROES[id]?.heroName).filter(Boolean);
+  const burstHeroes = myPicks.filter(id => getSkillTags(id).includes("Burst")).map(id => HEROES[id]?.heroName).filter(Boolean);
+  const healHeroes  = myPicks.filter(id => getSkillTags(id).includes("Heal") || getSkillTags(id).includes("Shield")).map(id => HEROES[id]?.heroName).filter(Boolean);
+
+  return { earlyBullies, earlyThreats, lateCarries, timing, teamEarly, teamLate, ccHeroes, burstHeroes, healHeroes };
 }
 
 function renderGamePlan(myPicks, enemyPicks) {
@@ -974,12 +1036,22 @@ function renderGamePlan(myPicks, enemyPicks) {
       }).join("")}
     </div>` : "";
 
-  if (!bulliesHtml && !threatsHtml && !carriesHtml) return "";
+  const skillSummaryParts = [];
+  if (p.ccHeroes.length)    skillSummaryParts.push(`🔒 CC: ${p.ccHeroes.join(", ")}`);
+  if (p.burstHeroes.length) skillSummaryParts.push(`💥 Burst: ${p.burstHeroes.join(", ")}`);
+  if (p.healHeroes.length)  skillSummaryParts.push(`💚 Sustain: ${p.healHeroes.join(", ")}`);
+  const skillSummaryHtml = skillSummaryParts.length ? `
+    <div class="gp-section">
+      <div class="gp-label">🧠 Team Kit</div>
+      ${skillSummaryParts.map(s => `<div class="gp-item" style="color:#aaa;font-size:0.85em">${s}</div>`).join("")}
+    </div>` : "";
+
+  if (!bulliesHtml && !threatsHtml && !carriesHtml && !skillSummaryHtml) return "";
 
   return `<div class="gp-block">
     <div class="gp-heading">Game Plan <span class="timing-badge ${p.timing}">${tm.label}</span></div>
     <div class="gp-wincon">${tm.desc}</div>
-    ${bulliesHtml}${threatsHtml}${carriesHtml}
+    ${bulliesHtml}${threatsHtml}${carriesHtml}${skillSummaryHtml}
   </div>`;
 }
 
