@@ -503,7 +503,7 @@ const SLOT_ROLE_PREFS = {
 
 // ── State ──────────────────────────────────────────────────────────────────
 let HEROES       = {};
-let SKILLS       = {}; // hero_skills.json — keyed by heroName
+let SKILLS       = {}; // legacy — skills now embedded in hero_info.json under hero.skills
 let bans         = { A: [], B: [] };
 let picks        = { A: [], B: [] };
 let enemyBanned  = [];
@@ -516,14 +516,11 @@ let markBanMode  = false;
 
 // ── Bootstrap ──────────────────────────────────────────────────────────────
 function init() {
-  Promise.all([
-    fetch("hero_info.json?v="   + Date.now()).then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); }),
-    fetch("hero_skills.json?v=" + Date.now()).then(r => r.ok ? r.json() : { hero_skills: {} }),
-  ])
-    .then(([heroData, skillData]) => {
-      HEROES = heroData.hero_info;
-      SKILLS = skillData.hero_skills || {};
-      console.log("Data loaded:", Object.keys(HEROES).length, "heroes,", Object.keys(SKILLS).length, "skill sets");
+  fetch("hero_info.json?v=" + Date.now())
+    .then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+    .then(data => {
+      HEROES = data.hero_info;
+      console.log("Data loaded:", Object.keys(HEROES).length, "heroes");
       renderAll();
     })
     .catch(err => {
@@ -594,9 +591,9 @@ function curTeam()    {
 // ── Phase Detection ────────────────────────────────────────────────────────
 // Returns flat array of all skill tag strings for a hero, e.g. ["CC","Burst","Mobility"]
 function getSkillTags(heroId) {
-  const name = HEROES[heroId]?.heroName;
-  if (!name || !SKILLS[name]) return [];
-  return SKILLS[name].skills.flatMap(s => s.tags);
+  const skills = HEROES[heroId]?.skills;
+  if (!skills) return [];
+  return skills.flatMap(s => s.tags);
 }
 
 // Returns speciality array, e.g. ["Burst","Finisher"]

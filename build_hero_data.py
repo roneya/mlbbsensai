@@ -1,6 +1,10 @@
 import json
+import re
 import requests
 import time
+
+def strip_html(text):
+    return re.sub(r"<[^>]+>", "", text or "")
 
 HEADERS_BASE = {
     "accept": "application/json, text/plain, */*",
@@ -115,7 +119,37 @@ def add_hero_types(hero_info):
                 hero_info[hero_id]["abilityStats"] = ability_stats
             if relation:
                 hero_info[hero_id]["relation"] = relation
+            hero_info[hero_id]["difficulty"] = int(hero_data.get("difficulty") or 0)
+            story = hero_data.get("story", "")
+            if story:
+                hero_info[hero_id]["story"] = story
             updated += 1
+
+    # ── Merge skill data from api_matchups.json (per-hero fetch has heroskilllist) ──
+    try:
+        with open("api_matchups.json") as f:
+            matchup_records = json.load(f)
+        id_to_name = {hid: hdata["heroName"] for hid, hdata in hero_info.items() if hdata.get("heroName")}
+        skills_added = 0
+        for record in matchup_records:
+            hd = record.get("data", {}).get("hero", {}).get("data", {})
+            hero_id = str(hd.get("heroid", ""))
+            skill_groups = hd.get("heroskilllist", [])
+            skills = []
+            for group in skill_groups:
+                for sk in group.get("skilllist", []):
+                    skills.append({
+                        "name": sk.get("skillname", ""),
+                        "desc": strip_html(sk.get("skilldesc", "")),
+                        "cd_cost": sk.get("skillcd&cost", ""),
+                        "tags": [t["tagname"] for t in sk.get("skilltag", []) if "tagname" in t],
+                    })
+            if hero_id in hero_info and skills:
+                hero_info[hero_id]["skills"] = skills
+                skills_added += 1
+        print(f"Step 2b: Merged skills for {skills_added} heroes from api_matchups.json")
+    except FileNotFoundError:
+        print("Step 2b: api_matchups.json not found — run fetch_hero_matchups.py first to get skill data")
 
     print(f"Step 2: Added hero types, ability stats, and relations for {updated} heroes")
     return hero_info
