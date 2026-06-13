@@ -513,7 +513,7 @@ let enemyBanned  = [];
 let banIdx       = 0;
 let turnIdx      = 0;
 let myTeam       = "A";
-let phase        = "ban"; // "ban" or "pick"
+let phase        = "pick"; // "ban" or "pick"
 let roleFilter   = "All";
 let markBanMode  = false;
 
@@ -563,7 +563,7 @@ function init() {
     enemyBanned = [];
     banIdx = 0;
     turnIdx = 0;
-    phase = "ban";
+    phase = "pick";
     markBanMode = false;
     document.getElementById("markBanBtn").classList.remove("ban-mode");
     document.getElementById("markBanBtn").textContent = "Mark Enemy Ban";
@@ -1312,7 +1312,7 @@ function renderAnalysis() {
 // ── Render ─────────────────────────────────────────────────────────────────
 function renderAll() {
   renderTurnBar();
-  renderBanBoard();
+  // renderBanBoard(); // Ban phase disabled — no forced 5-5 ban selection
   renderDraftBoard();
   renderRecommendations();
   renderHeroGrid();
@@ -1384,6 +1384,7 @@ function renderTurnBar() {
 function renderBanBoard() {
   ["A","B"].forEach(team => {
     const el = document.getElementById(`team${team}Bans`);
+    if (!el) return;
     const teamBans = bans[team];
     if (teamBans.length === 0) {
       el.innerHTML = '<div class="slot-empty-text">No bans yet</div>';
