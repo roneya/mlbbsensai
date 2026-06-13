@@ -513,7 +513,7 @@ let enemyBanned  = [];
 let banIdx       = 0;
 let turnIdx      = 0;
 let myTeam       = "A";
-let phase        = "pick"; // "ban" or "pick" (ban phase commented out for testing)
+let phase        = "ban"; // "ban" or "pick"
 let roleFilter   = "All";
 let markBanMode  = false;
 
@@ -563,7 +563,7 @@ function init() {
     enemyBanned = [];
     banIdx = 0;
     turnIdx = 0;
-    phase = "pick";
+    phase = "ban";
     markBanMode = false;
     document.getElementById("markBanBtn").classList.remove("ban-mode");
     document.getElementById("markBanBtn").textContent = "Mark Enemy Ban";
@@ -1312,7 +1312,7 @@ function renderAnalysis() {
 // ── Render ─────────────────────────────────────────────────────────────────
 function renderAll() {
   renderTurnBar();
-  // renderBanBoard(); // COMMENTED OUT - Ban phase disabled for testing
+  renderBanBoard();
   renderDraftBoard();
   renderRecommendations();
   renderHeroGrid();
@@ -1492,18 +1492,33 @@ function renderRecommendations() {
 
     // Check if we have picks: if so, use context-aware bans; otherwise use meta bans
     if (allies.length === 0) {
-      // Meta ban mode: recommend heroes to ban based on meta (high banRate + winRate)
+      // Meta ban mode: banRate + winRate + speciality strength + curated relation breadth
       const banCandidates = avail
         .map(id => {
           const h = HEROES[id];
-          const banScore = (h.banRate || 0) * 2 + (h.winRate || 0);
+          let banScore = (h.banRate || 0) * 2 + (h.winRate || 0);
+
+          // Bonus for high-impact specialities
+          const specs = h.speciality || [];
+          if (specs.some(s => ["Crowd Control","Burst","Reap"].includes(s))) banScore += 5;
+          if (specs.some(s => ["Poke","Sustain"].includes(s))) banScore += 2;
+
+          // Bonus for heroes many others are weak to (broad threat)
+          const strongCount = (h.relation?.strong?.heroes?.length || 0);
+          banScore += strongCount * 1.5;
+
+          // CC tag bonus from skill descriptions
+          const tags = getSkillTags(id);
+          if (tags.includes("Stun") || tags.includes("Suppress")) banScore += 4;
+          if (tags.includes("Knockup")) banScore += 2;
+
           return { id, s: banScore };
         })
         .sort((a, b) => b.s - a.s)
         .slice(0, 8);
 
       const normalized = normalizeScores(banCandidates);
-      el.innerHTML = '<div class="recs-subtitle">Recommended Bans (Meta Heroes)</div>' +
+      el.innerHTML = '<div class="recs-subtitle">Recommended Bans (Meta Threats)</div>' +
         normalized.map(r => buildRecCard(r.id, r.fit, [], [])).join("");
     } else {
       // Context-aware ban mode: threat score = winrate counter data + curated relation bonus
