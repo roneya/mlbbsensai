@@ -97,3 +97,6 @@ api*_sample.json
 # Pipeline intermediate & obsolete files
 api_matchups.json
 hero_skills.json
+
+# Claude Code
+.claude/
