@@ -37,7 +37,7 @@ BASE = "https://api.gms.moontontech.com/api/gms/source/2669606"
 def fetch_hero_stats():
     headers = {**HEADERS_BASE, "authorization": "rjYdVHiPEF5/4a447YaBXuB3OsA="}
     payload = {
-        "pageSize": 200,
+        "pageSize": 1000,
         "pageIndex": 1,
         "filters": [
             {"field": "bigrank", "operator": "eq", "value": "7"},
@@ -68,6 +68,23 @@ def fetch_hero_stats():
             "winRate": round(data.get("main_hero_win_rate", 0) * 100, 4)
         }
 
+    # Also pull from detail API to catch newly released heroes missing from stats
+    headers2 = {**HEADERS_BASE, "authorization": "GwW9T3dQQDDeRS4PvWViCQskno8="}
+    resp2 = requests.post(f"{BASE}/2756564", headers=headers2, json={
+        "pageSize": 1000, "pageIndex": 1, "filters": [], "sorts": [], "object": []
+    }, timeout=30)
+    resp2.raise_for_status()
+    for record in resp2.json().get("data", {}).get("records", []):
+        d = record.get("data", {})
+        hid = str(d.get("hero_id", ""))
+        if hid and hid not in hero_info:
+            hero = d.get("hero", {}).get("data", {})
+            hero_info[hid] = {
+                "heroName": hero.get("name", ""),
+                "heroPic": hero.get("head", ""),
+                "appearanceRate": 0, "banRate": 0, "winRate": 0
+            }
+
     print(f"Step 1: Fetched stats for {len(hero_info)} heroes")
     return hero_info, max(int(k) for k in hero_info)
 
@@ -77,7 +94,7 @@ def fetch_hero_stats():
 def add_hero_types(hero_info):
     headers = {**HEADERS_BASE, "authorization": "CciHBEvFRqQNHGj2djxdUSja7W4="}
     payload = {
-        "pageSize": 200,
+        "pageSize": 1000,
         "pageIndex": 1,
         "filters": [
             {"field": "<hero.data.sortid>", "operator": "hasAnyOf", "value": [1, 2, 3, 4, 5, 6]},
@@ -223,7 +240,6 @@ def add_counter_and_compatibility(hero_info, max_hero_id):
                     hero_info[hero_key] = {}
                 hero_info[hero_key][field_name] = {"sub_hero": sub_hero, "sub_hero_last": sub_hero_last}
 
-                print(f"  Hero {hero_id} -> {field_name}")
                 time.sleep(0.2)
 
             except Exception as e:
