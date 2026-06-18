@@ -31,21 +31,41 @@ def post(endpoint, auth, payload):
     with urllib.request.urlopen(req, timeout=15) as r:
         return json.loads(r.read())
 
-# ── Step 1: discover all hero IDs from the stats listing ─────────────────────
+# ── Step 1: discover all hero IDs from two APIs and merge ────────────────────
 print("Fetching hero list...")
-resp = post("2756565", "rjYdVHiPEF5/4a447YaBXuB3OsA=", {
-    "pageSize": 200, "pageIndex": 1,
+
+# API A: stats listing (bigrank=7) — may miss newest heroes with sparse data
+resp_stats = post("2756565", "rjYdVHiPEF5/4a447YaBXuB3OsA=", {
+    "pageSize": 1000, "pageIndex": 1,
     "filters": [
         {"field": "bigrank",     "operator": "eq", "value": "7"},
         {"field": "match_type",  "operator": "eq", "value": 0},
     ],
     "sorts": [{"data": {"field": "main_heroid", "order": "asc"}, "type": "sequence"}],
 })
-hero_ids = sorted(set(
+ids_from_stats = set(
     r["data"]["main_heroid"]
-    for r in resp.get("data", {}).get("records", [])
+    for r in resp_stats.get("data", {}).get("records", [])
     if r.get("data", {}).get("main_heroid")
-))
+)
+
+# API B: hero detail listing — contains ALL heroes including newly released ones
+resp_all = post("2756564", "GwW9T3dQQDDeRS4PvWViCQskno8=", {
+    "pageSize": 1000, "pageIndex": 1,
+    "filters": [],
+    "sorts": [{"data": {"field": "hero_id", "order": "asc"}, "type": "sequence"}],
+    "object": [],
+})
+ids_from_detail = set(
+    r["data"]["hero_id"]
+    for r in resp_all.get("data", {}).get("records", [])
+    if r.get("data", {}).get("hero_id")
+)
+
+hero_ids = sorted(ids_from_stats | ids_from_detail)
+new_ids  = ids_from_detail - ids_from_stats
+if new_ids:
+    print(f"  Note: {sorted(new_ids)} found in hero list but missing from stats (too new)")
 print(f"Found {len(hero_ids)} heroes (IDs {hero_ids[0]}–{hero_ids[-1]})")
 
 # ── Step 2: fetch per-hero detail (skills, relation, etc.) ───────────────────
