@@ -201,7 +201,9 @@ def build():
                 lane = road.get("data", {}).get("road_sort_title", "")
                 if lane: break
 
-        ability_stats = [int(x) for x in hero_data.get("abilityshow", []) if str(x).isdigit()]
+        ability_raw   = [int(x) for x in hero_data.get("abilityshow", []) if str(x).isdigit()]
+        ABILITY_LABELS = ["durability", "offence", "abilityEffect", "difficulty"]
+        ability_stats  = {ABILITY_LABELS[i]: ability_raw[i] for i in range(min(len(ABILITY_LABELS), len(ability_raw)))}
         hero_class    = next((s for s in hero_data.get("sortlabel", []) if s), "")
         speciality    = [s for s in hero_data.get("speciality", []) if s]
         story         = hero_data.get("story", "")
@@ -219,7 +221,7 @@ def build():
         entry["heroType"] = lane
         if hero_class:   entry["heroClass"]   = hero_class
         if speciality:   entry["speciality"]  = speciality
-        if ability_stats:entry["abilityStats"] = ability_stats
+        if ability_stats: entry["abilityStats"] = ability_stats
         if relation:     entry["relation"]    = relation
         entry["difficulty"] = int(hero_data.get("difficulty") or 0)
         if story:        entry["story"] = story
@@ -227,22 +229,28 @@ def build():
     print(f"  {len(hero_info)} heroes with types + relations")
 
     # ── Step 3: skills ──
+    # skilllistid ending in "1" = base skills, ending in "2" = combo skills
     skills_added = 0
     for record in raw_skills:
-        hd       = record.get("data", {}).get("hero", {}).get("data", {})
-        hid      = str(hd.get("heroid", ""))
+        hd           = record.get("data", {}).get("hero", {}).get("data", {})
+        hid          = str(hd.get("heroid", ""))
         skill_groups = hd.get("heroskilllist", [])
-        skills = []
+        base_skills  = []
+        combo_skills = []
         for group in skill_groups:
+            group_id = str(group.get("skilllistid", ""))
+            bucket   = combo_skills if group_id.endswith("2") else base_skills
             for sk in group.get("skilllist", []):
-                skills.append({
+                bucket.append({
                     "name":    sk.get("skillname", ""),
                     "desc":    strip_html(sk.get("skilldesc", "")),
                     "cd_cost": sk.get("skillcd&cost", ""),
                     "tags":    [t["tagname"] for t in sk.get("skilltag", []) if "tagname" in t],
                 })
-        if hid in hero_info and skills:
-            hero_info[hid]["skills"] = skills
+        if hid in hero_info and (base_skills or combo_skills):
+            hero_info[hid]["skills"]      = base_skills
+            if combo_skills:
+                hero_info[hid]["comboSkills"] = combo_skills
             skills_added += 1
     print(f"  {skills_added} heroes with skills")
 

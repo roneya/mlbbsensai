@@ -400,6 +400,36 @@ body { font-family: 'Segoe UI', system-ui, Arial, sans-serif; background: var(--
   .recs-split { grid-template-columns: 1fr; }
   .rec-card { width: 100%; box-sizing: border-box; }
 }
+
+/* ── Hero Hover Tooltip ───────────────────────────────── */
+#hero-tooltip {
+  position: fixed; z-index: 9999; pointer-events: none; display: none;
+  background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r);
+  padding: 12px 14px; width: 230px; box-shadow: 0 8px 28px rgba(0,0,0,0.65);
+}
+.ht-name { font-size: 0.9rem; font-weight: bold; color: var(--gold); margin-bottom: 1px; }
+.ht-role { font-size: 0.7rem; margin-bottom: 8px; }
+.ht-section { font-size: 0.62rem; color: var(--muted); text-transform: uppercase;
+  letter-spacing: 0.6px; margin: 9px 0 5px; border-top: 1px solid var(--border); padding-top: 7px; }
+.ht-stat-row { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+.ht-stat-label { font-size: 0.63rem; color: var(--muted); width: 82px; flex-shrink: 0; }
+.ht-stat-bar { flex: 1; height: 5px; background: var(--bg3); border-radius: 3px; overflow: hidden; }
+.ht-stat-fill { height: 100%; border-radius: 3px; }
+.ht-stat-fill.durability    { background: #42a5f5; }
+.ht-stat-fill.offence       { background: #ef5350; }
+.ht-stat-fill.abilityEffect { background: #ab47bc; }
+.ht-stat-fill.difficulty    { background: var(--gold); }
+.ht-stat-val { font-size: 0.63rem; color: var(--text); width: 22px; text-align: right; flex-shrink: 0; }
+.ht-skill { margin-bottom: 5px; }
+.ht-skill-name { font-size: 0.7rem; color: var(--text); font-weight: 600; }
+.ht-skill-tags { display: flex; gap: 3px; flex-wrap: wrap; margin-top: 2px; }
+.ht-tag {
+  font-size: 0.58rem; padding: 1px 5px; border-radius: 3px;
+  background: var(--bg3); color: var(--muted); border: 1px solid var(--border);
+}
+.ht-combo-count {
+  font-size: 0.75rem; color: #ce93d8; font-weight: bold;
+}
 </style>
 </head>
 <body>
@@ -483,6 +513,9 @@ body { font-family: 'Segoe UI', system-ui, Arial, sans-serif; background: var(--
   </div>
 
 </div>
+
+<div id="hero-tooltip"></div>
+
 <script>
 // ── Constants ──────────────────────────────────────────────────────────────
 const BAN_ORDER      = ["A","A","A","B","B","B","A","A","B","B"]; // 3+3, then 2+2
@@ -1713,6 +1746,67 @@ function buildRecCard(heroId, s, allies, enemies, noteOverride = null) {
 }
 
 
+function showHeroTooltip(heroId, e) {
+  const h = HEROES[heroId];
+  if (!h) return;
+  const tip = document.getElementById("hero-tooltip");
+
+  const STAT_DEFS = [
+    { key: "durability",    label: "Durability",     cls: "durability"    },
+    { key: "offence",       label: "Offence",        cls: "offence"       },
+    { key: "abilityEffect", label: "Ability Effect", cls: "abilityEffect" },
+    { key: "difficulty",    label: "Difficulty",     cls: "difficulty"    },
+  ];
+  const stats = h.abilityStats || {};
+  const statsHtml = STAT_DEFS.map(d => {
+    const val = stats[d.key] ?? 0;
+    return `<div class="ht-stat-row">
+      <div class="ht-stat-label">${d.label}</div>
+      <div class="ht-stat-bar"><div class="ht-stat-fill ${d.cls}" style="width:${val}%"></div></div>
+      <div class="ht-stat-val">${val}</div>
+    </div>`;
+  }).join("");
+
+  const skillHtml = sk => `<div class="ht-skill">
+    <div class="ht-skill-name">${sk.name}</div>
+    ${sk.tags.length ? `<div class="ht-skill-tags">${sk.tags.map(t => `<span class="ht-tag">${t}</span>`).join("")}</div>` : ""}
+  </div>`;
+
+  const skills  = h.skills      || [];
+  const combos  = h.comboSkills || [];
+  const comboHtml = combos.length
+    ? `<div class="ht-section">Combo Skills</div><div class="ht-combo-count">⚡ ${combos.length} Combo Skill${combos.length > 1 ? "s" : ""}</div>`
+    : "";
+
+  tip.innerHTML = `
+    <div class="ht-name">${h.heroName}</div>
+    <div class="ht-role role-${h.heroType}">${h.heroType || ""}</div>
+    <div class="ht-section">Ability Stats</div>
+    ${statsHtml}
+    ${skills.length ? `<div class="ht-section">Skills</div>${skills.map(skillHtml).join("")}` : ""}
+    ${comboHtml}
+  `;
+
+  tip.style.display = "block";
+  positionTooltip(e);
+}
+
+function positionTooltip(e) {
+  const tip = document.getElementById("hero-tooltip");
+  const margin = 14;
+  const tw = tip.offsetWidth, th = tip.offsetHeight;
+  let x = e.clientX + margin;
+  let y = e.clientY + margin;
+  if (x + tw > window.innerWidth  - margin) x = e.clientX - tw - margin;
+  if (y + th > window.innerHeight - margin) y = window.innerHeight - th - margin;
+  tip.style.left = x + "px";
+  tip.style.top  = y + "px";
+}
+
+function hideHeroTooltip() {
+  document.getElementById("hero-tooltip").style.display = "none";
+}
+
 function renderHeroGrid() {
   const q        = document.getElementById("search").value.toLowerCase().trim();
   const drafted  = [...picks.A, ...picks.B, ...bans.A, ...bans.B];
@@ -1735,7 +1829,12 @@ function renderHeroGrid() {
       isEnemyBanned ? "enemy-banned" : "",
       isCounter ? "counters-enemy" : ""
     ].filter(Boolean).join(" ");
-    return `<div class="${cls}" onclick="pickHero('${id.replace(/'/g, "\\'")}')">
+    const eid = id.replace(/'/g, "\\'");
+    return `<div class="${cls}"
+      onclick="pickHero('${eid}')"
+      onmouseenter="showHeroTooltip('${eid}',event)"
+      onmousemove="positionTooltip(event)"
+      onmouseleave="hideHeroTooltip()">
       <img src="${h.heroPic}" alt="${h.heroName}" loading="lazy">
       <div class="hc-name">${h.heroName} <span class="tier-badge ${getHeroTier(h)}">${getHeroTier(h)}</span></div>
       <div class="hc-type role-${h.heroType}">${h.heroType || ""}</div>
