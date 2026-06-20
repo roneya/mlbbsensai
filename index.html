@@ -249,7 +249,6 @@ body { font-family: 'Segoe UI', system-ui, Arial, sans-serif; background: var(--
 }
 .rec-card:hover { background: #2a2a40; border-color: #3a3a5a; transform: translateY(-1px); }
 .rec-card:last-child { margin-bottom: 0; }
-.pair-card { border-left: 2px solid #c8840055; }
 .rec-row { display: flex; align-items: center; gap: 9px; margin-bottom: 5px; }
 .rec-img { width: 40px; height: 40px; border-radius: 6px; object-fit: cover; flex-shrink: 0; }
 .rec-info { flex: 1; min-width: 0; }
@@ -262,12 +261,6 @@ body { font-family: 'Segoe UI', system-ui, Arial, sans-serif; background: var(--
 .note { font-size: 0.7rem; line-height: 1.45; }
 .note.pos { color: var(--green); }
 .note.neg { color: var(--redneg); }
-.pair-row { display: flex; align-items: center; gap: 6px; }
-.pair-hero { display: flex; flex-direction: column; align-items: center; gap: 3px; flex: 1; min-width: 0; }
-.pair-img  { width: 34px; height: 34px; border-radius: 5px; object-fit: cover; }
-.pair-name { font-size: 0.67rem; font-weight: 500; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; }
-.pair-type { font-size: 0.6rem; }
-.pair-plus { color: var(--gold); font-size: 1rem; font-weight: bold; flex-shrink: 0; }
 .no-recs { text-align: center; color: #444; font-size: 0.8rem; padding: 28px 8px; }
 
 /* ── Post-Draft Analysis ──────────────────────────────── */
@@ -435,17 +428,11 @@ body { font-family: 'Segoe UI', system-ui, Arial, sans-serif; background: var(--
       </div>
     </div>
     <div class="recs-panel">
-      <div class="panel-title">Pair Recommendations</div>
+      <div class="panel-title">Recommendations</div>
       <div class="recs-inner" id="recsInner">
         <div class="no-recs">Loading…</div>
       </div>
     </div>
-  </div>
-
-  <!-- Solo Recommendations (shown during double picks) -->
-  <div id="soloRecsSection" class="analysis-section" style="display:none;margin-bottom:10px">
-    <div class="panel-title">Solo Recommendations (Counter Picks)</div>
-    <div id="soloRecsInner" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px"></div>
   </div>
 
   <!-- Post-Draft Analysis (shown only after all 10 picks) -->
@@ -659,18 +646,6 @@ function pickHero(id) {
   renderAll();
 }
 
-function pickPair(id1, id2) {
-  if (turnIdx >= 10) return;
-  const team = curTeam();
-  picks[team].push(id1);
-  turnIdx++;
-  if (turnIdx < 10 && curTeam() === team && !allDrafted().includes(id2)) {
-    picks[team].push(id2);
-    turnIdx++;
-  }
-  renderAll();
-}
-
 // ── Role conflict check ────────────────────────────────────────────────────
 // Returns true if this hero's role is already filled by existingPicks and
 // the EXP/Jungle flex exception does NOT apply.
@@ -742,17 +717,6 @@ function computeScore(heroId, allies, enemies) {
     }
   }
   return s;
-}
-
-function pairSynergy(id1, id2) {
-  let syn = 0;
-  const c1 = HEROES[id1]?.hero_compatibility_info || {};
-  const c2 = HEROES[id2]?.hero_compatibility_info || {};
-  if (c1.sub_hero?.[id2])      syn += (c1.sub_hero[id2].increaseWinRate      ?? 0);
-  if (c1.sub_hero_last?.[id2]) syn += (c1.sub_hero_last[id2].increaseWinRate  ?? 0);
-  if (c2.sub_hero?.[id1])      syn += (c2.sub_hero[id1].increaseWinRate      ?? 0);
-  if (c2.sub_hero_last?.[id1]) syn += (c2.sub_hero_last[id1].increaseWinRate  ?? 0);
-  return syn;
 }
 
 // ── Explanation bullets ────────────────────────────────────────────────────
@@ -1159,7 +1123,6 @@ function renderRecommendations() {
   // Check if this is a double turn (current + next OR current + previous are same team)
   const isDoubleTurn = (turnIdx < 9 && DRAFT_ORDER[turnIdx] === DRAFT_ORDER[turnIdx + 1]) ||
                        (turnIdx > 0 && DRAFT_ORDER[turnIdx] === DRAFT_ORDER[turnIdx - 1]);
-  const isFirstOfDouble = turnIdx < 9 && DRAFT_ORDER[turnIdx] === DRAFT_ORDER[turnIdx + 1];
 
   // First pick: show top 5 meta heroes per role
   if (turnIdx === 0 && enemies.length === 0) {
@@ -1178,55 +1141,15 @@ function renderRecommendations() {
       }
     }
     el.innerHTML = html || '<div class="no-recs">No heroes available</div>';
-  } else if (isDoubleTurn && isFirstOfDouble) {
-    const scores = {};
-    for (const id of avail) scores[id] = computeScore(id, allies, enemies);
-    const top40 = [...avail].sort((a, b) => scores[b] - scores[a]).slice(0, 40);
-
-    const pairs = [];
-    for (let i = 0; i < top40.length; i++) {
-      for (let j = i + 1; j < top40.length; j++) {
-        const h1 = top40[i], h2 = top40[j];
-        // Ensure h2's role doesn't conflict with allies + h1
-        if (roleConflicts(h2, [...allies, h1])) continue;
-        const s1 = scores[h1];
-        const s2 = computeScore(h2, [...allies, h1], enemies);
-        pairs.push({ h1, h2, total: s1 + s2 + pairSynergy(h1, h2) });
-      }
-    }
-    pairs.sort((a, b) => b.total - a.total);
-    
-    // Show pairs in main panel
-    el.innerHTML = '<div class="recs-subtitle">Top Pairs</div>' +
-      pairs.slice(0, 3).map(buildPairCard).join("");
-    
-    // Show solo picks in separate section
-    const soloRanked = avail
+  } else if (isDoubleTurn) {
+    // Double turn — show top 7 single picks for whichever pick we're on
+    const ranked = avail
       .map(id => ({ id, s: computeScore(id, allies, enemies) }))
       .sort((a, b) => b.s - a.s)
-      .slice(0, 5);
-    
-    const soloSection = document.getElementById("soloRecsSection");
-    const soloInner = document.getElementById("soloRecsInner");
-    soloSection.style.display = "block";
-    soloInner.innerHTML = soloRanked.map(r => buildRecCard(r.id, r.s, allies, enemies)).join("");
-  } else if (isDoubleTurn && !isFirstOfDouble) {
-    // Second pick of double turn - hide right panel content
-    el.innerHTML = '<div class="no-recs">Pick 2nd hero from Solo Recommendations below</div>';
-    
-    const soloRanked = avail
-      .map(id => ({ id, s: computeScore(id, allies, enemies) }))
-      .sort((a, b) => b.s - a.s)
-      .slice(0, 5);
-
-    const soloSection = document.getElementById("soloRecsSection");
-    const soloInner = document.getElementById("soloRecsInner");
-    soloSection.style.display = "block";
-    soloInner.innerHTML = soloRanked.map(r => buildRecCard(r.id, r.s, allies, enemies)).join("");
+      .slice(0, 7);
+    el.innerHTML = '<div class="recs-subtitle">Top Picks</div>' +
+      ranked.map(r => buildRecCard(r.id, r.s, allies, enemies)).join("");
   } else {
-    // Hide solo section for non-double picks
-    document.getElementById("soloRecsSection").style.display = "none";
-    
     const ranked = avail
       .map(id => ({ id, s: computeScore(id, allies, enemies) }))
       .sort((a, b) => b.s - a.s)
@@ -1273,28 +1196,6 @@ function buildRecCard(heroId, s, allies, enemies) {
   </div>`;
 }
 
-function buildPairCard({ h1, h2, total }) {
-  const a = HEROES[h1], b = HEROES[h2];
-  return `<div class="rec-card pair-card" onclick="pickPair('${h1}','${h2}')">
-    <div class="pair-row">
-      <div class="pair-hero">
-        <img src="${a.heroPic}" class="pair-img" alt="${a.heroName}">
-        <div class="pair-name">${a.heroName}</div>
-        <div class="pair-type role-${a.heroType}">${a.heroType || ""}</div>
-      </div>
-      <div class="pair-plus">+</div>
-      <div class="pair-hero">
-        <img src="${b.heroPic}" class="pair-img" alt="${b.heroName}">
-        <div class="pair-name">${b.heroName}</div>
-        <div class="pair-type role-${b.heroType}">${b.heroType || ""}</div>
-      </div>
-      <div class="rec-score" style="margin-left:auto">
-        <div class="score-num">${Math.round(total)}</div>
-        <div class="wr-label">pair score</div>
-      </div>
-    </div>
-  </div>`;
-}
 
 function renderHeroGrid() {
   const q        = document.getElementById("search").value.toLowerCase().trim();
