@@ -406,6 +406,7 @@ body { font-family: 'Segoe UI', system-ui, Arial, sans-serif; background: var(--
   position: fixed; z-index: 9999; pointer-events: none; display: none;
   background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r);
   padding: 12px 14px; width: 230px; box-shadow: 0 8px 28px rgba(0,0,0,0.65);
+  max-height: 420px; overflow-y: auto;
 }
 .ht-name { font-size: 0.9rem; font-weight: bold; color: var(--gold); margin-bottom: 1px; }
 .ht-role { font-size: 0.7rem; margin-bottom: 8px; }
@@ -427,9 +428,14 @@ body { font-family: 'Segoe UI', system-ui, Arial, sans-serif; background: var(--
   font-size: 0.58rem; padding: 1px 5px; border-radius: 3px;
   background: var(--bg3); color: var(--muted); border: 1px solid var(--border);
 }
-.ht-combo-count {
-  font-size: 0.75rem; color: #ce93d8; font-weight: bold;
+.ht-combo-seq { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; margin-bottom: 4px; }
+.ht-combo-pill {
+  font-size: 0.65rem; font-weight: bold; padding: 2px 6px; border-radius: 4px;
+  background: #3a2a50; color: #ce93d8; border: 1px solid #6a4a90;
 }
+.ht-combo-pill.ba { background: #1a2a1a; color: #66bb6a; border-color: #2e6b2e; }
+.ht-combo-arrow { font-size: 0.65rem; color: var(--muted); }
+.ht-combo-desc { font-size: 0.65rem; color: var(--muted); line-height: 1.4; margin-bottom: 4px; }
 </style>
 </head>
 <body>
@@ -1772,10 +1778,24 @@ function showHeroTooltip(heroId, e) {
     ${sk.tags.length ? `<div class="ht-skill-tags">${sk.tags.map(t => `<span class="ht-tag">${t}</span>`).join("")}</div>` : ""}
   </div>`;
 
-  const skills  = h.skills      || [];
-  const combos  = h.comboSkills || [];
+  const skills = h.skills || [];
+
+  // Map skillid → label using position: [Passive, S1, S2, Ult]
+  const SKILL_POS_LABELS = ["Passive", "S1", "S2", "Ult"];
+  const skillLabelMap = {};
+  skills.forEach((s, i) => { if (s.skillid) skillLabelMap[s.skillid] = SKILL_POS_LABELS[i] || `S${i}`; });
+  if (h.heroid) skillLabelMap[h.heroid * 100] = "BA";
+
+  const combos = h.combos || [];
   const comboHtml = combos.length
-    ? `<div class="ht-section">Combo Skills</div><div class="ht-combo-count">⚡ ${combos.length} Combo Skill${combos.length > 1 ? "s" : ""}</div>`
+    ? combos.map(c =>
+        `<div class="ht-section">${c.title}</div>
+         <div class="ht-combo-seq">${c.sequence.map(sk => {
+           const label = skillLabelMap[sk.skillid] || "?";
+           return `<span class="ht-combo-pill${label === "BA" ? " ba" : ""}">${label}</span>`;
+         }).join('<span class="ht-combo-arrow">→</span>')}</div>
+         <div class="ht-combo-desc">${c.desc}</div>`
+      ).join("")
     : "";
 
   tip.innerHTML = `
@@ -1783,8 +1803,8 @@ function showHeroTooltip(heroId, e) {
     <div class="ht-role role-${h.heroType}">${h.heroType || ""}</div>
     <div class="ht-section">Ability Stats</div>
     ${statsHtml}
-    ${skills.length ? `<div class="ht-section">Skills</div>${skills.map(skillHtml).join("")}` : ""}
     ${comboHtml}
+    ${skills.length ? `<div class="ht-section">Skills</div>${skills.map(skillHtml).join("")}` : ""}
   `;
 
   tip.style.display = "block";

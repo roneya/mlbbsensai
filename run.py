@@ -5,12 +5,14 @@ Usage:
   python3 run.py          # fetch all APIs + build hero_info.json
   python3 run.py fetch    # fetch only (saves raw JSON cache files)
   python3 run.py build    # build only (reads cache, writes hero_info.json)
+  python3 run.py combos   # fetch combos only + build (uses existing raw cache)
 
 Raw cache files (gitignored):
   raw_stats.json    — win/ban/appearance rates  (1 API call)
   raw_details.json  — hero types, relations, ability stats, story  (1 API call)
   raw_skills.json   — per-hero skills  (1 call per hero)
   raw_counters.json — counter + compatibility win rates  (2 calls per hero)
+  raw_combos.json   — laning/teamfight/jungler combos  (1 call per hero)
 """
 
 import json, re, sys, time
@@ -35,6 +37,7 @@ AUTH = {
     "details":  "GwW9T3dQQDDeRS4PvWViCQskno8=",
     "types":    "CciHBEvFRqQNHGj2djxdUSja7W4=",
     "counters": "bzSIpad3osbcCB/vIK+VlLmJde8=",
+    "combos":   "dloeDsnCiuiA2oh2qRPj8Kc3bJY=",
 }
 
 DELAY = 0.15  # seconds between per-hero calls
@@ -148,6 +151,27 @@ def fetch():
             json.dump(counters, f)
         print(f"  Saved {label} data.")
 
+    # 5. Per-hero combos (laning / teamfight / jungler combos)
+    print("Fetching hero combos...")
+    combos_raw = {}
+    for i, hero_id in enumerate(hero_ids, 1):
+        try:
+            resp = post("2674711", "combos", {
+                "pageSize": 20, "pageIndex": 1,
+                "filters": [{"field": "hero_id", "operator": "eq", "value": hero_id}],
+                "sorts": [], "object": [2684183],
+            })
+            recs = resp.get("data", {}).get("records", [])
+            if recs:
+                combos_raw[str(hero_id)] = recs
+            print(f"  [{i:3d}/{len(hero_ids)}] hero {hero_id} — {len(recs)} combo(s)")
+        except Exception as e:
+            print(f"  [{i:3d}/{len(hero_ids)}] hero {hero_id} — ERROR: {e}")
+        time.sleep(DELAY)
+    with open("raw_combos.json", "w") as f:
+        json.dump(combos_raw, f)
+    print("  Saved combos data.")
+
     print("\nFetch complete. Raw files saved.")
 
 # ── BUILD — reads cache, produces hero_info.json ──────────────────────────────
@@ -218,6 +242,7 @@ def build():
                     relation[key] = {"heroes": heroes, "desc": desc}
 
         entry = hero_info[hid]
+        entry["heroid"]   = int(hid)
         entry["heroType"] = lane
         if hero_class:   entry["heroClass"]   = hero_class
         if speciality:   entry["speciality"]  = speciality
@@ -235,20 +260,26 @@ def build():
         hd           = record.get("data", {}).get("hero", {}).get("data", {})
         hid          = str(hd.get("heroid", ""))
         skill_groups = hd.get("heroskilllist", [])
-        base_skills  = []
-        combo_skills = []
+        base_skills   = []
+        combo_groups  = {}  # suffix (2,3,4...) → list of skills
         for group in skill_groups:
             group_id = str(group.get("skilllistid", ""))
-            bucket   = combo_skills if group_id.endswith("2") else base_skills
-            for sk in group.get("skilllist", []):
-                bucket.append({
-                    "name":    sk.get("skillname", ""),
-                    "desc":    strip_html(sk.get("skilldesc", "")),
-                    "cd_cost": sk.get("skillcd&cost", ""),
-                    "tags":    [t["tagname"] for t in sk.get("skilltag", []) if "tagname" in t],
-                })
+            suffix   = group_id[-1] if group_id else "1"
+            parsed   = [{
+                "skillid": sk.get("skillid"),
+                "name":    sk.get("skillname", ""),
+                "desc":    strip_html(sk.get("skilldesc", "")),
+                "cd_cost": sk.get("skillcd&cost", ""),
+                "tags":    [t["tagname"] for t in sk.get("skilltag", []) if "tagname" in t],
+            } for sk in group.get("skilllist", [])]
+            if suffix == "1":
+                base_skills = parsed
+            else:
+                combo_groups[suffix] = parsed
+
+        combo_skills = [combo_groups[k] for k in sorted(combo_groups)]
         if hid in hero_info and (base_skills or combo_skills):
-            hero_info[hid]["skills"]      = base_skills
+            hero_info[hid]["skills"] = base_skills
             if combo_skills:
                 hero_info[hid]["comboSkills"] = combo_skills
             skills_added += 1
@@ -291,7 +322,33 @@ def build():
         counters_added += 1
     print(f"  {counters_added} heroes with counter/compat data")
 
-    # ── Step 5: rekey by name, resolve numeric IDs in counter sub-lists ──
+    # ── Step 5: combos (laning / teamfight / jungler) ──
+    try:
+        with open("raw_combos.json") as f: raw_combos = json.load(f)
+        combos_added = 0
+        for hid, records in raw_combos.items():
+            if hid not in hero_info:
+                continue
+            combos = []
+            for rec in records:
+                d = rec.get("data", {})
+                combos.append({
+                    "title":    d.get("title", ""),
+                    "desc":     d.get("desc",  ""),
+                    "sequence": [
+                        {"skillid": sk["data"]["skillid"], "icon": sk["data"]["skillicon"]}
+                        for sk in d.get("skill_id", [])
+                        if isinstance(sk, dict) and sk.get("data", {}).get("skillid")
+                    ],
+                })
+            if combos:
+                hero_info[hid]["combos"] = combos
+                combos_added += 1
+        print(f"  {combos_added} heroes with combos")
+    except FileNotFoundError:
+        print("  raw_combos.json not found — skipping combos (run fetch first)")
+
+    # ── Step 6: rekey by name, resolve numeric IDs in counter sub-lists ──
     named = {}
     for hid, hdata in hero_info.items():
         name = id_to_name.get(hid) or hdata.get("heroName", "")
@@ -314,6 +371,33 @@ def build():
 
     print(f"\nDone! hero_info.json written with {len(named)} heroes.")
 
+def fetch_combos():
+    with open("raw_stats.json") as f: raw_stats = json.load(f)
+    hero_ids = sorted(set(
+        r["data"]["main_heroid"]
+        for r in raw_stats.get("data", {}).get("records", [])
+        if r.get("data", {}).get("main_heroid")
+    ))
+    print(f"Fetching combos for {len(hero_ids)} heroes...")
+    combos_raw = {}
+    for i, hero_id in enumerate(hero_ids, 1):
+        try:
+            resp = post("2674711", "combos", {
+                "pageSize": 20, "pageIndex": 1,
+                "filters": [{"field": "hero_id", "operator": "eq", "value": hero_id}],
+                "sorts": [], "object": [2684183],
+            })
+            recs = resp.get("data", {}).get("records", [])
+            if recs:
+                combos_raw[str(hero_id)] = recs
+            print(f"  [{i:3d}/{len(hero_ids)}] hero {hero_id} — {len(recs)} combo(s)")
+        except Exception as e:
+            print(f"  [{i:3d}/{len(hero_ids)}] hero {hero_id} — ERROR: {e}")
+        time.sleep(DELAY)
+    with open("raw_combos.json", "w") as f:
+        json.dump(combos_raw, f)
+    print("Done. raw_combos.json saved.")
+
 # ── Entry point ───────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
@@ -321,6 +405,10 @@ if __name__ == "__main__":
     if cmd == "fetch":
         fetch()
     elif cmd == "build":
+        build()
+    elif cmd == "combos":
+        fetch_combos()
+        print()
         build()
     else:
         fetch()
