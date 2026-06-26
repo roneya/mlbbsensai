@@ -153,24 +153,7 @@ def fetch():
 
     # 5. Per-hero combos (laning / teamfight / jungler combos)
     print("Fetching hero combos...")
-    combos_raw = {}
-    for i, hero_id in enumerate(hero_ids, 1):
-        try:
-            resp = post("2674711", "combos", {
-                "pageSize": 20, "pageIndex": 1,
-                "filters": [{"field": "hero_id", "operator": "eq", "value": hero_id}],
-                "sorts": [], "object": [2684183],
-            })
-            recs = resp.get("data", {}).get("records", [])
-            if recs:
-                combos_raw[str(hero_id)] = recs
-            print(f"  [{i:3d}/{len(hero_ids)}] hero {hero_id} — {len(recs)} combo(s)")
-        except Exception as e:
-            print(f"  [{i:3d}/{len(hero_ids)}] hero {hero_id} — ERROR: {e}")
-        time.sleep(DELAY)
-    with open("raw_combos.json", "w") as f:
-        json.dump(combos_raw, f)
-    print("  Saved combos data.")
+    _fetch_combos_for_ids(hero_ids)
 
     print("\nFetch complete. Raw files saved.")
 
@@ -371,14 +354,7 @@ def build():
 
     print(f"\nDone! hero_info.json written with {len(named)} heroes.")
 
-def fetch_combos():
-    with open("raw_stats.json") as f: raw_stats = json.load(f)
-    hero_ids = sorted(set(
-        r["data"]["main_heroid"]
-        for r in raw_stats.get("data", {}).get("records", [])
-        if r.get("data", {}).get("main_heroid")
-    ))
-    print(f"Fetching combos for {len(hero_ids)} heroes...")
+def _fetch_combos_for_ids(hero_ids):
     combos_raw = {}
     for i, hero_id in enumerate(hero_ids, 1):
         try:
@@ -396,6 +372,17 @@ def fetch_combos():
         time.sleep(DELAY)
     with open("raw_combos.json", "w") as f:
         json.dump(combos_raw, f)
+    print("  Saved combos data.")
+
+def fetch_combos():
+    with open("raw_stats.json") as f: raw_stats = json.load(f)
+    hero_ids = sorted(set(
+        r["data"]["main_heroid"]
+        for r in raw_stats.get("data", {}).get("records", [])
+        if r.get("data", {}).get("main_heroid")
+    ))
+    print(f"Fetching combos for {len(hero_ids)} heroes...")
+    _fetch_combos_for_ids(hero_ids)
     print("Done. raw_combos.json saved.")
 
 # ── Entry point ───────────────────────────────────────────────────────────────

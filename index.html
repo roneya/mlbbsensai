@@ -547,7 +547,6 @@ const SLOT_ROLE_PREFS = {
 
 // ── State ──────────────────────────────────────────────────────────────────
 let HEROES       = {};
-let SKILLS       = {}; // legacy — skills now embedded in hero_info.json under hero.skills
 let bans         = { A: [], B: [] };
 let picks        = { A: [], B: [] };
 let enemyBanned  = [];
@@ -633,9 +632,12 @@ function curTeam()    {
 }
 
 // ── Phase Detection ────────────────────────────────────────────────────────
+const _skillTagCache = {};
+
 // Returns flat array of skill tags + desc-mined precision tags for a hero
 // Precision tags: Suppress, Stun, Knockup, Dash (derived from skill descriptions)
 function getSkillTags(heroId) {
+  if (_skillTagCache[heroId]) return _skillTagCache[heroId];
   const skills = HEROES[heroId]?.skills;
   if (!skills) return [];
   const tags = skills.flatMap(s => s.tags);
@@ -647,6 +649,7 @@ function getSkillTags(heroId) {
     if (d.includes("dash")  || d.includes("blink"))    tags.push("Dash");
     if (d.includes("immobil"))                          tags.push("Immobilize");
   }
+  _skillTagCache[heroId] = tags;
   return tags;
 }
 
@@ -747,25 +750,6 @@ const PHASE_TIME_FIELDS = {
   late:     ['min_win_rate18_20', 'min_win_rate20'],
 };
 
-// ── Get counter winrates directly from JSON ────────────────────────────────
-function getCounterWinrates(heroId, enemyIds) {
-  let totalWR = 0;
-  let count = 0;
-  const heroCounter = HEROES[heroId]?.hero_counter_info || {};
-
-  for (const enemyId of enemyIds) {
-    if (heroCounter.sub_hero?.[enemyId]) {
-      totalWR += heroCounter.sub_hero[enemyId]?.increaseWinRate ?? 0;  // positive: heroId counters enemy
-      count++;
-    }
-    if (heroCounter.sub_hero_last?.[enemyId]) {
-      totalWR += heroCounter.sub_hero_last[enemyId]?.increaseWinRate ?? 0;  // negative: enemy counters heroId
-      count++;
-    }
-  }
-  return (HEROES[heroId]?.winRate || 50) + (count > 0 ? totalWR / count : 0);
-}
-
 // Early avg > late avg by >8pp → Early counter; late avg > early by >8pp → Late; else Flex
 function getTimingLabel(timingCurve) {
   if (!timingCurve) return null;
@@ -819,8 +803,8 @@ function roleConflicts(heroId, existingPicks) {
   const roles = existingPicks.map(id => HEROES[id]?.heroType).filter(Boolean);
   if (!roles.includes(role)) return false;
   // Flex exception: allow EXP when only Jungle taken (not EXP), and vice versa
-  if (role === "EXP"    && roles.includes("Jungle") && !roles.includes("EXP"))    return false;
-  if (role === "Jungle" && roles.includes("EXP")    && !roles.includes("Jungle")) return false;
+  if (role === "Exp Lane" && roles.includes("Jungle")   && !roles.includes("Exp Lane")) return false;
+  if (role === "Jungle"   && roles.includes("Exp Lane") && !roles.includes("Jungle"))  return false;
   return true; // role already covered — conflict
 }
 
@@ -886,8 +870,8 @@ function computeScore(heroId, allies, enemies) {
     if (!allyRoles.includes(role)) {
       s += ROLE_BONUSES[role] || 0;
     } else {
-      const flex = (role === "EXP"    && allyRoles.includes("Jungle"))
-                || (role === "Jungle" && allyRoles.includes("EXP"));
+      const flex = (role === "Exp Lane" && allyRoles.includes("Jungle"))
+                || (role === "Jungle"   && allyRoles.includes("Exp Lane"));
       s += flex ? (ROLE_PENALTIES[role] || 0) * 0.5 : (ROLE_PENALTIES[role] || 0);
     }
   }
@@ -935,8 +919,7 @@ function computeScore(heroId, allies, enemies) {
     }
 
     // Late-scaling team → survivability matters more
-    const gPhase = detectGamePhase(allies, enemies);
-    if (gPhase === "late" && (hasShield || hasHeal)) s += 5;
+    if (phase === "late" && (hasShield || hasHeal)) s += 5;
   }
 
   // ── Speciality bonuses ─────────────────────────────────────────────────
@@ -1044,8 +1027,8 @@ function buildExplanation(heroId, allies, enemies) {
     if (!allyRoles.includes(role)) {
       notes.push({ pos:true,  t:`Fills ${role} role` });
     } else {
-      const flex = (role === "EXP"    && allyRoles.includes("Jungle"))
-                || (role === "Jungle" && allyRoles.includes("EXP"));
+      const flex = (role === "Exp Lane" && allyRoles.includes("Jungle"))
+                || (role === "Jungle"   && allyRoles.includes("Exp Lane"));
       notes.push({ pos:false, t: flex ? `Slight overlap with ${role}` : `Overlaps ${role} role` });
     }
   }
@@ -1736,11 +1719,12 @@ function buildRecCard(heroId, s, allies, enemies, noteOverride = null) {
     }
   }
 
+  const tier = getHeroTier(h);
   return `<div class="rec-card" onclick="pickHero('${heroId.replace(/'/g, "\\'")}')">
     <div class="rec-row">
       <img src="${h.heroPic}" class="rec-img" alt="${h.heroName}">
       <div class="rec-info">
-        <div class="rec-name">${h.heroName} <span class="tier-badge ${getHeroTier(h)}">${getHeroTier(h)}</span></div>
+        <div class="rec-name">${h.heroName} <span class="tier-badge ${tier}">${tier}</span></div>
         <div class="rec-type role-${h.heroType}">${h.heroType || ""}${timingBadgeHtml}</div>
       </div>
       <div class="rec-score">
