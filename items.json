@@ -1,0 +1,1063 @@
+{
+  "items": [
+    {
+      "name": "Antique Cuirass",
+      "cat": "Defense",
+      "price": 2170,
+      "stats": [
+        "+924 HP",
+        "+40 Physical Defense"
+      ],
+      "img": "images/items/Antique Cuirass.png",
+      "passive_name": "Deter",
+      "passive_description": "Unique Passive - Deter: When hit by a skill, reduces the attacker's Physical Damage by 6% for 2 seconds (this effect stacks up to 3 times)."
+    },
+    {
+      "name": "Arcane Boots",
+      "cat": "Movement",
+      "price": 720,
+      "stats": [
+        "+15 Magic Power",
+        "+40 Movement Speed",
+        "+10 Penetration"
+      ],
+      "img": "images/items/Arcane Boots.png",
+      "passive_name": "",
+      "passive_description": ""
+    },
+    {
+      "name": "Ares Belt",
+      "cat": "Defense",
+      "price": 700,
+      "stats": [
+        "+600 HP"
+      ],
+      "img": "images/items/Ares Belt.png",
+      "passive_name": "",
+      "passive_description": ""
+    },
+    {
+      "name": "Athena's Shield",
+      "cat": "Defense",
+      "price": 2150,
+      "stats": [
+        "+902 HP",
+        "+48 Magic Defense"
+      ],
+      "img": "images/items/Athenas Shield.png",
+      "passive_name": "Shield",
+      "passive_description": "Unique Passive - Shield: Upon taking Magic Damage from enemy hero skills or Basic Attacks, reduces Magic Damage taken by 25% for 3 second (including the damage that triggers the effect)s. Regains this effect 5 seconds after leaving combat."
+    },
+    {
+      "name": "Azure Blade",
+      "cat": "Magic",
+      "price": 600,
+      "stats": [
+        "+5 Magic Power",
+        "+5% CD Reduction"
+      ],
+      "img": "images/items/Azure Blade.png",
+      "passive_name": "Judgement",
+      "passive_description": "Unique Passive - Judgement: After casting a skill, the next Basic Attack within 3 seconds deals 50 extra True Damage (1.5 seconds cooldown)."
+    },
+    {
+      "name": "Berserker's Fury",
+      "cat": "Attack",
+      "price": 2390,
+      "stats": [
+        "+65 Physical Attack"
+      ],
+      "img": "images/items/Berserkers Fury.png",
+      "passive_name": "Doom",
+      "passive_description": "Unique Attribute: +40% Crit Damage. Unique Passive - Doom: Critical strikes grant 5% extra Physical Attack for 2 seconds."
+    },
+    {
+      "name": "Black Ice Shield",
+      "cat": "Defense",
+      "price": 780,
+      "stats": [
+        "+20 Physical Defense",
+        "+20 Magic Defense"
+      ],
+      "img": "images/items/Black Ice Shield.png",
+      "passive_name": "Fortress Shield",
+      "passive_description": "Unique Passive - Fortress Shield: For each enemy hero within 5 units, Hybrid Defense is increased by 4, up to 20."
+    },
+    {
+      "name": "Blade Armor",
+      "cat": "Defense",
+      "price": 1910,
+      "stats": [
+        "+80 Physical Defense"
+      ],
+      "img": "images/items/Blade Armor.png",
+      "passive_name": "Bladed Armor",
+      "passive_description": "Unique Attribute: +20% Crit Damage Reduction. Unique Passive - Bladed Armor: When struck by a Basic Attack, deals Physical Damage equal to 30 (+2% Total Physical Defense)% of the incoming damage (calculated before Damage Reduction) to the attacker and slows them by 15% for 1 second."
+    },
+    {
+      "name": "Blade of Despair",
+      "cat": "Attack",
+      "price": 3010,
+      "stats": [
+        "+160 Physical Attack",
+        "+5 Movement Speed"
+      ],
+      "img": "images/items/Blade of Despair.png",
+      "passive_name": "Despair",
+      "passive_description": "Unique Passive - Despair: Dealing damage to non-Minion enemies below 50% HP increases Physical Attack by 25% for 2 seconds (takes effect before the damage is dealt)."
+    },
+    {
+      "name": "Blade of the Heptaseas",
+      "cat": "Attack",
+      "price": 1950,
+      "stats": [
+        "+70 Physical Attack",
+        "+250 HP"
+      ],
+      "img": "images/items/Blade of the Heptaseas.png",
+      "passive_name": "Ambush",
+      "passive_description": "Unique Attribute: +15 Physical Penetration. Unique Passive - Ambush: If no damage is taken or dealt within 5 seconds (excluding from Minions or Creeps), the next Basic Attack will deal an additional 160 (+40% Total Physical Attack) Physical Damage and slow the target by 40% for 1.5 seconds."
+    },
+    {
+      "name": "Blood Wings",
+      "cat": "Magic",
+      "price": 2100,
+      "stats": [
+        "+90 Magic Power"
+      ],
+      "img": "images/items/Blood Wings.png",
+      "passive_name": "Guard",
+      "passive_description": "Unique Passive - Guard: Gains a 800 (+100% Magic Power) Shield that will regenerate 20 seconds after being damaged. The Shield also grants 30 Movement Speed while it lasts and 150 Movement Speed for 1 second after it breaks."
+    },
+    {
+      "name": "Book of Sages",
+      "cat": "Magic",
+      "price": 450,
+      "stats": [
+        "+8 Magic Power",
+        "+5% CD Reduction"
+      ],
+      "img": "images/items/Book of Sages.png",
+      "passive_name": "",
+      "passive_description": ""
+    },
+    {
+      "name": "Boots",
+      "cat": "Movement",
+      "price": 250,
+      "stats": [
+        "+20 Movement Speed"
+      ],
+      "img": "images/items/Boots.png",
+      "passive_name": "",
+      "passive_description": ""
+    },
+    {
+      "name": "Brute Force Breastplate",
+      "cat": "Defense",
+      "price": 2070,
+      "stats": [
+        "+800 HP",
+        "+20 Physical Defense",
+        "+10% CD Reduction"
+      ],
+      "img": "images/items/Brute Force Breastplate.png",
+      "passive_name": "Brute Force",
+      "passive_description": "Unique Passive - Brute Force: Each second after dealing damage, gain 8 extra Adaptive Attack and 2% extra Movement Speed for 4 seconds, up to 6 stacks. Gain 25% extra Control Duration Reduction at full stacks."
+    },
+    {
+      "name": "Chastise Pauldron",
+      "cat": "Defense",
+      "price": 2100,
+      "stats": [
+        "+900 HP",
+        "+40 Physical Defense"
+      ],
+      "img": "images/items/Chastise Pauldron.png",
+      "passive_name": "Chastise",
+      "passive_description": "Unique Passive - Chastise: Taking damage will reduce the Attack Speed and Attack Speed cap of the attacker to 75% of normal for 2 seconds. Unique Passive - Redemption: When incoming damage reduces HP below 30%, recover 20% Max HP over the next 2 seconds. This effect has a 60 seconds cooldown."
+    },
+    {
+      "name": "Clock of Destiny",
+      "cat": "Magic",
+      "price": 2030,
+      "stats": [
+        "+445 Magic Power",
+        "+400 HP",
+        "+10% CD Reduction"
+      ],
+      "img": "images/items/Clock of Destiny.png",
+      "passive_name": "Destiny",
+      "passive_description": "Unique Passive - Destiny: Gains 4.5(+0.5*Hero Level) Hybrid Defense for 5 seconds when dealing Magic Damage to enemy heroes, stacking up to 6 times (can gain 1 stack every 0.4 second). Unique Passive - Gift: When HP drops below 50%, recovers 15% of HP over the next 3 seconds. When Mana drops below 50%, restores 15% of Mana over the next 3 seconds. Cooldown: 60 seconds."
+    },
+    {
+      "name": "Concentrated Energy",
+      "cat": "Magic",
+      "price": 2020,
+      "stats": [
+        "+70 Magic Power",
+        "+400 HP"
+      ],
+      "img": "images/items/Concentrated Energy.png",
+      "passive_name": "Recharge",
+      "passive_description": "Unique Attribute: +20% Hybrid Lifesteal. Unique Passive - Recharge: Increases Magic Power by 5 after dealing Magic Damage (this effect stacks up to 6 times and can only gain 1 stack every 0.4 second). When reaching full stacks, increases Magic Damage by 12% for 5 seconds."
+    },
+    {
+      "name": "Corrosion Scythe",
+      "cat": "Attack",
+      "price": 2050,
+      "stats": [
+        "+30 Physical Attack",
+        "+30% Attack Speed",
+        "+5 Movement Speed"
+      ],
+      "img": "images/items/Corrosion Scythe.png",
+      "passive_name": "Corrosive",
+      "passive_description": "Unique Passive - Corrosive: Basic Attacks gain 80 extra Physical Damage and slow the target by 8% (halved for ranged Basic Attacks) for 1.5 seconds. Stacks up to 5 times. Unique Passive - Impulse: Basic Attacks grant 6% extra Attack Speed for 3 seconds, capped at 5 stacks."
+    },
+    {
+      "name": "Cursed Helmet",
+      "cat": "Defense",
+      "price": 1910,
+      "stats": [
+        "+1200 HP",
+        "+20 Magic Defense"
+      ],
+      "img": "images/items/Cursed Helmet.png",
+      "passive_name": "Burning Soul",
+      "passive_description": "Unique Passive - Burning Soul: Deals (1.2% Total HP) Magic Damage to nearby enemies per second. This damage is increased by 125(+15*Hero Level)% against creeps and minions. Unique Passive - Curse: Dealing damage with Burning Soul will reduce the target's Hybrid Defense by 3 for 3 seconds. Stacks up to 3 times."
+    },
+    {
+      "name": "Dagger",
+      "cat": "Attack",
+      "price": 250,
+      "stats": [
+        "+15 Physical Attack"
+      ],
+      "img": "images/items/Dagger.png",
+      "passive_name": "",
+      "passive_description": ""
+    },
+    {
+      "name": "Demon Hunter Sword",
+      "cat": "Attack",
+      "price": 2180,
+      "stats": [
+        "+35 Physical Attack",
+        "+20% Attack Speed",
+        "+8% Lifesteal"
+      ],
+      "img": "images/items/Demon Hunter Sword.png",
+      "passive_name": "Engulf",
+      "passive_description": "Unique Passive - Engulf: Basic Attacks deal 8% of the target's current HP as extra physical damage (capped at 60 against minions). Unique Passive - Devour: Basic Attacks grant 2% Lifesteal for 3 seconds (stacks up to 5 times)."
+    },
+    {
+      "name": "Demon Shoes",
+      "cat": "Movement",
+      "price": 720,
+      "stats": [
+        "+10 Magic Power",
+        "+40 Movement Speed"
+      ],
+      "img": "images/items/Demon Shoes.png",
+      "passive_name": "Mysticism",
+      "passive_description": "Unique Passive - Mysticism: Getting a kill or assist on an enemy Minion will restore 4% Mana. (An assist occurs when a Minion dies within 2 seconds after taking damage from the hero.)"
+    },
+    {
+      "name": "Divine Glaive",
+      "cat": "Magic",
+      "price": 1970,
+      "stats": [
+        "+65 Magic Power"
+      ],
+      "img": "images/items/Divine Glaive.png",
+      "passive_name": "Spellbreaker",
+      "passive_description": "Unique Attribute: +40% Magic Penetration. Unique Passive - Spellbreaker: When attacking an enemy, gains 0.1% extra Magic Penetration for each point of the enemy's Magic Defense, capped at 20%."
+    },
+    {
+      "name": "Dominance Ice",
+      "cat": "Defense",
+      "price": 2010,
+      "stats": [
+        "+40 Physical Defense",
+        "+40 Magic Defense",
+        "+5 Movement Speed"
+      ],
+      "img": "images/items/Dominance Ice.png",
+      "passive_name": "Fortress Shield",
+      "passive_description": "Unique Passive - Fortress Shield: For each enemy hero within 5 units, Hybrid Defense is increased by 8, up to 40. Unique Passive - Lifebane: Taking damage will reduce the Shield and HP Regen effects of the attacker to 60% of normal for 1 second."
+    },
+    {
+      "name": "Dreadnaught Armor",
+      "cat": "Defense",
+      "price": 730,
+      "stats": [
+        "+30 Physical Defense"
+      ],
+      "img": "images/items/Dreadnaught Armor.png",
+      "passive_name": "Deter",
+      "passive_description": "Unique Passive - Deter: When hit by a skill, reduces the attacker's Physical Damage by 4% for 2 seconds (this effect stacks up to 3 times)."
+    },
+    {
+      "name": "Elegant Gem",
+      "cat": "Magic",
+      "price": 700,
+      "stats": [
+        "+380 Magic Power",
+        "+300 HP"
+      ],
+      "img": "images/items/Elegant Gem.png",
+      "passive_name": "Gift",
+      "passive_description": "Unique Passive - Gift: When HP drops below 50%, recovers 15% of HP over the next 3 seconds. When Mana drops below 50%, restores 15% of Mana over the next 3 seconds. Cooldown: 60 seconds."
+    },
+    {
+      "name": "Enchanted Talisman",
+      "cat": "Magic",
+      "price": 1870,
+      "stats": [
+        "+50 Magic Power",
+        "+250 HP",
+        "+20% CD Reduction"
+      ],
+      "img": "images/items/Enchanted Talisman.png",
+      "passive_name": "Mana Spring",
+      "passive_description": "Unique Passive - Mana Spring: Regenerates 15% of Max Mana every 10 seconds. Unique Passive - Magic Mastery: Max Cooldown Reduction is increased by 5%."
+    },
+    {
+      "name": "Endless Battle",
+      "cat": "Attack",
+      "price": 2330,
+      "stats": [
+        "+60 Physical Attack",
+        "+5 Magic Power",
+        "+250 HP"
+      ],
+      "img": "images/items/Endless Battle.png",
+      "passive_name": "Divine Justice",
+      "passive_description": "Unique Passive - Divine Justice: After casting a skill, the next Basic Attack within 3 seconds deals (60% Total Physical Attack) extra True Damage and recovers 80 (+40% of Total Physical Attack) HP (1.5 seconds cooldown)."
+    },
+    {
+      "name": "Exotic Veil",
+      "cat": "Magic",
+      "price": 600,
+      "stats": [
+        "+30 Magic Power",
+        "+5 Movement Speed"
+      ],
+      "img": "images/items/Exotic Veil.png",
+      "passive_name": "",
+      "passive_description": ""
+    },
+    {
+      "name": "Expert Gloves",
+      "cat": "Attack",
+      "price": 500,
+      "stats": [
+        "+30 Physical Attack"
+      ],
+      "img": "images/items/Expert Gloves.png",
+      "passive_name": "",
+      "passive_description": ""
+    },
+    {
+      "name": "Feather of Heaven",
+      "cat": "Magic",
+      "price": 2030,
+      "stats": [
+        "+55 Magic Power",
+        "+20% Attack Speed",
+        "+5% CD Reduction"
+      ],
+      "img": "images/items/Feather of Heaven.png",
+      "passive_name": "Affliction",
+      "passive_description": "Unique Passive - Affliction: Each Basic Attack deals extra 50 (+30% Total Magic Power) Magic Damage. Unique Passive - Impulse: Basic Attacks grant 6% extra Attack Speed for 3 seconds, capped at 5 stacks."
+    },
+    {
+      "name": "Flask of the Oasis",
+      "cat": "Magic",
+      "price": 1850,
+      "stats": [
+        "+60 Magic Power",
+        "+300 HP",
+        "+10% CD Reduction"
+      ],
+      "img": "images/items/Flask of the Oasis.png",
+      "passive_name": "Blessing",
+      "passive_description": "Unique Attribute: +12% Healing Effect. Unique Passive - Blessing: When casting a healing or shield skill, if the target's HP is below 35%, or falls below 35% within 3 seconds, they will get a (100*Hero Level) shield that lasts 3 seconds. When this effect triggers, it also reduces the cooldown of the caster's skills by 2 seconds. (This effect can only trigger once every 60 seconds on the same target, and will not trigger on self-only healing and shield skills.)"
+    },
+    {
+      "name": "Fleeting Time",
+      "cat": "Attack",
+      "price": 2050,
+      "stats": [
+        "+30 Physical Attack",
+        "+600 HP",
+        "+15% CD Reduction"
+      ],
+      "img": "images/items/Fleeting Time.png",
+      "passive_name": "Timestream",
+      "passive_description": "Unique Passive - Timestream: Hero kills or assists reduce the Ultimate's current cooldown by 30%."
+    },
+    {
+      "name": "Fury Hammer",
+      "cat": "Attack",
+      "price": 830,
+      "stats": [
+        "+35 Physical Attack"
+      ],
+      "img": "images/items/Fury Hammer.png",
+      "passive_name": "",
+      "passive_description": ""
+    },
+    {
+      "name": "Genius Wand",
+      "cat": "Magic",
+      "price": 2000,
+      "stats": [
+        "+75 Magic Power",
+        "+5 Movement Speed"
+      ],
+      "img": "images/items/Genius Wand.png",
+      "passive_name": "Magic",
+      "passive_description": "Unique Attribute: +10 Magic Penetration. Unique Passive - Magic: Dealing Magic Damage to enemy heroes will reduce their Magic Defense by 3+(0.3*Hero Level) for 2 seconds. Stacks up to 3 times."
+    },
+    {
+      "name": "Glowing Wand",
+      "cat": "Magic",
+      "price": 2150,
+      "stats": [
+        "+75 Magic Power",
+        "+400 HP",
+        "+5 Movement Speed"
+      ],
+      "img": "images/items/Glowing Wand.png",
+      "passive_name": "Scorch",
+      "passive_description": "Unique Passive - Scorch: Dealing Magic Damage burns the targets for 3 seconds, also dealing extra Magic Damage equal to 1% of the target's Max HP per second. Unique Passive - Lifebane: Dealing damage to the target will reduce the Shield and HP Regen effects on them to 60% of normal for 3 seconds."
+    },
+    {
+      "name": "Golden Staff",
+      "cat": "Attack",
+      "price": 2000,
+      "stats": [
+        "+55 Physical Attack",
+        "+15% Attack Speed"
+      ],
+      "img": "images/items/Golden Staff.png",
+      "passive_name": "Swift",
+      "passive_description": "Unique Passive - Swift: Every 1% extra Crit Chance gained is converted into 1% extra Attack Speed. Unique Passive - Endless Strike: After every 2 non-Crit Basic Attacks, the Attack Speed of the next Basic Attack is increased by 80% (and Attack Speed cap is increased to 500%) and triggers Attack Effects an additional 2 time(s)."
+    },
+    {
+      "name": "Great Dragon Spear",
+      "cat": "Attack",
+      "price": 2140,
+      "stats": [
+        "+70 Physical Attack",
+        "+10% CD Reduction"
+      ],
+      "img": "images/items/Great Dragon Spear.png",
+      "passive_name": "Supreme Warrior",
+      "passive_description": "Unique Passive - Supreme Warrior: After casting an Ultimate, increase Movement Speed by 30% for 7.5 seconds. This effect has a 15 seconds cooldown."
+    },
+    {
+      "name": "Guardian Helmet",
+      "cat": "Defense",
+      "price": 2500,
+      "stats": [
+        "+1820 HP"
+      ],
+      "img": "images/items/Guardian Helmet.png",
+      "passive_name": "Recovery",
+      "passive_description": "Unique Passive - Recovery: After 5 seconds out of combat, recover (2.5% Total HP) HP per second. Unique Passive - Defender: Upon taking more than 500 damage in a single instance, recover 20 (+0.3% Total HP)% HP from the excess damage beyond that amount."
+    },
+    {
+      "name": "Haas' Claws",
+      "cat": "Attack",
+      "price": 2020,
+      "stats": [
+        "+40 Physical Attack",
+        "+15% Attack Speed"
+      ],
+      "img": "images/items/Haas Claws.png",
+      "passive_name": "Frenzy",
+      "passive_description": "Unique Attribute: +20% Lifesteal. Unique Passive - Frenzy: Critical strikes grant 20% extra Attack Speed for 2 seconds."
+    },
+    {
+      "name": "Healing Necklace",
+      "cat": "Defense",
+      "price": 140,
+      "stats": [
+        "+4 HP"
+      ],
+      "img": "images/items/Healing Necklace.png",
+      "passive_name": "",
+      "passive_description": ""
+    },
+    {
+      "name": "Hero's Ring",
+      "cat": "Defense",
+      "price": 450,
+      "stats": [
+        "+150 HP",
+        "+5% CD Reduction"
+      ],
+      "img": "images/items/Heros Ring.png",
+      "passive_name": "",
+      "passive_description": ""
+    },
+    {
+      "name": "Holy Crystal",
+      "cat": "Magic",
+      "price": 3000,
+      "stats": [
+        "+185 Magic Power"
+      ],
+      "img": "images/items/Holy Crystal.png",
+      "passive_name": "Mystery",
+      "passive_description": "Unique Passive - Mystery: Gains 21%-35% extra Magic Power (scales with level)."
+    },
+    {
+      "name": "Hunter Strike",
+      "cat": "Attack",
+      "price": 2010,
+      "stats": [
+        "+80 Physical Attack",
+        "+10% CD Reduction"
+      ],
+      "img": "images/items/Hunter Strike.png",
+      "passive_name": "Retribution",
+      "passive_description": "Unique Attribute: +15 Physical Penetration. Unique Passive - Retribution: Dealing damage to the same enemy hero or creep 5 times in a row grants 50% extra Movement Speed that decays over 3 seconds (8 seconds cooldown)."
+    },
+    {
+      "name": "Ice Queen Wand",
+      "cat": "Magic",
+      "price": 2040,
+      "stats": [
+        "+75 Magic Power",
+        "+300 HP",
+        "+7 Movement Speed"
+      ],
+      "img": "images/items/Ice Queen Wand.png",
+      "passive_name": "Ice Bound",
+      "passive_description": "Unique Passive - Ice Bound: When a skill deals damage to an enemy hero, it will also slow them by 10% for 2 seconds (stacks up to 3 times). This effect has a 1 second cooldown."
+    },
+    {
+      "name": "Immortality",
+      "cat": "Defense",
+      "price": 2120,
+      "stats": [
+        "+850 HP",
+        "+15 Physical Defense"
+      ],
+      "img": "images/items/Immortality.png",
+      "passive_name": "Immortal",
+      "passive_description": "Unique Passive - Immortal: Resurrect 2.5 seconds upon death and gets 16% Max HP and a shield that can absorb 150(+70*Hero Level) damage. Shield lasts 3 seconds. This effect has a 210 seconds cooldown."
+    },
+    {
+      "name": "Iron Hunting Bow",
+      "cat": "Attack",
+      "price": 450,
+      "stats": [
+        "+10 Physical Attack",
+        "+5% CD Reduction"
+      ],
+      "img": "images/items/Iron Hunting Bow.png",
+      "passive_name": "",
+      "passive_description": ""
+    },
+    {
+      "name": "Javelin",
+      "cat": "Attack",
+      "price": 320,
+      "stats": [],
+      "img": "images/items/Javelin.png",
+      "passive_name": "",
+      "passive_description": ""
+    },
+    {
+      "name": "Knife",
+      "cat": "Attack",
+      "price": 280,
+      "stats": [
+        "+10% Attack Speed"
+      ],
+      "img": "images/items/Knife.png",
+      "passive_name": "",
+      "passive_description": ""
+    },
+    {
+      "name": "Leather Jerkin",
+      "cat": "Defense",
+      "price": 220,
+      "stats": [
+        "+14 Physical Defense"
+      ],
+      "img": "images/items/Leather Jerkin.png",
+      "passive_name": "",
+      "passive_description": ""
+    },
+    {
+      "name": "Legion Sword",
+      "cat": "Attack",
+      "price": 910,
+      "stats": [
+        "+60 Physical Attack"
+      ],
+      "img": "images/items/Legion Sword.png",
+      "passive_name": "",
+      "passive_description": ""
+    },
+    {
+      "name": "Lightning Truncheon",
+      "cat": "Magic",
+      "price": 2250,
+      "stats": [
+        "+475 Magic Power",
+        "+10% CD Reduction"
+      ],
+      "img": "images/items/Lightning Truncheon.png",
+      "passive_name": "Resonate",
+      "passive_description": "Unique Passive - Resonate: Every 6 seconds, the next skill echoes, dealing 170 (+85% Magic Power) extra Magic Damage to all enemies in range."
+    },
+    {
+      "name": "Magic Blade",
+      "cat": "Attack",
+      "price": 1050,
+      "stats": [
+        "+35 Physical Attack",
+        "+10% Lifesteal"
+      ],
+      "img": "images/items/Magic Blade.png",
+      "passive_name": "Lifeline",
+      "passive_description": "Unique Passive - Lifeline: When taking damage that reduces HP below 30%, gains a (+60*Hero Level) shield (increases with level) and 50% Movement Speed that rapidly decays over 3 seconds. This effect has a 60 seconds cooldown."
+    },
+    {
+      "name": "Magic Necklace",
+      "cat": "Magic",
+      "price": 120,
+      "stats": [
+        "+2 Magic Power"
+      ],
+      "img": "images/items/Magic Necklace.png",
+      "passive_name": "",
+      "passive_description": ""
+    },
+    {
+      "name": "Magic Resist Cloak",
+      "cat": "Defense",
+      "price": 220,
+      "stats": [
+        "+14 Magic Defense"
+      ],
+      "img": "images/items/Magic Resist Cloak.png",
+      "passive_name": "",
+      "passive_description": ""
+    },
+    {
+      "name": "Magic Shoes",
+      "cat": "Movement",
+      "price": 720,
+      "stats": [
+        "+150 HP",
+        "+40 Movement Speed",
+        "+10% CD Reduction"
+      ],
+      "img": "images/items/Magic Shoes.png",
+      "passive_name": "",
+      "passive_description": ""
+    },
+    {
+      "name": "Magic Wand",
+      "cat": "Magic",
+      "price": 820,
+      "stats": [
+        "+45 Magic Power"
+      ],
+      "img": "images/items/Magic Wand.png",
+      "passive_name": "",
+      "passive_description": ""
+    },
+    {
+      "name": "Malefic Gun",
+      "cat": "Attack",
+      "price": 2120,
+      "stats": [
+        "+40 Physical Attack",
+        "+20% Attack Speed"
+      ],
+      "img": "images/items/Malefic Gun.png",
+      "passive_name": "Armor Buster",
+      "passive_description": "Unique Passive - Armor Buster: Increase Physical Penetration by 30%. Unique Passive - Malefic Energy: Increases Basic Attack range by 12%. When hitting a target, gains 10% Movement Speed for 0.5 seconds."
+    },
+    {
+      "name": "Malefic Roar",
+      "cat": "Attack",
+      "price": 2060,
+      "stats": [
+        "+60 Physical Attack"
+      ],
+      "img": "images/items/Malefic Roar.png",
+      "passive_name": "Armor Buster",
+      "passive_description": "Unique Passive - Armor Buster: Increase Physical Penetration by 30%. Unique Passive - Breaker: When attacking an enemy, gains 0.1% extra Physical Penetration for each point of the enemy's Physical Defense, capped at 30%."
+    },
+    {
+      "name": "Molten Essence",
+      "cat": "Defense",
+      "price": 800,
+      "stats": [
+        "+540 HP"
+      ],
+      "img": "images/items/Molten Essence.png",
+      "passive_name": "Burning Soul",
+      "passive_description": "Unique Passive - Burning Soul: Deals (0.6% Total HP) Magic Damage to nearby enemies per second. This damage is increased by 125(+15*Hero Level)% against creeps and minions."
+    },
+    {
+      "name": "Mystery Codex",
+      "cat": "Magic",
+      "price": 300,
+      "stats": [
+        "+15 Magic Power"
+      ],
+      "img": "images/items/Mystery Codex.png",
+      "passive_name": "",
+      "passive_description": ""
+    },
+    {
+      "name": "Mystic Container",
+      "cat": "Magic",
+      "price": 500,
+      "stats": [
+        "+15 Magic Power",
+        "+8% Spell Vamp"
+      ],
+      "img": "images/items/Mystic Container.png",
+      "passive_name": "",
+      "passive_description": ""
+    },
+    {
+      "name": "Ogre Tomahawk",
+      "cat": "Attack",
+      "price": 650,
+      "stats": [
+        "+25 Physical Attack",
+        "+230 HP"
+      ],
+      "img": "images/items/Ogre Tomahawk.png",
+      "passive_name": "",
+      "passive_description": ""
+    },
+    {
+      "name": "Oracle",
+      "cat": "Defense",
+      "price": 1860,
+      "stats": [
+        "+850 HP",
+        "+20 Physical Defense",
+        "+20 Magic Defense"
+      ],
+      "img": "images/items/Oracle.png",
+      "passive_name": "Bless",
+      "passive_description": "Unique Passive - Bless: Received Shield and HP Regen effects are increased by 30%."
+    },
+    {
+      "name": "Power Crystal",
+      "cat": "Magic",
+      "price": 220,
+      "stats": [
+        "+280 Magic Power"
+      ],
+      "img": "images/items/Power Crystal.png",
+      "passive_name": "",
+      "passive_description": ""
+    },
+    {
+      "name": "Queen's Wings",
+      "cat": "Defense",
+      "price": 2250,
+      "stats": [
+        "+30 Physical Attack",
+        "+750 HP",
+        "+10% CD Reduction"
+      ],
+      "img": "images/items/Queens Wings.png",
+      "passive_name": "Demonize",
+      "passive_description": "Unique Passive - Demonize: When HP drops below 40%, gains 30% Damage Reduction for 3 seconds and reduces skill cooldowns by 2 seconds. This effect has a 60 seconds cooldown. Unique Passive - Defiance: For every 1% HP lost, damage is increased by 0.25%, up to 15%."
+    },
+    {
+      "name": "Radiant Armor",
+      "cat": "Defense",
+      "price": 1880,
+      "stats": [
+        "+962 HP",
+        "+40 Magic Defense"
+      ],
+      "img": "images/items/Radiant Armor.png",
+      "passive_name": "Holy Blessing",
+      "passive_description": "Unique Passive - Holy Blessing: Taking Magic Damage grants 5(+1*Hero Level) Magic Defense for 5 seconds, up to 6 stacks (can only gain 1 stack(s) every 0.4 seconds)."
+    },
+    {
+      "name": "Rapid Boots",
+      "cat": "Movement",
+      "price": 720,
+      "stats": [
+        "+12 HP",
+        "+65 Movement Speed"
+      ],
+      "img": "images/items/Rapid Boots.png",
+      "passive_name": "Side Effect",
+      "passive_description": "Unique Passive - Side Effect: Loses 20 Movement Speed for 5 seconds upon dealing or taking damage."
+    },
+    {
+      "name": "Regular Spear",
+      "cat": "Attack",
+      "price": 600,
+      "stats": [
+        "+20 Physical Attack",
+        "+10% Attack Speed"
+      ],
+      "img": "images/items/Regular Spear.png",
+      "passive_name": "",
+      "passive_description": ""
+    },
+    {
+      "name": "Rogue Meteor",
+      "cat": "Attack",
+      "price": 900,
+      "stats": [
+        "+15% Attack Speed"
+      ],
+      "img": "images/items/Rogue Meteor.png",
+      "passive_name": "",
+      "passive_description": ""
+    },
+    {
+      "name": "Rose Gold Meteor",
+      "cat": "Attack",
+      "price": 2030,
+      "stats": [
+        "+40 Physical Attack",
+        "+20% Attack Speed",
+        "+10% Lifesteal"
+      ],
+      "img": "images/items/Rose Gold Meteor.png",
+      "passive_name": "Dragon Scale",
+      "passive_description": "Unique Passive - Dragon Scale: Every 1% Lifesteal increases Hybrid Defense by 1, up to 50 (effect is halved for non-Fighter heroes). Unique Passive - Lifeline: When taking damage that reduces HP below 30%, gains a (120*Hero Level) shield (increases with level) and 50% Movement Speed that rapidly decays over 3 seconds. This effect has a 60 seconds cooldown."
+    },
+    {
+      "name": "Sea Halberd",
+      "cat": "Attack",
+      "price": 2050,
+      "stats": [
+        "+80 Physical Attack",
+        "+20% Attack Speed"
+      ],
+      "img": "images/items/Sea Halberd.png",
+      "passive_name": "Lifebane",
+      "passive_description": "Unique Passive - Lifebane: Dealing damage to a target will reduce the Shield and HP Regen effects on them to 60% of normal for 3 seconds. Unique Passive - Punish: Increase damage by 8% against enemy heroes with higher extra HP."
+    },
+    {
+      "name": "Silence Robe",
+      "cat": "Defense",
+      "price": 1020,
+      "stats": [
+        "+540 HP",
+        "+23 Magic Defense"
+      ],
+      "img": "images/items/Silence Robe.png",
+      "passive_name": "",
+      "passive_description": ""
+    },
+    {
+      "name": "Sky Piercer",
+      "cat": "Attack",
+      "price": 1500,
+      "stats": [
+        "+60 Physical Attack",
+        "+15 Movement Speed"
+      ],
+      "img": "images/items/Sky Piercer.png",
+      "passive_name": "Lethality",
+      "passive_description": "Unique Passive - Lethality: After dealing damage to an enemy hero, executes the hero if their HP is lower than 4%. Gains 10 stack(s) of Lethality for each kill and loses 30% current stack(s) for each death. Each stack of Lethality increases the HP threshold of the execute effect by 0.1%, stacking up 80 times."
+    },
+    {
+      "name": "Starlium Scythe",
+      "cat": "Magic",
+      "price": 2120,
+      "stats": [
+        "+76 Magic Power",
+        "+10% CD Reduction"
+      ],
+      "img": "images/items/Starlium Scythe.png",
+      "passive_name": "Crisis",
+      "passive_description": "Unique Passive - Crisis: After casting a skill, the next Basic Attack within 3 seconds deals 100 (+100% Total Magic Power) extra True Damage and reduces the target's Movement Speed by 40% for 1.5 seconds (5 seconds cooldown)."
+    },
+    {
+      "name": "Steel Legplates",
+      "cat": "Defense",
+      "price": 630,
+      "stats": [
+        "+35 Physical Defense"
+      ],
+      "img": "images/items/Steel Legplates.png",
+      "passive_name": "",
+      "passive_description": ""
+    },
+    {
+      "name": "Swift Boots",
+      "cat": "Movement",
+      "price": 720,
+      "stats": [
+        "+15% Attack Speed",
+        "+40 Movement Speed"
+      ],
+      "img": "images/items/Swift Boots.png",
+      "passive_name": "",
+      "passive_description": ""
+    },
+    {
+      "name": "Swift Crossbow",
+      "cat": "Attack",
+      "price": 1000,
+      "stats": [
+        "+20% Attack Speed"
+      ],
+      "img": "images/items/Swift Crossbow.png",
+      "passive_name": "Crossbow",
+      "passive_description": "Unique Passive - Crossbow: Each Basic Attack deals 40 extra Adaptive Damage. Unique Passive - Impulse: Basic Attacks grant 3% extra Attack Speed for 3 seconds, capped at 5 stacks."
+    },
+    {
+      "name": "Thunder Belt",
+      "cat": "Defense",
+      "price": 1820,
+      "stats": [
+        "+600 HP",
+        "+15 Physical Defense",
+        "+15 Magic Defense"
+      ],
+      "img": "images/items/Thunder Belt.png",
+      "passive_name": "Thunderbolt",
+      "passive_description": "Unique Passive - Thunderbolt: Every 4 seconds, the next Basic Attack deals 50 (+100% Extra Physical Defense) (+100% Extra Magic Defense) extra True Damage to the target and enemies around them, and briefly slows them by 99%. Hybrid Defense permanently increases by 1 each time the attack hits an enemy hero. (This effect is reduced to 50% for Marksmen and Mages)"
+    },
+    {
+      "name": "Tome of Evil",
+      "cat": "Magic",
+      "price": 950,
+      "stats": [
+        "+39 Magic Power",
+        "+8% CD Reduction"
+      ],
+      "img": "images/items/Tome of Evil.png",
+      "passive_name": "",
+      "passive_description": ""
+    },
+    {
+      "name": "Tough Boots",
+      "cat": "Movement",
+      "price": 720,
+      "stats": [
+        "+18 Magic Defense",
+        "+40 Movement Speed"
+      ],
+      "img": "images/items/Tough Boots.png",
+      "passive_name": "Fortitude",
+      "passive_description": "Unique Passive - Fortitude: CC and Slow Duration reduced by 25%."
+    },
+    {
+      "name": "Vampire Mallet",
+      "cat": "Attack",
+      "price": 400,
+      "stats": [
+        "+8 Physical Attack",
+        "+8% Lifesteal"
+      ],
+      "img": "images/items/Vampire Mallet.png",
+      "passive_name": "",
+      "passive_description": ""
+    },
+    {
+      "name": "Vitality Crystal",
+      "cat": "Defense",
+      "price": 300,
+      "stats": [
+        "+230 HP"
+      ],
+      "img": "images/items/Vitality Crystal.png",
+      "passive_name": "",
+      "passive_description": ""
+    },
+    {
+      "name": "War Axe",
+      "cat": "Attack",
+      "price": 2100,
+      "stats": [
+        "+35 Physical Attack",
+        "+400 HP",
+        "+10% CD Reduction"
+      ],
+      "img": "images/items/War Axe.png",
+      "passive_name": "Fighting Spirit",
+      "passive_description": "Unique Passive - Fighting Spirit: Attacks grants 12 extra Physical Attack per second for 4 seconds, up to 6 stacks. Deals 10% extra True Damage based on the damage dealt (no damage reduction counted) at full stacks. (Marksmen, Mages, and Supports only receive 50% of these stacked effects.)"
+    },
+    {
+      "name": "Warrior Boots",
+      "cat": "Movement",
+      "price": 720,
+      "stats": [
+        "+18 Physical Defense",
+        "+40 Movement Speed"
+      ],
+      "img": "images/items/Warrior Boots.png",
+      "passive_name": "Valor",
+      "passive_description": "Unique Passive - Valor: Gains 4 extra Physical Defense for 3 seconds when taking Physical Damage, up to 20."
+    },
+    {
+      "name": "Wind of Nature",
+      "cat": "Attack",
+      "price": 1910,
+      "stats": [
+        "+30 Physical Attack",
+        "+20% Attack Speed",
+        "+10% Lifesteal"
+      ],
+      "img": "images/items/Wind of Nature.png",
+      "passive_name": "Wind Chant",
+      "passive_description": "Unique Active - Wind Chant: Become immune to all Physical Damage for 2 seconds (duration is halved for non-Marksmen; 90 seconds cooldown)."
+    },
+    {
+      "name": "Windtalker",
+      "cat": "Attack",
+      "price": 1880,
+      "stats": [
+        "+35% Attack Speed",
+        "+20 Movement Speed"
+      ],
+      "img": "images/items/Windtalker.png",
+      "passive_name": "Typhoon",
+      "passive_description": "Unique Passive - Typhoon: Every 5-2 seconds (reduced by 0.2 seconds for each Basic Attack), the next Basic Attack will hit up to 3 enemy units for 150-362 Magic Damage. (This attack can Crit and the damage increases to 200% against Minions.)"
+    },
+    {
+      "name": "Winter Crown",
+      "cat": "Attack",
+      "price": 1910,
+      "stats": [
+        "+45 Physical Attack",
+        "+400 HP",
+        "+5% CD Reduction"
+      ],
+      "img": "images/items/Winter Crown.png",
+      "passive_name": "Frozen",
+      "passive_description": "Unique Active - Frozen: Becomes frozen, untargetable, and immune to damage for 2 seconds (100 seconds cooldown). Cannot move or cast skills while frozen, but skills already cast won't be interrupted."
+    },
+    {
+      "name": "Wishing Lantern",
+      "cat": "Magic",
+      "price": 2250,
+      "stats": [
+        "+475 Magic Power",
+        "+10% CD Reduction"
+      ],
+      "img": "images/items/Wishing Lantern.png",
+      "passive_name": "Butterfly Goddess",
+      "passive_description": "Unique Passive - Butterfly Goddess: For every 800 Magic Damage dealt to an enemy hero (calculated before Damage Reduction), a Butterfly Goddess is summoned to attack the enemy hero, dealing Magic Damage equal to 8% of their Current HP."
+    }
+  ]
+}

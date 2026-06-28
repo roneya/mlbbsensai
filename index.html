@@ -338,6 +338,23 @@ body { font-family: 'Segoe UI', system-ui, Arial, sans-serif; background: var(--
 .guide-note { font-size: 0.71rem; line-height: 1.4; }
 .guide-note.pos { color: var(--green); }
 .guide-note.neg { color: var(--redneg); }
+/* ── Item Builds ──────────────────────────────────────── */
+.item-builds { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 10px; }
+.ib-card { background: var(--bg3); border-radius: 8px; padding: 11px 12px; border: 1px solid var(--border); }
+.ib-head { display: flex; align-items: center; gap: 9px; margin-bottom: 9px; }
+.ib-img { width: 40px; height: 40px; border-radius: 6px; object-fit: cover; flex-shrink: 0; }
+.ib-name { font-size: 0.88rem; font-weight: bold; }
+.ib-role { font-size: 0.66rem; color: var(--muted); }
+.ib-label { font-size: 0.62rem; font-weight: bold; color: #888; text-transform: uppercase; letter-spacing: 0.6px; margin: 8px 0 5px; }
+.ib-core { display: flex; flex-wrap: wrap; gap: 5px; }
+.item-chip { display: inline-flex; align-items: center; gap: 4px; background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; padding: 2px 9px 2px 2px; font-size: 0.68rem; }
+.item-chip img { width: 20px; height: 20px; border-radius: 50%; object-fit: cover; }
+.ib-counters { display: flex; flex-direction: column; gap: 5px; }
+.ib-counter { display: flex; align-items: center; gap: 7px; }
+.ib-counter .item-chip { border-color: var(--gold); background: rgba(240,165,0,0.08); flex-shrink: 0; }
+.ib-reason { font-size: 0.68rem; color: #aaa; line-height: 1.35; }
+.ib-none { font-size: 0.68rem; color: #555; font-style: italic; }
+
 .gp-block { margin-top: 16px; background: rgba(255,255,255,0.03); border: 1px solid #2a2a2a; border-radius: 8px; padding: 13px; }
 .gp-heading { font-size: 0.92rem; font-weight: bold; color: var(--gold); margin-bottom: 5px; display: flex; align-items: center; gap: 8px; }
 .gp-wincon { font-size: 0.77rem; color: #999; margin-bottom: 12px; line-height: 1.5; }
@@ -445,7 +462,10 @@ body { font-family: 'Segoe UI', system-ui, Arial, sans-serif; background: var(--
 
   <!-- Top Bar -->
   <div class="topbar">
-    <h1>MLBB Draft Assistant</h1>
+    <div style="display:flex;align-items:center;gap:12px">
+      <h1>MLBB Draft Assistant</h1>
+      <a href="items.html" style="padding:4px 11px;border-radius:7px;border:1px solid var(--border);background:var(--bg3);color:var(--muted);font-size:0.78rem;text-decoration:none;transition:all 0.15s" onmouseover="this.style.color='var(--text)';this.style.borderColor='#666'" onmouseout="this.style.color='var(--muted)';this.style.borderColor='var(--border)'">⚔ Items</a>
+    </div>
     <div class="controls">
       <span class="team-label">Your Team:</span>
       <button class="team-btn team-A active" data-team="A">Team A</button>
@@ -547,6 +567,8 @@ const SLOT_ROLE_PREFS = {
 
 // ── State ──────────────────────────────────────────────────────────────────
 let HEROES       = {};
+let ITEMS_DATA   = [];
+let ITEM_BY_NAME = {};
 let bans         = { A: [], B: [] };
 let picks        = { A: [], B: [] };
 let enemyBanned  = [];
@@ -564,6 +586,15 @@ function init() {
     .then(data => {
       HEROES = data.hero_info;
       console.log("Data loaded:", Object.keys(HEROES).length, "heroes");
+      renderAll();
+    })
+    .then(() => fetch("items.json?v=" + Date.now()))
+    .then(r => r.json())
+    .then(data => {
+      ITEMS_DATA = data.items || [];
+      ITEM_BY_NAME = {};
+      ITEMS_DATA.forEach(it => { ITEM_BY_NAME[it.name] = it; });
+      console.log("Items loaded:", ITEMS_DATA.length);
       renderAll();
     })
     .catch(err => {
@@ -1250,6 +1281,155 @@ function computeDraftGrade(myPicks, enemyPicks) {
   return "D";
 }
 
+// ── Item recommendation engine ───────────────────────────────────────────────
+// Damage type of a hero: 'physical' | 'magic' | 'mixed'
+function getHeroDamageType(heroId) {
+  const h = HEROES[heroId];
+  if (!h) return "physical";
+  const cls = h.heroClass;
+  let phys = 0, mag = 0;
+  for (const s of (h.skills || [])) {
+    const d = s.desc || "";
+    phys += (d.match(/Physical Damage/gi) || []).length;
+    mag  += (d.match(/Magic Damage/gi)    || []).length;
+  }
+  if (cls === "Marksman") phys += 2; // basic-attack reliant
+  if (phys === 0 && mag === 0)
+    return (cls === "Mage" || cls === "Support") ? "magic" : "physical";
+  if (mag  > phys * 1.5) return "magic";
+  if (phys > mag  * 1.5) return "physical";
+  return "mixed";
+}
+
+// Aggregate enemy threat signals
+function buildThreatProfile(enemyPicks) {
+  let phys = 0, mag = 0, cc = 0, burst = 0, heal = 0, tanky = 0, atkspd = 0;
+  for (const id of enemyPicks) {
+    const h = HEROES[id]; if (!h) continue;
+    const dt    = getHeroDamageType(id);
+    const tags  = getSkillTags(id);
+    const specs = getSpeciality(id);
+    if (dt === "physical") phys++;
+    else if (dt === "magic") mag++;
+    else { phys += 0.5; mag += 0.5; }
+    if (tags.some(t => ["CC", "Stun", "Suppress", "Knockup", "Immobilize"].includes(t))) cc++;
+    if (specs.includes("Burst") || h.heroClass === "Assassin") burst++;
+    if (tags.includes("Heal") || tags.includes("Shield") || specs.includes("Regen")) heal++;
+    if (h.heroClass === "Tank" || h.heroClass === "Fighter" || (h.abilityStats?.durability || 0) >= 60) tanky++;
+    if (h.heroClass === "Marksman") atkspd++;
+  }
+  return {
+    phys, mag, cc, burst, heal, tanky, atkspd,
+    physDominant: phys > mag,
+    magDominant:  mag > phys
+  };
+}
+
+// Class-based core build (the hero's own kit, independent of enemy)
+const CORE_BUILDS = {
+  Marksman: ["Swift Boots", "Berserker's Fury", "Windtalker", "Malefic Roar"],
+  Mage:     ["Arcane Boots", "Clock of Destiny", "Holy Crystal", "Divine Glaive"],
+  Assassin: ["Warrior Boots", "Blade of Despair", "Hunter Strike"],
+  Fighter:  ["Warrior Boots", "Endless Battle", "War Axe"],
+  Tank:     ["Tough Boots", "Dominance Ice", "Immortality"],
+  Support:  ["Magic Shoes", "Oracle", "Immortality"]
+};
+
+// Situational counters for THIS hero vs THIS enemy comp → [{name, reason}]
+function recommendCounters(heroId, profile) {
+  const h = HEROES[heroId]; if (!h) return [];
+  const cls = h.heroClass;
+  const dt  = getHeroDamageType(heroId);
+  const out = [];
+  const add = (name, reason) => {
+    if (ITEM_BY_NAME[name] && !out.find(o => o.name === name)) out.push({ name, reason });
+  };
+  const wantsDef  = cls === "Tank" || cls === "Fighter" || cls === "Support";
+  const isSquishy = cls === "Marksman" || cls === "Mage" || cls === "Assassin";
+
+  // Penetration vs tanky enemies (for damage dealers)
+  if (profile.tanky >= 2 && !wantsDef) {
+    if (dt === "magic" || cls === "Mage") add("Divine Glaive", `${profile.tanky} tanky enemies — magic penetration`);
+    else                                  add("Malefic Roar",  `${profile.tanky} tanky enemies — physical penetration`);
+  }
+  // Anti-heal vs sustain comps — pick the Lifebane item that matches the hero's role
+  if (profile.heal >= 2) {
+    const reason = `${profile.heal} sustain heroes — Lifebane cuts healing`;
+    if (cls === "Tank" || cls === "Support")    add("Dominance Ice", reason); // defensive Lifebane
+    else if (dt === "magic" || cls === "Mage")  add("Glowing Wand",  reason); // magic Lifebane
+    else                                        add("Sea Halberd",   reason); // physical Lifebane
+  }
+  // Defensive vs dominant damage type (durable roles)
+  if (wantsDef) {
+    if (profile.physDominant && profile.phys >= 3) add("Antique Cuirass", `${Math.round(profile.phys)} physical dealers — armor + damage reduction`);
+    if (profile.magDominant  && profile.mag  >= 3) add("Athena's Shield", `${Math.round(profile.mag)} magic dealers — magic shield`);
+    if (profile.atkspd >= 2)                       add("Blade Armor",     `${profile.atkspd} marksmen — reflects basic attacks`);
+  }
+  // Anti-CC and survival for squishy carries
+  if (isSquishy) {
+    if (profile.cc >= 3)    add("Tough Boots",   `${profile.cc} CC threats — reduces CC duration`);
+    if (profile.burst >= 2) add("Wind of Nature", `${profile.burst} burst threats — physical immunity`);
+    if (profile.burst >= 3) add("Winter Crown",   "Heavy burst — invulnerability to survive dives");
+  }
+  return out.slice(0, 3);
+}
+
+// Full per-hero recommendation
+function recommendBuild(heroId, profile) {
+  const cls = HEROES[heroId]?.heroClass || "Fighter";
+  const core = (CORE_BUILDS[cls] || CORE_BUILDS.Fighter)
+    .filter(n => ITEM_BY_NAME[n]);
+  const counters = recommendCounters(heroId, profile);
+  // Don't repeat a core item in counters
+  const coreSet = new Set(core);
+  return { core, counters: counters.filter(c => !coreSet.has(c.name)) };
+}
+
+function itemChip(name) {
+  const it = ITEM_BY_NAME[name];
+  if (!it) return "";
+  return `<span class="item-chip" title="${name}">
+    <img src="${it.img}" alt="${name}" onerror="this.style.visibility='hidden'">
+    <span>${name}</span>
+  </span>`;
+}
+
+function renderItemBuilds(myPicks, enemyPicks) {
+  if (!ITEMS_DATA.length) return "";
+  const profile = buildThreatProfile(enemyPicks);
+  const cards = myPicks.map(id => {
+    const h = HEROES[id]; if (!h) return "";
+    const { core, counters } = recommendBuild(id, profile);
+    const coreHtml = core.map(itemChip).join("");
+    const counterHtml = counters.length
+      ? counters.map(c => `
+          <div class="ib-counter">
+            ${itemChip(c.name)}
+            <span class="ib-reason">${c.reason}</span>
+          </div>`).join("")
+      : `<div class="ib-none">No situational swaps — standard build is fine.</div>`;
+    return `<div class="ib-card">
+      <div class="ib-head">
+        <img src="${h.heroPic}" class="ib-img" alt="${h.heroName}">
+        <div>
+          <div class="ib-name">${h.heroName}</div>
+          <div class="ib-role">${h.heroClass} · ${h.heroType || ""}</div>
+        </div>
+      </div>
+      <div class="ib-label">Core Build</div>
+      <div class="ib-core">${coreHtml}</div>
+      <div class="ib-label">vs This Enemy</div>
+      <div class="ib-counters">${counterHtml}</div>
+    </div>`;
+  }).join("");
+
+  return `
+    <div class="panel-title" style="margin-top:18px;margin-bottom:10px">
+      Item Builds — Your Team
+    </div>
+    <div class="item-builds">${cards}</div>`;
+}
+
 function renderAnalysis() {
   const el = document.getElementById("analysis");
   if (turnIdx < 10) { el.style.display = "none"; return; }
@@ -1329,6 +1509,7 @@ function renderAnalysis() {
       Your Team (${myTeam === "A" ? "Team A" : "Team B"}) — Hero Guide
     </div>
     <div class="hero-guide">${guideCards}</div>
+    ${renderItemBuilds(myPicks, enemyPicks)}
     ${renderGamePlan(myPicks, enemyPicks)}
   `;
 }
