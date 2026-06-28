@@ -48,6 +48,17 @@ body{font-family:"Segoe UI",system-ui,sans-serif;background:var(--bg);color:var(
 
 .no-results{grid-column:1/-1;text-align:center;padding:60px;color:var(--muted)}
 
+/* stats glossary */
+.glossary-panel{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:16px 18px;margin-bottom:10px}
+.glossary-title{font-size:.95rem;font-weight:700;color:var(--gold);margin-bottom:12px}
+.glossary-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
+.gloss-item{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px 12px}
+.gloss-term{font-size:.82rem;font-weight:700;color:var(--text)}
+.gloss-aka{font-size:.65rem;color:var(--gold);margin-left:6px;font-weight:500}
+.gloss-desc{font-size:.74rem;color:var(--muted);line-height:1.45;margin-top:4px}
+.modal-stat .label{cursor:help;border-bottom:1px dotted transparent}
+.modal-stat .label[title]{border-bottom-color:var(--border)}
+
 /* modal */
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;align-items:center;justify-content:center;padding:20px;z-index:100}
 .overlay.open{display:flex}
@@ -77,7 +88,10 @@ body{font-family:"Segoe UI",system-ui,sans-serif;background:var(--bg);color:var(
   <div class="topbar">
     <h1>⚔ Mobile Legends Items</h1>
     <a href="index.html" class="nav-link">← Draft Tool</a>
+    <button id="glossaryBtn" class="nav-link" style="cursor:pointer;margin-left:auto">📖 Stats Guide</button>
   </div>
+
+  <div id="glossaryPanel" class="glossary-panel" style="display:none"></div>
 
   <div class="filter-bar">
     <div class="filter-row">
@@ -130,14 +144,33 @@ body{font-family:"Segoe UI",system-ui,sans-serif;background:var(--bg);color:var(
 </div>
 
 <script>
-let ITEMS = [], activeCat = 'All', query = '';
+let ITEMS = [], GLOSSARY = [], GLOSS_BY_TERM = {}, activeCat = 'All', query = '';
 
 fetch('items.json')
   .then(r => r.json())
   .then(data => {
     ITEMS = data.items;
+    GLOSSARY = data.glossary || [];
+    GLOSS_BY_TERM = {};
+    GLOSSARY.forEach(g => { GLOSS_BY_TERM[g.term] = g; });
+    renderGlossary();
     apply();
   });
+
+function renderGlossary() {
+  const panel = document.getElementById('glossaryPanel');
+  panel.innerHTML = `<div class="glossary-title">📖 Understanding Item Stats</div>
+    <div class="glossary-grid">${GLOSSARY.map(g => `
+      <div class="gloss-item">
+        <span class="gloss-term">${g.term}</span><span class="gloss-aka">${g.aka}</span>
+        <div class="gloss-desc">${g.desc}</div>
+      </div>`).join('')}</div>`;
+}
+
+document.getElementById('glossaryBtn').addEventListener('click', () => {
+  const p = document.getElementById('glossaryPanel');
+  p.style.display = p.style.display === 'none' ? 'block' : 'none';
+});
 
 function statVal(stats, re) {
   for (const s of stats) {
@@ -232,9 +265,12 @@ function openModal(it) {
     (it.stats.length
       ? it.stats.map(s => {
           const m = s.match(/^(\+[\d,]+%?)\s+(.*)$/);
+          const label = m ? m[2] : s;
+          const g = GLOSS_BY_TERM[label];
+          const tip = g ? ` title="${g.aka} — ${g.desc}"` : '';
           return m
-            ? `<div class="modal-stat"><span class="label">${m[2]}</span><span class="val">${m[1]}</span></div>`
-            : `<div class="modal-stat"><span class="label">${s}</span></div>`;
+            ? `<div class="modal-stat"><span class="label"${tip}>${label}</span><span class="val">${m[1]}</span></div>`
+            : `<div class="modal-stat"><span class="label"${tip}>${label}</span></div>`;
         }).join('')
       : '<div class="modal-stat"><span class="label">No attributes</span></div>');
 

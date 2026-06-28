@@ -1059,5 +1059,82 @@
       "passive_name": "Butterfly Goddess",
       "passive_description": "Unique Passive - Butterfly Goddess: For every 800 Magic Damage dealt to an enemy hero (calculated before Damage Reduction), a Butterfly Goddess is summoned to attack the enemy hero, dealing Magic Damage equal to 8% of their Current HP."
     }
+  ],
+  "glossary": [
+    {
+      "term": "HP",
+      "aka": "Health Points",
+      "desc": "Total damage a hero can take before dying. Core stat for tanks and fighters."
+    },
+    {
+      "term": "Physical Attack",
+      "aka": "PhysATK",
+      "desc": "Boosts basic attacks and physical skill damage. Main stat for marksmen, assassins, most fighters."
+    },
+    {
+      "term": "Magic Power",
+      "aka": "MagPow",
+      "desc": "Boosts magic skill damage. Main stat for mages."
+    },
+    {
+      "term": "Physical Defense",
+      "aka": "Armor",
+      "desc": "Reduces incoming physical damage. Has diminishing returns, so penetration counters it."
+    },
+    {
+      "term": "Magic Defense",
+      "aka": "Magic Resist",
+      "desc": "Reduces incoming magic damage. Build vs mage-heavy enemy teams."
+    },
+    {
+      "term": "Attack Speed",
+      "aka": "AS",
+      "desc": "How fast basic attacks fire. Critical for marksmen and on-hit heroes; capped per hero."
+    },
+    {
+      "term": "CD Reduction",
+      "aka": "Cooldown Reduction / CDR",
+      "desc": "Cast skills more often. Stacks additively, capped at 40% (45% only with Enchanted Talisman)."
+    },
+    {
+      "term": "Movement Speed",
+      "aka": "MS",
+      "desc": "How fast the hero moves around the map — for rotations, chasing, and kiting."
+    },
+    {
+      "term": "Physical Penetration",
+      "aka": "Phys PEN",
+      "desc": "Ignores part of the enemy's physical defense. Flat pen applies before %, and can push defense below zero. Build vs tanks."
+    },
+    {
+      "term": "Magic Penetration",
+      "aka": "Magic PEN",
+      "desc": "Ignores part of the enemy's magic defense. Same mechanic as phys pen — for mages shredding durable frontlines."
+    },
+    {
+      "term": "Critical Chance",
+      "aka": "Crit Rate",
+      "desc": "Probability a basic attack crits for 2x damage. Stacks additively from items/emblems. Marksman stat."
+    },
+    {
+      "term": "Crit Damage",
+      "aka": "Crit DMG",
+      "desc": "Raises the critical-strike multiplier above the default 200%. Pairs with crit chance."
+    },
+    {
+      "term": "Lifesteal",
+      "aka": "Physical Lifesteal",
+      "desc": "Heals a % of damage dealt by BASIC ATTACKS. Sustain for marksmen and fighters. Lifebane items cut it."
+    },
+    {
+      "term": "Spell Vamp",
+      "aka": "Magic Lifesteal",
+      "desc": "Heals a % of damage dealt by SKILLS. AoE skills only restore 25%. Sustain for mages and skill fighters."
+    },
+    {
+      "term": "Penetration",
+      "aka": "PEN",
+      "desc": "Generic term for ignoring enemy defense (physical or magic). The more tanks the enemy stacks, the more value it gives."
+    }
   ]
 }

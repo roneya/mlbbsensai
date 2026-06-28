@@ -1388,7 +1388,13 @@ function recommendBuild(heroId, profile) {
 function itemChip(name) {
   const it = ITEM_BY_NAME[name];
   if (!it) return "";
-  return `<span class="item-chip" title="${name}">
+  // Tooltip: stats + passive so the user understands what the item does
+  const statLine = (it.stats || []).join(", ");
+  const passLine = it.passive_name
+    ? `\n◆ ${it.passive_name}: ${it.passive_description || ""}`
+    : "";
+  const tip = `${name}${statLine ? "\n" + statLine : ""}${passLine}`;
+  return `<span class="item-chip" title="${tip.replace(/"/g, "&quot;")}">
     <img src="${it.img}" alt="${name}" onerror="this.style.visibility='hidden'">
     <span>${name}</span>
   </span>`;
